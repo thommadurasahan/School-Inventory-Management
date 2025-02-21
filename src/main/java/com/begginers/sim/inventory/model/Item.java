@@ -24,4 +24,8 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "typeId")
     private Type type;
+
+    @ManyToOne
+    @JoinColumn(name = "supplierId")
+    private Supplier supplier;
 }

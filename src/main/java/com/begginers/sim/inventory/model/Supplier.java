@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,4 +20,7 @@ public class Supplier {
     private int supplierContactNo;
     @Temporal(TemporalType.DATE)
     private Date supplierAddedOn;
+
+    @OneToMany(mappedBy = "supplier")
+    private List<Item> items;
 }
