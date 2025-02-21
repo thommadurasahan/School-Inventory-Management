@@ -14,10 +14,14 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private short itemId;
-    private byte typeId;
+    //private byte typeId;
     private String voucherNo;
     private short quantity;
     private byte supplierId;
     @Temporal(TemporalType.TIMESTAMP)
     private Date receivedOn;
+
+    @ManyToOne
+    @JoinColumn(name = "typeId")
+    private Type type;
 }

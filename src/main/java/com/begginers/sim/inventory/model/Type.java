@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,4 +18,7 @@ public class Type {
     private String typeName;
     @Temporal(TemporalType.TIMESTAMP)
     private Date typeAddedOn;
+
+    @OneToMany(mappedBy = "type")
+    private List<Item> items;
 }
