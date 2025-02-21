@@ -1,9 +1,6 @@
 package com.begginers.sim.inventory.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,5 +15,6 @@ public class Type {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private byte typeId;
     private String typeName;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date typeAddedOn;
 }
