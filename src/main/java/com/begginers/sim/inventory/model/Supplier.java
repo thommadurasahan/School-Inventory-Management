@@ -5,6 +5,8 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @Entity
@@ -14,5 +16,6 @@ public class Supplier {
     private byte supplierId;
     private String supplierName;
     private String supplierAddress;
-    private int contactNo;
+    private int supplierContactNo;
+    private Date supplierAddedOn;
 }
