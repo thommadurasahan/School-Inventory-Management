@@ -12,8 +12,6 @@ public class Supply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private short supplyId;
-    private byte typeId;
-    private byte supplierId;
 
     @ManyToOne
     @JoinColumn(name = "typeId")
