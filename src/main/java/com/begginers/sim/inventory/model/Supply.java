@@ -1,9 +1,6 @@
 package com.begginers.sim.inventory.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,4 +14,12 @@ public class Supply {
     private short supplyId;
     private byte typeId;
     private byte supplierId;
+
+    @ManyToOne
+    @JoinColumn(name = "typeId")
+    private Type type;
+
+    @ManyToOne
+    @JoinColumn(name = "supplierId")
+    private Supplier supplier;
 }
