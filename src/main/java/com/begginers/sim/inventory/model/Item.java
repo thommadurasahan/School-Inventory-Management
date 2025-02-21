@@ -19,6 +19,5 @@ public class Item {
     private short quantity;
     private byte supplierId;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date insertedDate;
-    private String insertedBy;
+    private Date receivedOn;
 }
