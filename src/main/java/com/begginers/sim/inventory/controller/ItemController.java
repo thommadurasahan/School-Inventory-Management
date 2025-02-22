@@ -23,4 +23,14 @@ public class ItemController {
     public List<Item> getAllItems() {
         return itemRepository.findAll();
     }
+
+    @PutMapping
+    public Item updateItem(@PathVariable short itemId, @RequestBody Item newItem) {
+        return itemRepository.findById(itemId)
+                .map(item -> {
+                    item.setQuantity(newItem.getQuantity());
+                    return itemRepository.save(item);
+                })
+                .orElseThrow();
+    }
 }
