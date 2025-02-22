@@ -1,5 +1,6 @@
 package com.begginers.sim.inventory.controller;
 
+import com.begginers.sim.inventory.model.Item;
 import com.begginers.sim.inventory.model.Type;
 import com.begginers.sim.inventory.repository.TypeRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,15 @@ public class TypeController {
     @GetMapping
     public List<Type> getAllTypes() {
         return typeRepository.findAll();
+    }
+
+    @PutMapping
+    public Type updateType(@PathVariable byte typeId, @RequestBody Type updatedType) {
+        return typeRepository.findById(typeId)
+                .map(type -> {
+                    type.setTypeName(updatedType.getTypeName());
+                    return typeRepository.save(type);
+                })
+                .orElseThrow();
     }
 }
