@@ -3,7 +3,6 @@ package com.begginers.sim.inventory.controller;
 import com.begginers.sim.inventory.model.Item;
 import com.begginers.sim.inventory.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class ItemController {
     }
 
     @GetMapping
-    private List<Item> getAllItems() {
+    public List<Item> getAllItems() {
         return itemRepository.findAll();
     }
 }
