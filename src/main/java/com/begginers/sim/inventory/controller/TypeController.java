@@ -16,7 +16,7 @@ public class TypeController {
 
     @PostMapping
     public Type insertType(@RequestBody Type type) {
-        return itemRepository.save(type);
+        return typeRepository.save(type);
     }
 
     @GetMapping
