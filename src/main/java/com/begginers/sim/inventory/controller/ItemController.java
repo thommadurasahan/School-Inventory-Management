@@ -25,10 +25,10 @@ public class ItemController {
     }
 
     @PutMapping
-    public Item updateItem(@PathVariable short itemId, @RequestBody Item newItem) {
+    public Item updateItem(@PathVariable short itemId, @RequestBody Item updatedItem) {
         return itemRepository.findById(itemId)
                 .map(item -> {
-                    item.setQuantity(newItem.getQuantity());
+                    item.setQuantity(updatedItem.getQuantity());
                     return itemRepository.save(item);
                 })
                 .orElseThrow();
