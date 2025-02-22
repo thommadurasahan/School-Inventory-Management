@@ -14,6 +14,7 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private short itemId;
+    private String itemName;
     private String voucherNo;
     private short quantity;
     @Temporal(TemporalType.TIMESTAMP)
