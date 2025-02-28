@@ -9,23 +9,23 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "/item")
+@RequestMapping(value = "api/v1/item")
 @RequiredArgsConstructor
 public class ItemController {
 
     private final ItemRepository itemRepository;
 
-    @PostMapping
+    @PostMapping("/insertItem")
     public Item insertItem(@RequestBody Item item) {
         return itemRepository.save(item);
     }
 
-    @GetMapping
+    @GetMapping("/getAllItems")
     public List<Item> getAllItems() {
         return itemRepository.findAll();
     }
 
-    /*@PutMapping
+    @PutMapping("/updateItem")
     public Item updateItem(@RequestBody Item updatedItem) {
         return itemRepository.findById(itemId)
                 .map(item -> {
@@ -33,5 +33,5 @@ public class ItemController {
                     return itemRepository.save(item);
                 })
                 .orElseThrow();
-    }*/
+    }
 }
