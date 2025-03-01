@@ -25,7 +25,7 @@ public class ItemController {
         return itemRepository.findAll();
     }
 
-    @PutMapping("/updateItem")
+    /*@PutMapping("/updateItem")
     public Item updateItem(@RequestBody Item updatedItem) {
         return itemRepository.findById(itemId)
                 .map(item -> {
@@ -33,5 +33,5 @@ public class ItemController {
                     return itemRepository.save(item);
                 })
                 .orElseThrow();
-    }
+    }*/
 }

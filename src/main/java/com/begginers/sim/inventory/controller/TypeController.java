@@ -26,7 +26,7 @@ public class TypeController {
         return typeRepository.findAll();
     }
 
-    @PutMapping("/updateType")
+    /*@PutMapping("/updateType")
     public Type updateType(@RequestBody Type updatedType) {
         return typeRepository.findById(typeId)
                 .map(type -> {
@@ -34,5 +34,5 @@ public class TypeController {
                     return typeRepository.save(type);
                 })
                 .orElseThrow();
-    }
+    }*/
 }

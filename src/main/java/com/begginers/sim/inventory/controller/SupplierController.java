@@ -26,7 +26,7 @@ public class SupplierController {
         return supplierRepository.findAll();
     }
 
-    @PutMapping("/updateSupplier")
+    /*@PutMapping("/updateSupplier")
     public Supplier updateSupplier(@RequestBody Supplier updatedSupplier) {
         return supplierRepository.findById(supplierId)
                 .map(supplier -> {
@@ -36,6 +36,6 @@ public class SupplierController {
                     return supplierRepository.save(supplier);
                 })
                 .orElseThrow();
-    }
+    }*/
 }
 

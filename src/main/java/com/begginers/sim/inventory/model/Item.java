@@ -20,7 +20,7 @@ public class Item {
     @Temporal(TemporalType.TIMESTAMP)
     private Date receivedOn;
 
-    @ManyToOne(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToOne
     @JoinColumn(name = "typeId")
     private Type type;
 
