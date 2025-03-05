@@ -8,18 +8,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/supply")
+@CrossOrigin
+@RequestMapping(value = "api/v1/supply")
 @RequiredArgsConstructor
 public class SupplyController {
 
     private final SupplyRepository supplyRepository;
 
-    @PostMapping
+    @PostMapping("/insertSupply")
     public Supply insertSupply(@RequestBody Supply supply) {
         return supplyRepository.save(supply);
     }
 
-    @GetMapping
+    @GetMapping("/getAllSupplies")
     public List<Supply> getAllSupplies() {
         return supplyRepository.findAll();
     }

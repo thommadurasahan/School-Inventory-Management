@@ -9,24 +9,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/supplier")
+@CrossOrigin
+@RequestMapping(value = "api/v1/supplier")
 @RequiredArgsConstructor
 public class SupplierController {
 
     private final SupplierRepository supplierRepository;
 
-    @PostMapping
+    @PostMapping("/insertSupplier")
     public Supplier insertSupplier(@RequestBody Supplier supplier) {
         return supplierRepository.save(supplier);
     }
 
-    @GetMapping
+    @GetMapping("/getAllSuppliers")
     public List<Supplier> getAllSuppliers() {
         return supplierRepository.findAll();
     }
 
-    @PutMapping
-    public Supplier updateSupplier(@PathVariable byte supplierId, @RequestBody Supplier updatedSupplier) {
+    /*@PutMapping("/updateSupplier")
+    public Supplier updateSupplier(@RequestBody Supplier updatedSupplier) {
         return supplierRepository.findById(supplierId)
                 .map(supplier -> {
                     supplier.setSupplierName(updatedSupplier.getSupplierName());
@@ -35,6 +36,6 @@ public class SupplierController {
                     return supplierRepository.save(supplier);
                 })
                 .orElseThrow();
-    }
+    }*/
 }
 
