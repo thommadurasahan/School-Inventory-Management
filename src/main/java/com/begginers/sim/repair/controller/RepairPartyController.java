@@ -1,0 +1,48 @@
+package com.begginers.sim.repair.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import com.begginers.sim.repair.model.RepairParty;
+import com.begginers.sim.repair.repository.RepairPartyService;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/repair-parties")
+public class RepairPartyController {
+
+    @Autowired
+    private RepairPartyService repairPartyService;
+
+    @GetMapping
+    public List<RepairParty> getAllRepairParties() {
+        return RepairParty.getAllRepairParties();
+    }
+
+    @GetMapping("/{id}")
+    public RepairParty getRepairPartyById(@PathVariable int id) {
+        return RepairParty.getRepairPartyById(id);
+    }
+
+    @PostMapping
+    public RepairParty addRepairParty(@RequestBody RepairParty repairParty) {
+        try {
+            return RepairPartyService.addRepairParty(repairParty);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+                return repairParty;
+    }
+
+    @PutMapping("/{id}")
+    public RepairParty updateRepairParty(@PathVariable int id, @RequestBody RepairParty repairParty) {
+        return repairPartyService.updateRepairParty(id, repairParty);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteRepairParty(@PathVariable int id) {
+        repairPartyService.addRepairParty(id);
+    }
+}
