@@ -2,9 +2,31 @@ services:
   mysql:
     image: 'mysql:latest'
     environment:
-      - 'MYSQL_DATABASE=mydatabase'
-      - 'MYSQL_PASSWORD=secret'
-      - 'MYSQL_ROOT_PASSWORD=verysecret'
-      - 'MYSQL_USER=myuser'
+      - 'MYSQL_DATABASE=simDB'
+      - 'MYSQL_PASSWORD=simUser'
+      - 'MYSQL_ROOT_PASSWORD=root'
+      - 'MYSQL_USER=simUser'
     ports:
-      - '3306'
+      - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+
+  app:
+    image: openjdk:17-jdk-slim
+    container_name: spring-boot-sim
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/simDB?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: simUser
+      SPRING_DATASOURCE_PASSWORD: simUser
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - '8080:8080'
+    volumes:
+      - .:/app
+    working_dir: /app
+#  command: ./mvnw spring-boot:run
+
+volumes:
+  db_data:
