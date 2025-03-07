@@ -14,7 +14,7 @@ public class Supplier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private byte supplierId;
+    private Long supplierId;
     private String supplierName;
     private String supplierAddress;
     private int supplierContactNo;

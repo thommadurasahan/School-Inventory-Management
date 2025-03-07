@@ -26,7 +26,7 @@ public class ItemController {
     }
 
     @PutMapping("/updateItem/{itemId}")
-    public Item updateItem(@PathVariable Short itemId, @RequestBody Item updatedItem) {
+    public Item updateItem(@PathVariable Long itemId, @RequestBody Item updatedItem) {
         return itemRepository.findById(itemId)
                 .map(item -> {
                     item.setQuantity(updatedItem.getQuantity());

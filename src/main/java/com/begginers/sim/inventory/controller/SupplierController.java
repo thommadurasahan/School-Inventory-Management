@@ -1,6 +1,5 @@
 package com.begginers.sim.inventory.controller;
 
-import com.begginers.sim.inventory.model.Item;
 import com.begginers.sim.inventory.model.Supplier;
 import com.begginers.sim.inventory.repository.SupplierRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +25,8 @@ public class SupplierController {
         return supplierRepository.findAll();
     }
 
-    /*@PutMapping("/updateSupplier")
-    public Supplier updateSupplier(@RequestBody Supplier updatedSupplier) {
+    @PutMapping("/updateSupplier/{supplierId}")
+    public Supplier updateSupplier(@PathVariable Long supplierId, @RequestBody Supplier updatedSupplier) {
         return supplierRepository.findById(supplierId)
                 .map(supplier -> {
                     supplier.setSupplierName(updatedSupplier.getSupplierName());
@@ -36,6 +35,6 @@ public class SupplierController {
                     return supplierRepository.save(supplier);
                 })
                 .orElseThrow();
-    }*/
+    }
 }
 
