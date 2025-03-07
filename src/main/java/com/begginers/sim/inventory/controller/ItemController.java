@@ -25,13 +25,13 @@ public class ItemController {
         return itemRepository.findAll();
     }
 
-    /*@PutMapping("/updateItem")
-    public Item updateItem(@RequestBody Item updatedItem) {
+    @PutMapping("/updateItem/{itemId}")
+    public Item updateItem(@PathVariable Short itemId, @RequestBody Item updatedItem) {
         return itemRepository.findById(itemId)
                 .map(item -> {
                     item.setQuantity(updatedItem.getQuantity());
                     return itemRepository.save(item);
                 })
                 .orElseThrow();
-    }*/
+    }
 }
