@@ -25,8 +25,8 @@ public class SupplierController {
         return supplierRepository.findAll();
     }
 
-    /*@PutMapping("/updateSupplier")
-    public Supplier updateSupplier(@RequestBody Supplier updatedSupplier) {
+    @PutMapping("/updateSupplier/{supplierId}")
+    public Supplier updateSupplier(@PathVariable Long supplierId, @RequestBody Supplier updatedSupplier) {
         return supplierRepository.findById(supplierId)
                 .map(supplier -> {
                     supplier.setSupplierName(updatedSupplier.getSupplierName());
@@ -35,6 +35,6 @@ public class SupplierController {
                     return supplierRepository.save(supplier);
                 })
                 .orElseThrow();
-    }*/
+    }
 }
 

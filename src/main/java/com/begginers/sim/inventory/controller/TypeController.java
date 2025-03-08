@@ -1,37 +1,62 @@
 package com.begginers.sim.inventory.controller;
 
 import com.begginers.sim.inventory.model.Type;
-import com.begginers.sim.inventory.repository.TypeRepository;
+import com.begginers.sim.inventory.service.TypeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@CrossOrigin
-@RequestMapping(value = "api/v1/type")
+@RequestMapping("/api/v1/types")
 @RequiredArgsConstructor
+@Slf4j
 public class TypeController {
 
-    private final TypeRepository typeRepository;
+    private final TypeService typeService;
 
-    @PostMapping("/insertType")
-    public Type insertType(@RequestBody Type type) {
-        return typeRepository.save(type);
+    @PostMapping
+    public ResponseEntity<Type> createType(@RequestBody Type type) {
+        log.info("Creating new type: {}", type);
+        Type savedType = typeService.saveType(type);
+        return ResponseEntity.ok(savedType);
     }
 
-    @GetMapping("/getAllTypes")
-    public List<Type> getAllTypes() {
-        return typeRepository.findAll();
+    @GetMapping
+    public ResponseEntity<List<Type>> getAllTypes() {
+        List<Type> types = typeService.getAllTypes();
+        if (types.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(types);
     }
 
-    /*@PutMapping("/updateType")
-    public Type updateType(@RequestBody Type updatedType) {
-        return typeRepository.findById(typeId)
+    @GetMapping("/{id}")
+    public ResponseEntity<Type> getTypeById(@PathVariable Long id) {
+        Optional<Type> type = typeService.getTypeById(id);
+        return type.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Type> updateType(@PathVariable Long id, @RequestBody Type updatedType) {
+        log.info("Updating type with ID: {}", id);
+        return typeService.getTypeById(id)
                 .map(type -> {
                     type.setTypeName(updatedType.getTypeName());
-                    return typeRepository.save(type);
+                    Type saved = typeService.saveType(type);
+                    return ResponseEntity.ok(saved);
                 })
-                .orElseThrow();
-    }*/
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteType(@PathVariable Long id) {
+        log.info("Deleting type with ID: {}", id);
+        typeService.deleteType(id);
+        return ResponseEntity.noContent().build();
+    }
 }

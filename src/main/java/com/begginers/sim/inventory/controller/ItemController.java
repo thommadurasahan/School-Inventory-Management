@@ -1,37 +1,62 @@
 package com.begginers.sim.inventory.controller;
 
 import com.begginers.sim.inventory.model.Item;
-import com.begginers.sim.inventory.repository.ItemRepository;
+import com.begginers.sim.inventory.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@CrossOrigin
-@RequestMapping(value = "api/v1/item")
+@RequestMapping("/api/v1/items")
 @RequiredArgsConstructor
+@Slf4j
 public class ItemController {
 
-    private final ItemRepository itemRepository;
+    private final ItemService itemService;
 
-    @PostMapping("/insertItem")
-    public Item insertItem(@RequestBody Item item) {
-        return itemRepository.save(item);
+    @PostMapping
+    public ResponseEntity<Item> insertItem(@RequestBody Item item) {
+        log.info("Inserting new item: {}", item);
+        Item savedItem = itemService.saveItem(item);
+        return ResponseEntity.ok(savedItem);
     }
 
-    @GetMapping("/getAllItems")
-    public List<Item> getAllItems() {
-        return itemRepository.findAll();
+    @GetMapping
+    public ResponseEntity<List<Item>> getAllItems() {
+        List<Item> items = itemService.getAllItems();
+        if (items.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(items);
     }
 
-    /*@PutMapping("/updateItem")
-    public Item updateItem(@RequestBody Item updatedItem) {
-        return itemRepository.findById(itemId)
+    @GetMapping("/{id}")
+    public ResponseEntity<Item> getItemById(@PathVariable Long id) {
+        Optional<Item> item = itemService.getItemById(id);
+        return item.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Item> updateItem(@PathVariable Long id, @RequestBody Item updatedItem) {
+        log.info("Updating item with ID: {}", id);
+        return itemService.getItemById(id)
                 .map(item -> {
                     item.setQuantity(updatedItem.getQuantity());
-                    return itemRepository.save(item);
+                    Item saved = itemService.saveItem(item);
+                    return ResponseEntity.ok(saved);
                 })
-                .orElseThrow();
-    }*/
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
+        log.info("Deleting item with ID: {}", id);
+        itemService.deleteItem(id);
+        return ResponseEntity.noContent().build();
+    }
 }

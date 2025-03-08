@@ -11,7 +11,9 @@ public class Supply {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private short supplyId;
+    private Long supplyId;
+    private Long typeId;
+    private Long supplierId;
 
     @ManyToOne
     @JoinColumn(name = "typeId")
