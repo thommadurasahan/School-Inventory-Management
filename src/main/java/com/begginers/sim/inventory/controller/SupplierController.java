@@ -1,40 +1,64 @@
 package com.begginers.sim.inventory.controller;
 
 import com.begginers.sim.inventory.model.Supplier;
-import com.begginers.sim.inventory.repository.SupplierRepository;
+import com.begginers.sim.inventory.service.SupplierService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@CrossOrigin
-@RequestMapping(value = "api/v1/supplier")
+@RequestMapping("/api/v1/suppliers")
 @RequiredArgsConstructor
+@Slf4j
 public class SupplierController {
 
-    private final SupplierRepository supplierRepository;
+    private final SupplierService supplierService;
 
-    @PostMapping("/insertSupplier")
-    public Supplier insertSupplier(@RequestBody Supplier supplier) {
-        return supplierRepository.save(supplier);
+    @PostMapping
+    public ResponseEntity<Supplier> insertSupplier(@RequestBody Supplier supplier) {
+        log.info("Inserting new supplier: {}", supplier);
+        Supplier savedSupplier = supplierService.saveSupplier(supplier);
+        return ResponseEntity.ok(savedSupplier);
     }
 
-    @GetMapping("/getAllSuppliers")
-    public List<Supplier> getAllSuppliers() {
-        return supplierRepository.findAll();
+    @GetMapping
+    public ResponseEntity<List<Supplier>> getAllSuppliers() {
+        List<Supplier> suppliers = supplierService.getAllSuppliers();
+        if (suppliers.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(suppliers);
     }
 
-    @PutMapping("/updateSupplier/{supplierId}")
-    public Supplier updateSupplier(@PathVariable Long supplierId, @RequestBody Supplier updatedSupplier) {
-        return supplierRepository.findById(supplierId)
+    @GetMapping("/{id}")
+    public ResponseEntity<Supplier> getSupplierById(@PathVariable Long id) {
+        Optional<Supplier> supplier = supplierService.getSupplierById(id);
+        return supplier.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Supplier> updateSupplier(@PathVariable Long id, @RequestBody Supplier updatedSupplier) {
+        log.info("Updating supplier with ID: {}", id);
+        return supplierService.getSupplierById(id)
                 .map(supplier -> {
                     supplier.setSupplierName(updatedSupplier.getSupplierName());
                     supplier.setSupplierAddress(updatedSupplier.getSupplierAddress());
                     supplier.setSupplierContactNo(updatedSupplier.getSupplierContactNo());
-                    return supplierRepository.save(supplier);
+                    Supplier saved = supplierService.saveSupplier(supplier);
+                    return ResponseEntity.ok(saved);
                 })
-                .orElseThrow();
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteSupplier(@PathVariable Long id) {
+        log.info("Deleting supplier with ID: {}", id);
+        supplierService.deleteSupplier(id);
+        return ResponseEntity.noContent().build();
     }
 }
-
