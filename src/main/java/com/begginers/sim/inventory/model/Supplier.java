@@ -1,5 +1,6 @@
 package com.begginers.sim.inventory.model;
 
+import com.begginers.sim.order.model.Order;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,4 +24,11 @@ public class Supplier {
 
     @OneToMany(mappedBy = "supplier")
     private List<Item> items;
+
+    @ManyToOne
+    @JoinColumn(name = "supplierId")
+    private Supplier supplier;
+
+    @OneToMany(mappedBy = "supplier")
+    private List<Order> orders;
 }

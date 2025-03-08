@@ -21,4 +21,8 @@ public class Type {
 
     @OneToMany(mappedBy = "type")
     private List<Item> items;
+
+    @ManyToOne
+    @JoinColumn(name = "typeId")
+    private Type type;
 }
