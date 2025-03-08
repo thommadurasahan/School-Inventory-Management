@@ -19,8 +19,8 @@ public class ItemController {
     private final ItemService itemService;
 
     @PostMapping
-    public ResponseEntity<Item> createItem(@RequestBody Item item) {
-        log.info("Creating new item: {}", item);
+    public ResponseEntity<Item> insertItem(@RequestBody Item item) {
+        log.info("Inserting new item: {}", item);
         Item savedItem = itemService.saveItem(item);
         return ResponseEntity.ok(savedItem);
     }
@@ -47,7 +47,6 @@ public class ItemController {
         return itemService.getItemById(id)
                 .map(item -> {
                     item.setQuantity(updatedItem.getQuantity());
-                    // Update other fields as needed
                     Item saved = itemService.saveItem(item);
                     return ResponseEntity.ok(saved);
                 })
