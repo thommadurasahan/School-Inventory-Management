@@ -3,18 +3,18 @@ package com.begginers.sim.inventory.service;
 import com.begginers.sim.inventory.model.Supplier;
 import com.begginers.sim.inventory.repository.SupplierRepository;
 import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class SupplierService {
 
     private final SupplierRepository supplierRepository;
-
-    public SupplierService(SupplierRepository supplierRepository) {
-        this.supplierRepository = supplierRepository;
-    }
 
     public List<Supplier> getAllSuppliers() {
         return supplierRepository.findAll();
