@@ -1,0 +1,35 @@
+package com.begginers.sim.inventory.service;
+
+import com.begginers.sim.inventory.model.Item;
+import com.begginers.sim.inventory.model.Type;
+import com.begginers.sim.inventory.repository.TypeRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class TypeService {
+
+    private final TypeRepository typeRepository;
+
+    public TypeService(TypeRepository typeRepository) {
+        this.typeRepository = typeRepository;
+    }
+
+    public List<Type> getAllTypes() {
+        return typeRepository.findAll();
+    }
+
+    public Optional<Type> getTypeById(Long id) {
+        return typeRepository.findById(id);
+    }
+
+    public Type saveType(Type type) {
+        return typeRepository.save(type);
+    }
+
+    public void deleteType(Long id) {
+        typeRepository.deleteById(id);
+    }
+}
