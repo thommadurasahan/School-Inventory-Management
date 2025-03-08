@@ -1,6 +1,5 @@
 package com.begginers.sim.inventory.service;
 
-import com.begginers.sim.inventory.model.Item;
 import com.begginers.sim.inventory.model.Type;
 import com.begginers.sim.inventory.repository.TypeRepository;
 import org.springframework.stereotype.Service;
