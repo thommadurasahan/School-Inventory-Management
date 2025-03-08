@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/orders")
-@SuppressWarnings("unused")
 public class OrderController {
 
     private static final Logger logger = Logger.getLogger(OrderController.class.getName());
@@ -63,5 +62,15 @@ public class OrderController {
         logger.info("Deleting order with ID: " + id);
         orderService.deleteOrder(id);
         return ResponseEntity.noContent().build();
+    }
+
+
+    public static Logger getLogger() {
+        return logger;
+    }
+
+
+    public OrderService getOrderService() {
+        return orderService;
     }
 }

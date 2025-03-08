@@ -32,12 +32,22 @@ public class RepairParty {
     public void setAddress(String address) { this.address = address; }
 
     public static List<RepairParty> getAllRepairParties() {
-        // TODO Auto-generated method stub
+
         throw new UnsupportedOperationException("Unimplemented method 'getAllRepairParties'");
     }
 
     public static RepairParty getRepairPartyById(int id) {
-        // TODO Auto-generated method stub
+        
         throw new UnsupportedOperationException("Unimplemented method 'getRepairPartyById'");
+    }
+
+    public RepairParty updateRepairParty(int id, RepairParty repairParty) {
+       
+        throw new UnsupportedOperationException("Unimplemented method 'updateRepairParty'");
+    }
+
+    public void addRepairParty(int id) {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'addRepairParty'");
     }
 }

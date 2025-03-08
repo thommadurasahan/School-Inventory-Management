@@ -12,18 +12,18 @@ import java.util.Optional;
 public class RepairPartyService {
 
     @Autowired
-    private RepairPartyRepository repairPartyRepository;
-
-    public List<RepairParty> getAllRepairParties() {
-        return repairPartyRepository.findAll();
-    }
-
-    public RepairParty getRepairPartyById(int id) {
-        return repairPartyRepository.findById(id).orElse(null);
-    }
-
-    public RepairParty addRepairParty(RepairParty repairParty) {
-        return repairPartyRepository.save(repairParty);
+    private static RepairPartyRepository repairPartyRepository;
+    
+        public List<RepairParty> getAllRepairParties() {
+            return repairPartyRepository.findAll();
+        }
+    
+        public RepairParty getRepairPartyById(int id) {
+            return repairPartyRepository.findById(id).orElse(null);
+        }
+    
+        public static RepairParty addRepairParty(RepairParty repairParty) {
+            return repairPartyRepository.save(repairParty);
     }
 
     public RepairParty updateRepairParty(int id, RepairParty repairParty) {
