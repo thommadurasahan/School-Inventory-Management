@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders")
-@SuppressWarnings("unused")
 public class Order {
 
     @Id

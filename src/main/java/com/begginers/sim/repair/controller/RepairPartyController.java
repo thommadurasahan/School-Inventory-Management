@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.begginers.sim.repair.model.RepairParty;
-import com.begginers.sim.repair.repository.RepairPartyService;
+import com.begginers.sim.repair.service.RepairPartyService;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class RepairPartyController {
 
     @Autowired
-    private RepairPartyService repairPartyService;
+    private RepairParty repairPartyService;
 
     @GetMapping
     public List<RepairParty> getAllRepairParties() {
@@ -28,9 +28,14 @@ public class RepairPartyController {
     @PostMapping
     public RepairParty addRepairParty(@RequestBody RepairParty repairParty) {
         try {
-            return RepairPartyService.addRepairParty(repairParty);
+            try {
+                return RepairPartyService.addRepairParty(repairParty);
+            } catch (Exception e) {
+            
+                e.printStackTrace();
+            }
         } catch (Exception e) {
-            // TODO Auto-generated catch block
+           
             e.printStackTrace();
         }
                 return repairParty;

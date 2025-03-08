@@ -13,14 +13,14 @@ import java.util.Optional;
 public class SentTypeService {
 
     @Autowired
-    private SentTypeRepository sentTypeRepository;
-
-    public List<SentType> getAllSentTypes() {
-        return sentTypeRepository.findAll();
-    }
-
-    public SentType getSentTypeById(int id) {
-        return sentTypeRepository.findById(id).orElse(null);
+    private static SentTypeRepository sentTypeRepository;
+    
+        public List<SentType> getAllSentTypes() {
+            return sentTypeRepository.findAll();
+        }
+    
+        public static SentType getSentTypeById(int id) {
+            return sentTypeRepository.findById(id).orElse(null);
     }
 
     public SentType addSentType(SentType sentType) {

@@ -1,6 +1,5 @@
 package com.begginers.sim.inventory.controller;
 
-import com.begginers.sim.inventory.model.Item;
 import com.begginers.sim.inventory.model.Type;
 import com.begginers.sim.inventory.repository.TypeRepository;
 import lombok.RequiredArgsConstructor;
