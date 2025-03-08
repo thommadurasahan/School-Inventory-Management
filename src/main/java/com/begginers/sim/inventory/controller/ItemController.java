@@ -2,27 +2,25 @@ package com.begginers.sim.inventory.controller;
 
 import com.begginers.sim.inventory.model.Item;
 import com.begginers.sim.inventory.service.ItemService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/v1/items")
+@RequiredArgsConstructor
+@Slf4j
 public class ItemController {
 
-    private static final Logger logger = Logger.getLogger(ItemController.class.getName());
     private final ItemService itemService;
-
-    public ItemController(ItemService itemService) {
-        this.itemService = itemService;
-    }
 
     @PostMapping
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
-        logger.info("Creating new item: " + item);
+        log.info("Creating new item: {}", item);
         Item savedItem = itemService.saveItem(item);
         return ResponseEntity.ok(savedItem);
     }
@@ -45,7 +43,7 @@ public class ItemController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Item> updateItem(@PathVariable Long id, @RequestBody Item updatedItem) {
-        logger.info("Updating item with ID: " + id);
+        log.info("Updating item with ID: {}", id);
         return itemService.getItemById(id)
                 .map(item -> {
                     item.setQuantity(updatedItem.getQuantity());
@@ -58,7 +56,7 @@ public class ItemController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
-        logger.info("Deleting item with ID: " + id);
+        log.info("Deleting item with ID: {}", id);
         itemService.deleteItem(id);
         return ResponseEntity.noContent().build();
     }
