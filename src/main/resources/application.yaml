@@ -1,9 +1,6 @@
 spring:
   application:
     name: sim
-    jpa:
-      hibernate:
-        ddl-auto: create
   jpa:
     hibernate:
       ddl-auto: create
