@@ -16,12 +16,12 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long itemId;
+    private long itemId;
     private String itemName;
-    private Long typeId;
+    private long typeId;
     private String voucherNo;
-    private Long quantity;
-    private Long supplierId;
+    private long quantity;
+    private long supplierId;
     @Temporal(TemporalType.TIMESTAMP)
     private Date receivedOn;
 

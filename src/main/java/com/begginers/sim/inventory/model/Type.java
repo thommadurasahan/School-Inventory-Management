@@ -18,7 +18,7 @@ public class Type {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long typeId;
+    private long typeId;
     private String typeName;
     @Temporal(TemporalType.TIMESTAMP)
     private Date typeAddedOn;
