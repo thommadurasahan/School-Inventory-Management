@@ -12,6 +12,9 @@ import java.util.List;
 @Setter
 @Entity
 public class Supplier {
+    // Todo
+    //  Create package exception, include Notfound exception
+    //  Create a class SupplierNotFoundException
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

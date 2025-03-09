@@ -13,6 +13,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 public class TypeService {
+    // TODO
+    //  Change the class to interface, include only method signatures here
+    //  Create a new class TypeServiceImpl, implement it from the Service class and move all code to the Impl class
 
     private final TypeRepository typeRepository;
 

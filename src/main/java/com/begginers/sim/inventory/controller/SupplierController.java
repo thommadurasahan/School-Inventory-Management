@@ -15,6 +15,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 public class SupplierController {
+    // TODO
+    //  Change the class to interface, include only method signatures here
+    //  Create a new class SupplierServiceImpl, implement it from the Service class and move all code to the Impl class
 
     private final SupplierService supplierService;
 

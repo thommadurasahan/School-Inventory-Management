@@ -15,6 +15,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 public class ItemController {
+    // Todo
+    //  Create util package, class Constant, hardcode values
+    //  Crete base url, create a method with pagination for getAll
 
     private final ItemService itemService;
 
@@ -30,7 +33,7 @@ public class ItemController {
         List<Item> items = itemService.getAllItems();
         if (items.isEmpty()) {
             return ResponseEntity.noContent().build();
-        }
+         }
         return ResponseEntity.ok(items);
     }
 
