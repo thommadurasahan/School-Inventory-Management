@@ -26,7 +26,7 @@ services:
     volumes:
       - .:/app
     working_dir: /app
-#  command: ./mvnw spring-boot:run
+#  command: ./mvn spring-boot:run
 
 volumes:
   db_data:
