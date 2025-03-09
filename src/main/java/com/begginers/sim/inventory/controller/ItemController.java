@@ -38,14 +38,14 @@ public class ItemController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Item> getItemById(@PathVariable Long id) {
+    public ResponseEntity<Item> getItemById(@PathVariable long id) {
         Optional<Item> item = itemService.getItemById(id);
         return item.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Item> updateItem(@PathVariable Long id, @RequestBody Item updatedItem) {
+    public ResponseEntity<Item> updateItem(@PathVariable long id, @RequestBody Item updatedItem) {
         log.info("Updating item with ID: {}", id);
         return itemService.getItemById(id)
                 .map(item -> {
@@ -57,7 +57,7 @@ public class ItemController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteItem(@PathVariable long id) {
         log.info("Deleting item with ID: {}", id);
         itemService.deleteItem(id);
         return ResponseEntity.noContent().build();

@@ -23,7 +23,7 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public Optional<Item> getItemById(Long id) {
+    public Optional<Item> getItemById(long id) {
         return itemRepository.findById(id);
     }
 
@@ -31,7 +31,7 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
-    public void deleteItem(Long id) {
+    public void deleteItem(long id) {
         itemRepository.deleteById(id);
     }
 }
