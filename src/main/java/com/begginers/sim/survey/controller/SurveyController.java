@@ -4,6 +4,7 @@ import com.begginers.sim.survey.model.Survey;
 import com.begginers.sim.survey.repository.SurveyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -11,6 +12,9 @@ import java.util.List;
 @RequestMapping(value = "api/v1/survey")
 @RequiredArgsConstructor
 public class SurveyController {
+    // Todo
+    //  Create util package, class Constant, hardcode values
+    //  Crete base url, create a method with pagination for getAll
 
     private final SurveyRepository surveyRepository;
 

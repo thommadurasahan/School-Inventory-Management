@@ -1,9 +1,9 @@
 package com.begginers.sim.survey.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "survey_result")
@@ -11,6 +11,10 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SurveyResult {
+    // Todo
+    //  Create package exception, include Notfound exception
+    //  Create a class SurveyResultNotFoundException
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "survey_result_id")

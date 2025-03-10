@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SurveyRepository extends JpaRepository<Survey, Short> {
+    // ToDo
+//  Crete a custom method, custom query
 }
