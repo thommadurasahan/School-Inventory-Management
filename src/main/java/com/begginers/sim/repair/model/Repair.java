@@ -3,6 +3,10 @@ package com.begginers.sim.repair.model;
 import java.util.Date;
 
 public class Repair {
+    // Todo
+    //  Create package exception, include Notfound exception
+    //  Create a class RepairNotFoundException
+
     private int repairId;
     private int sentQuantity;
     private Date sendToRepairOn;

@@ -3,6 +3,10 @@ package com.begginers.sim.repair.model;
 import java.util.List;
 
 public class RepairParty {
+    // Todo
+    //  Create package exception, include Notfound exception
+    //  Create a class RepairPartyNotFoundException
+
     private int repairPartyId;
     private String repairPartyName;
     private String contactNo;

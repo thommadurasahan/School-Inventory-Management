@@ -5,4 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RepairPartyRepository extends JpaRepository<RepairPartyService, Integer> {
+    // ToDo
+//  Crete a custom method, custom query
 }

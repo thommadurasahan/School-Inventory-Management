@@ -6,4 +6,6 @@ import com.begginers.sim.repair.model.Repair;
 
 @Repository
 public interface RepairRepository extends JpaRepository<Repair, Integer> {
+    // ToDo
+//  Crete a custom method, custom query
 }

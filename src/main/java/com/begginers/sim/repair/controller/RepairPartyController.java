@@ -11,6 +11,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/repair-parties")
 public class RepairPartyController {
+    // Todo
+    //  Create util package, class Constant, hardcode values
+    //  Crete base url, create a method with pagination for getAll
 
     @Autowired
     private RepairParty repairPartyService;
