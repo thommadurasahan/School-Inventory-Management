@@ -12,6 +12,9 @@ import java.util.logging.Logger;
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
+    // Todo
+    //  Create util package, class Constant, hardcode values
+    //  Crete base url, create a method with pagination for getAll
 
     private static final Logger logger = Logger.getLogger(OrderController.class.getName());
 

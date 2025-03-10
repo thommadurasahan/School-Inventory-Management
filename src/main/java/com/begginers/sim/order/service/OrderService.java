@@ -8,6 +8,9 @@ import java.util.Optional;
 
 @Service
 public class OrderService {
+    // TODO
+    //  Change the class to interface, include only method signatures here
+    //  Create a new class OrderServiceImpl, implement it from the Service class and move all code to the Impl class
 
     private final OrderRepository orderRepository;
 

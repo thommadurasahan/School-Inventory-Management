@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "orders")
 public class Order {
+    // Todo
+    //  Create package exception, include Notfound exception
+    //  Create a class OrderNotFoundException
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
