@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -28,10 +30,9 @@ public class Supplier {
     @OneToMany(mappedBy = "supplier")
     private List<Item> items;
 
-    @ManyToOne
-    @JoinColumn(name = "supplierId")
-    private Supplier supplier;
-
     @OneToMany(mappedBy = "supplier")
     private List<Order> orders;
+
+    @ManyToMany(mappedBy = "suppliers")
+    private Set<Type> types = new HashSet<>();
 }

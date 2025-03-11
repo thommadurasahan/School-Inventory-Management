@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -14,8 +16,7 @@ public class Type {
     // Todo
     //  Create package exception, include Notfound exception
     //  Create a class TypeNotFoundException
-
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long typeId;
@@ -26,7 +27,12 @@ public class Type {
     @OneToMany(mappedBy = "type")
     private List<Item> items;
 
-    @ManyToOne
-    @JoinColumn(name = "typeId")
-    private Type type;
+    @ManyToMany
+    @JoinTable(
+            name = "supply",
+            joinColumns = @JoinColumn(name = "typeId"),
+            inverseJoinColumns = @JoinColumn(name = "supplierId")
+    )
+    private Set<Supplier> suppliers = new HashSet<>();
+
 }
