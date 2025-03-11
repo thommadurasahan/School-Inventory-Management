@@ -1,5 +1,6 @@
 package com.begginers.sim.inventory.model;
 
+import com.begginers.sim.order.model.Order;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
