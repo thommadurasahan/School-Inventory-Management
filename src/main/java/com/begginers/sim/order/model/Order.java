@@ -1,12 +1,15 @@
 package com.begginers.sim.order.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "order")
 public class Order {
     // Todo
+    //  Add Order - Type relationship with JoinTable name "orderedType"
+    //  Add Order - Supplier relationship
     //  Create package exception, include Notfound exception
     //  Create a class OrderNotFoundException
 
@@ -30,7 +33,8 @@ public class Order {
     private String status;
 
 
-    protected Order() {}
+    protected Order() {
+    }
 
 
     public Order(String itemName, int quantity, double price, LocalDateTime orderDate, String status) {
@@ -41,21 +45,51 @@ public class Order {
         this.status = status;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getItemName() { return itemName; }
-    public void setItemName(String itemName) { this.itemName = itemName; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public int getQuantity() { return quantity; }
-    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public String getItemName() {
+        return itemName;
+    }
 
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
 
-    public LocalDateTime getOrderDate() { return orderDate; }
-    public void setOrderDate(LocalDateTime orderDate) { this.orderDate = orderDate; }
+    public int getQuantity() {
+        return quantity;
+    }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public LocalDateTime getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
