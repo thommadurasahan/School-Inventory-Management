@@ -18,10 +18,8 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long itemId;
     private String itemName;
-    private long typeId;
     private String voucherNo;
     private long quantity;
-    private long supplierId;
     @Temporal(TemporalType.TIMESTAMP)
     private Date receivedOn;
 

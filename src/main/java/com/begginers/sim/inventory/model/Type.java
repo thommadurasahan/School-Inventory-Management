@@ -16,7 +16,7 @@ public class Type {
     // Todo
     //  Create package exception, include Notfound exception
     //  Create a class TypeNotFoundException
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long typeId;
@@ -35,4 +35,6 @@ public class Type {
     )
     private Set<Supplier> suppliers = new HashSet<>();
 
+    @ManyToMany(mappedBy = "types")
+    private Set<Order> orders = new HashSet<>();
 }
