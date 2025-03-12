@@ -2,78 +2,46 @@ package com.begginers.sim.order.controller;
 
 import com.begginers.sim.order.model.Order;
 import com.begginers.sim.order.service.OrderService;
+import com.begginers.sim.util.Constant;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping(Constant.BASE_API_URL + "/orders")
 public class OrderController {
-    // Todo
-    //  Create util package, class Constant, hardcode values
-    //  Crete base url, create a method with pagination for getAll
 
-    private static final Logger logger = Logger.getLogger(OrderController.class.getName());
-
-    private final OrderService orderService;
-
-
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
-    }
-
-
-    @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-        logger.info("Creating new order: " + order);
-        Order savedOrder = orderService.saveOrder(order);
-        return ResponseEntity.ok(savedOrder);
-    }
-
+    @Autowired
+    private OrderService orderService;
 
     @GetMapping
-    public ResponseEntity<List<Order>> getAllOrders() {
-        List<Order> orders = orderService.getAllOrders();
-        if (orders.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(orders);
+    public Page<Order> getAllOrders(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return orderService.getAllOrders(pageable);
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
         Optional<Order> order = orderService.getOrderById(id);
         return order.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+                .orElseThrow(() -> new ItemNotFoundException(Constant.ITEM_NOT_FOUND_MESSAGE + id));
     }
 
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody Order updatedOrder) {
-        logger.info("Updating order with ID: " + id);
-        Order order = orderService.updateOrder(id, updatedOrder);
-        return ResponseEntity.ok(order);
+    @PostMapping
+    public Order createOrder(@RequestBody Order order) {
+        return orderService.saveOrder(order);
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
-        logger.info("Deleting order with ID: " + id);
         orderService.deleteOrder(id);
         return ResponseEntity.noContent().build();
-    }
-
-
-    public static Logger getLogger() {
-        return logger;
-    }
-
-
-    public OrderService getOrderService() {
-        return orderService;
     }
 }

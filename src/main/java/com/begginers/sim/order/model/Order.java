@@ -1,14 +1,18 @@
 package com.begginers.sim.order.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Order {
-    // Todo
-    //  Create package exception, include Notfound exception
-    //  Create a class OrderNotFoundException
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,44 +22,14 @@ public class Order {
     private String itemName;
 
     @Column(nullable = false)
-    private int quantity;
+    private Long quantity;
 
     @Column(nullable = false)
-    private double price;
+    private Long price;
 
     @Column(nullable = false)
     private LocalDateTime orderDate;
 
     @Column(nullable = false)
     private String status;
-
-
-    protected Order() {}
-
-
-    public Order(String itemName, int quantity, double price, LocalDateTime orderDate, String status) {
-        this.itemName = itemName;
-        this.quantity = quantity;
-        this.price = price;
-        this.orderDate = orderDate;
-        this.status = status;
-    }
-
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getItemName() { return itemName; }
-    public void setItemName(String itemName) { this.itemName = itemName; }
-
-    public int getQuantity() { return quantity; }
-    public void setQuantity(int quantity) { this.quantity = quantity; }
-
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
-
-    public LocalDateTime getOrderDate() { return orderDate; }
-    public void setOrderDate(LocalDateTime orderDate) { this.orderDate = orderDate; }
-
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
 }
