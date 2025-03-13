@@ -1,13 +1,13 @@
 package com.begginers.sim.inventory.service;
 
+import com.begginers.sim.inventory.exception.SupplierNotFoundException;
 import com.begginers.sim.inventory.model.Supplier;
 import com.begginers.sim.inventory.repository.SupplierRepository;
-import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,19 +19,23 @@ public class SupplierService {
 
     private final SupplierRepository supplierRepository;
 
-    public List<Supplier> getAllSuppliers() {
-        return supplierRepository.findAll();
-    }
-
-    public Optional<Supplier> getSupplierById(Long id) {
-        return supplierRepository.findById(id);
-    }
-
     public Supplier saveSupplier(Supplier supplier) {
         return supplierRepository.save(supplier);
     }
 
-    public void deleteSupplier(Long id) {
+    public List<Supplier> getAllSuppliers() {
+        return supplierRepository.findAll();
+    }
+
+    public Supplier getSupplierById(long id) throws SupplierNotFoundException {
+        return supplierRepository.findById(id)
+                .orElseThrow(() -> new SupplierNotFoundException("Supplier not found withID: " + id));
+    }
+
+    public void deleteSupplier(long id) throws SupplierNotFoundException {
+        if (!supplierRepository.existsById(id)) {
+            throw new SupplierNotFoundException("Supplier not found with id: " + id);
+        }
         supplierRepository.deleteById(id);
     }
 }
