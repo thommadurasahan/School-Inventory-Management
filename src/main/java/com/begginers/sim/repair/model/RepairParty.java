@@ -1,39 +1,29 @@
 package com.begginers.sim.repair.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+@Setter
+@Getter
+@Entity
 public class RepairParty {
     // Todo
     //  Create package exception, include Notfound exception
     //  Create a class RepairPartyNotFoundException
 
+    @Id
     private int repairPartyId;
     private String repairPartyName;
     private String contactNo;
     private String address;
 
     // Constructors
-    public RepairParty() {}
-
-    public RepairParty(int repairPartyId, String repairPartyName, String contactNo, String address) {
-        this.repairPartyId = repairPartyId;
-        this.repairPartyName = repairPartyName;
-        this.contactNo = contactNo;
-        this.address = address;
+    public RepairParty() {
     }
-
-    // Getters and Setters
-    public int getRepairPartyId() { return repairPartyId; }
-    public void setRepairPartyId(int repairPartyId) { this.repairPartyId = repairPartyId; }
-
-    public String getRepairPartyName() { return repairPartyName; }
-    public void setRepairPartyName(String repairPartyName) { this.repairPartyName = repairPartyName; }
-
-    public String getContactNo() { return contactNo; }
-    public void setContactNo(String contactNo) { this.contactNo = contactNo; }
-
-    public String getAddress() { return address; }
-    public void setAddress(String address) { this.address = address; }
 
     public static List<RepairParty> getAllRepairParties() {
 
@@ -41,17 +31,17 @@ public class RepairParty {
     }
 
     public static RepairParty getRepairPartyById(int id) {
-        
+
         throw new UnsupportedOperationException("Unimplemented method 'getRepairPartyById'");
     }
 
     public RepairParty updateRepairParty(int id, RepairParty repairParty) {
-       
+
         throw new UnsupportedOperationException("Unimplemented method 'updateRepairParty'");
     }
 
     public void addRepairParty(int id) {
-        
+
         throw new UnsupportedOperationException("Unimplemented method 'addRepairParty'");
     }
 }
