@@ -1,8 +1,10 @@
 package com.begginers.sim.survey.controller;
 
+import com.begginers.sim.survey.exception.SurveyResultNotFoundException;
 import com.begginers.sim.survey.model.SurveyResult;
-import com.begginers.sim.survey.repository.SurveyResultRepository;
+import com.begginers.sim.survey.service.SurveyResultService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,47 +18,62 @@ public class SurveyResultController {
     //  Create util package, class Constant, hardcode values
     //  Crete base url, create a method with pagination for getAll
 
-    private final SurveyResultRepository surveyResultRepository;
+    private final SurveyResultService surveyResultService;
 
     @PostMapping("/insertSurveyResult")
-    public SurveyResult insertSurveyResult(@RequestBody SurveyResult surveyResult) {
-        return surveyResultRepository.save(surveyResult);
+    public ResponseEntity<SurveyResult> insertSurveyResult(@RequestBody SurveyResult surveyResult) {
+        SurveyResult savedResult = surveyResultService.saveSurveyResult(surveyResult);
+        return ResponseEntity.ok(savedResult);
     }
 
     @GetMapping("/getAllSurveyResults")
-    public List<SurveyResult> getAllSurveyResults() {
-        return surveyResultRepository.findAll();
+    public ResponseEntity<List<SurveyResult>> getAllSurveyResults() {
+        List<SurveyResult> results = surveyResultService.getAllSurveyResults();
+        return ResponseEntity.ok(results);
     }
 
     @GetMapping("/getSurveyResult/{id}")
-    public SurveyResult getSurveyResultById(@PathVariable Short id) {
-        return surveyResultRepository.findById(id)
-                .orElseThrow();
+    public ResponseEntity<SurveyResult> getSurveyResultById(@PathVariable Short id) {
+        try {
+            SurveyResult result = surveyResultService.getSurveyResultById(id);
+            return ResponseEntity.ok(result);
+        } catch (SurveyResultNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/getBySurvey/{surveyId}")
-    public List<SurveyResult> getSurveyResultsBySurveyId(@PathVariable Short surveyId) {
-        return surveyResultRepository.findBySurveyId(surveyId);
+    public ResponseEntity<List<SurveyResult>> getSurveyResultsBySurveyId(@PathVariable Short surveyId) {
+        List<SurveyResult> results = surveyResultService.getSurveyResultsBySurveyId(surveyId);
+        return ResponseEntity.ok(results);
     }
 
     @PutMapping("/updateSurveyResult/{id}")
-    public SurveyResult updateSurveyResult(@PathVariable Short id, @RequestBody SurveyResult updatedResult) {
-        return surveyResultRepository.findById(id)
-                .map(result -> {
-                    result.setTotalQuantity(updatedResult.getTotalQuantity());
-                    result.setPresentQuantity(updatedResult.getPresentQuantity());
-                    result.setAbsentQuantity(updatedResult.getAbsentQuantity());
-                    result.setGoodQuantity(updatedResult.getGoodQuantity());
-                    result.setRepairQuantity(updatedResult.getRepairQuantity());
-                    result.setSaleQuantity(updatedResult.getSaleQuantity());
-                    result.setDestroyQuantity(updatedResult.getDestroyQuantity());
-                    return surveyResultRepository.save(result);
-                })
-                .orElseThrow();
+    public ResponseEntity<SurveyResult> updateSurveyResult(@PathVariable Short id, @RequestBody SurveyResult updatedResult) {
+        try {
+            SurveyResult existingResult = surveyResultService.getSurveyResultById(id);
+            existingResult.setTotalQuantity(updatedResult.getTotalQuantity());
+            existingResult.setPresentQuantity(updatedResult.getPresentQuantity());
+            existingResult.setAbsentQuantity(updatedResult.getAbsentQuantity());
+            existingResult.setGoodQuantity(updatedResult.getGoodQuantity());
+            existingResult.setRepairQuantity(updatedResult.getRepairQuantity());
+            existingResult.setSaleQuantity(updatedResult.getSaleQuantity());
+            existingResult.setDestroyQuantity(updatedResult.getDestroyQuantity());
+            
+            SurveyResult savedResult = surveyResultService.saveSurveyResult(existingResult);
+            return ResponseEntity.ok(savedResult);
+        } catch (SurveyResultNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/deleteSurveyResult/{id}")
-    public void deleteSurveyResult(@PathVariable Short id) {
-        surveyResultRepository.deleteById(id);
+    public ResponseEntity<Void> deleteSurveyResult(@PathVariable Short id) {
+        try {
+            surveyResultService.deleteSurveyResult(id);
+            return ResponseEntity.ok().build();
+        } catch (SurveyResultNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

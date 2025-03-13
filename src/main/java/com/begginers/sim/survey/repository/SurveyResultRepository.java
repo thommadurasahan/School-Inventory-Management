@@ -7,10 +7,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SurveyResultRepository extends JpaRepository<SurveyResult, Short> {
+public interface SurveyResultRepository extends JpaRepository<SurveyResult, Long> {
     // ToDo
     //  Crete a custom method, custom query
 
     // Custom method to find survey results by surveyId
-    List<SurveyResult> findBySurveyId(Short surveyId);
+    List<SurveyResult> findBySurveyId(Long surveyId);
+
+    List<SurveyResult> findByTypeId(long typeId);
+
+    List<SurveyResult> findByOrderId(long orderId);
 }

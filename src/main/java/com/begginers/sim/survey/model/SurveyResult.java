@@ -1,5 +1,7 @@
 package com.begginers.sim.survey.model;
 
+import com.begginers.sim.order.model.Order;
+import com.begginers.sim.inventory.model.Type;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +28,9 @@ public class SurveyResult {
     @Column(name = "type_id")
     private Short typeId;
 
+    @Column(name = "order_id")
+    private Short orderId;
+
     @Column(name = "total_quantity")
     private Integer totalQuantity;
 
@@ -50,7 +55,15 @@ public class SurveyResult {
     @Column(name = "destroy_quantity")
     private Integer destroyQuantity;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "survey_id", insertable = false, updatable = false)
     private Survey survey;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type_id", insertable = false, updatable = false)
+    private Type type;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", insertable = false, updatable = false)
+    private Order order;
 }
