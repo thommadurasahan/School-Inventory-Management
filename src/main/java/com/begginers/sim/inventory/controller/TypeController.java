@@ -1,5 +1,6 @@
 package com.begginers.sim.inventory.controller;
 
+import com.begginers.sim.inventory.exception.TypeNotFoundException;
 import com.begginers.sim.inventory.model.Type;
 import com.begginers.sim.inventory.service.TypeService;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/types")
@@ -39,27 +39,35 @@ public class TypeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Type> getTypeById(@PathVariable Long id) {
-        Optional<Type> type = typeService.getTypeById(id);
-        return type.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        try {
+            Type type = typeService.getTypeById(id);
+            return ResponseEntity.ok(type);
+        } catch (TypeNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Type> updateType(@PathVariable Long id, @RequestBody Type updatedType) {
         log.info("Updating type with ID: {}", id);
-        return typeService.getTypeById(id)
-                .map(type -> {
-                    type.setTypeName(updatedType.getTypeName());
-                    Type saved = typeService.saveType(type);
-                    return ResponseEntity.ok(saved);
-                })
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        try {
+            Type type = typeService.getTypeById(id);
+            type.setTypeName(updatedType.getTypeName());
+            Type saved = typeService.saveType(type);
+            return ResponseEntity.ok(saved);
+        } catch (TypeNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteType(@PathVariable Long id) {
         log.info("Deleting type with ID: {}", id);
-        typeService.deleteType(id);
-        return ResponseEntity.noContent().build();
+        try {
+            typeService.deleteType(id);
+            return ResponseEntity.noContent().build();
+        } catch (TypeNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

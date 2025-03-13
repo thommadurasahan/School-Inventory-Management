@@ -6,7 +6,7 @@ public class TypeNotFoundException extends Exception {
         super();
     }
 
-    public TYpeNotFoundException(String message) {
+    public TypeNotFoundException(String message) {
         super(message);
     }
 
