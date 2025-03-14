@@ -17,7 +17,6 @@ import java.util.List;
 @Slf4j
 public class ItemController {
     // Todo
-    //  Create util package, class Constant, hardcode values
     //  Crete base url, create a method with pagination for getAll
 
     private final ItemService itemService;

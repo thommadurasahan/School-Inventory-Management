@@ -17,8 +17,7 @@ import java.util.List;
 @Slf4j
 public class TypeController {
     // TODO
-    //  Change the class to interface, include only method signatures here
-    //  Create a new class TypeServiceImpl, implement it from the Service class and move all code to the Impl class
+    //  Crete base url, create a method with pagination for getAll
 
     private final TypeService typeService;
 

@@ -17,8 +17,7 @@ import java.util.List;
 @Slf4j
 public class SupplierController {
     // TODO
-    //  Change the class to interface, include only method signatures here
-    //  Create a new class SupplierServiceImpl, implement it from the Service class and move all code to the Impl class
+    //  Crete base url, create a method with pagination for getAll
 
     private final SupplierService supplierService;
 

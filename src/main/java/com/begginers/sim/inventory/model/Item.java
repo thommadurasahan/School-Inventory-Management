@@ -10,9 +10,6 @@ import java.util.Date;
 @Setter
 @Entity
 public class Item {
-    // Todo
-    //  Create package exception, include Notfound exception
-    //  Create a class ItemNotFoundException
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
