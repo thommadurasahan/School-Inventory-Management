@@ -2,7 +2,6 @@ package com.begginers.sim.order.controller;
 
 import com.begginers.sim.order.model.Order;
 import com.begginers.sim.order.service.OrderService;
-import com.begginers.sim.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
