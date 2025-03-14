@@ -3,7 +3,8 @@ package com.begginers.sim.order.controller;
 import com.begginers.sim.order.exception.OrderNotFoundException;
 import com.begginers.sim.order.model.Order;
 import com.begginers.sim.order.service.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,10 +15,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/orders")
+@RequiredArgsConstructor
+@Slf4j
 public class OrderController {
 
-    @Autowired
-    private OrderService orderService;
+    private final OrderService orderService;
 
     @GetMapping
     public Page<Order> getAllOrders(
