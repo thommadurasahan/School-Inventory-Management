@@ -1,6 +1,8 @@
 package com.begginers.sim.inventory.exception;
 
-public class TypeNotFoundException extends Exception {
+import com.begginers.sim.common.exception.NotFoundException;
+
+public class TypeNotFoundException extends NotFoundException {
 
     public TypeNotFoundException() {
         super();

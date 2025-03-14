@@ -1,6 +1,8 @@
 package com.begginers.sim.inventory.exception;
 
-public class SupplierNotFoundException extends Exception {
+import com.begginers.sim.common.exception.NotFoundException;
+
+public class SupplierNotFoundException extends NotFoundException {
 
     public SupplierNotFoundException() {
         super();
