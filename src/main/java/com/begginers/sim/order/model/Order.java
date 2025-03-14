@@ -13,6 +13,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @ToString
 public class Order {
+    // Todo
+    //  Create package exception, include Class OrderNotFoundException
+    //  Add methods to throw OrderNotFoundException
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
