@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 public class ItemController {
     // Todo
-    //  Crete base url, create a method with pagination for getAll
+    //  Create a method with pagination for getAllItems to reduce the ResultSet size (OffSet and Limit)
 
     private final ItemService itemService;
 
