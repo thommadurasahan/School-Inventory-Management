@@ -6,10 +6,13 @@ import com.begginers.sim.inventory.model.Item;
 import com.begginers.sim.inventory.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(Constant.ITEM_BASE_URL)
@@ -35,6 +38,29 @@ public class ItemController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(items);
+    }
+
+    @GetMapping("/paginated")
+    public ResponseEntity<Map<String, Object>> getAllItemsPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        log.info("Getting paginated items with page: {} and size: {}", page, size);
+
+        Page<Item> pageItems = itemService.getAllItemsPaginated(page, size);
+        List<Item> items = pageItems.getContent();
+
+        if (items.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("items", items);
+        response.put("currentPage", pageItems.getNumber());
+        response.put("totalItems", pageItems.getTotalElements());
+        response.put("totalPages", pageItems.getTotalPages());
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")

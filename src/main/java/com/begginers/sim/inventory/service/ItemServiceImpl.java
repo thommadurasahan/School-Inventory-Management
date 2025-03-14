@@ -5,6 +5,9 @@ import com.begginers.sim.inventory.model.Item;
 import com.begginers.sim.inventory.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +27,12 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<Item> getAllItems() {
         return itemRepository.findAll();
+    }
+
+    @Override
+    public Page<Item> getAllItemsPaginated(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return itemRepository.findAll(pageable);
     }
 
     @Override
