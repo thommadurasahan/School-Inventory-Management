@@ -3,6 +3,7 @@ package com.begginers.sim.inventory.controller;
 import com.begginers.sim.inventory.exception.TypeNotFoundException;
 import com.begginers.sim.inventory.model.Type;
 import com.begginers.sim.inventory.service.TypeService;
+import com.begginers.sim.util.Constant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/types")
+@RequestMapping(Constant.TYPE_BASE_URL)
 @RequiredArgsConstructor
 @Slf4j
 public class TypeController {

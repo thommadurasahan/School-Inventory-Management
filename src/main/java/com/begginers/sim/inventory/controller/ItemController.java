@@ -3,6 +3,7 @@ package com.begginers.sim.inventory.controller;
 import com.begginers.sim.inventory.exception.ItemNotFoundException;
 import com.begginers.sim.inventory.model.Item;
 import com.begginers.sim.inventory.service.ItemService;
+import com.begginers.sim.util.Constant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/items")
+@RequestMapping(Constant.ITEM_BASE_URL)
 @RequiredArgsConstructor
 @Slf4j
 public class ItemController {
