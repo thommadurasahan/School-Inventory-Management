@@ -8,10 +8,7 @@ import java.util.List;
 
 @Service
 public interface SupplierService {
-    // TODO
-    //  Change the class to interface, include only method signatures here
-    //  Create a new class SupplierServiceImpl, implement it from the Service class and move all code to the Impl class
-
+    
     Supplier saveSupplier(Supplier supplier);
 
     List<Supplier> getAllSuppliers();

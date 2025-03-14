@@ -8,9 +8,6 @@ import java.util.List;
 
 @Service
 public interface TypeService {
-    // TODO
-    //  Change the class to interface, include only method signatures here
-    //  Create a new class TypeServiceImpl, implement it from the Service class and move all code to the Impl class
 
     Type saveType(Type type);
 

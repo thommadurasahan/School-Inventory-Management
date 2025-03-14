@@ -8,9 +8,6 @@ import java.util.List;
 
 @Service
 public interface ItemService {
-    // TODO
-    //  Change class to interface, include only method signatures here
-    //  Create a new class ItemServiceImpl, implement it from the Service class and move all code to the Impl class
 
     Item saveItem(Item item);
 
