@@ -1,5 +1,6 @@
 package com.begginers.sim.order.controller;
 
+import com.begginers.sim.order.exception.OrderNotFoundException;
 import com.begginers.sim.order.model.Order;
 import com.begginers.sim.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class OrderController {
     public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
         Optional<Order> order = orderService.getOrderById(id);
         return order.map(ResponseEntity::ok)
-                .orElseThrow(() -> new ItemNotFoundException(Constant.ITEM_NOT_FOUND_MESSAGE + id));
+                .orElseThrow(() -> new OrderNotFoundException(ORDER_NOT_FOUND_MESSAGE + id));
     }
 
     @PostMapping
