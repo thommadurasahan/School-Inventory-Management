@@ -1,4 +1,4 @@
-package com.begginers.sim.util;
+package com.begginers.sim.common.util;
 
 public class Constant {
 

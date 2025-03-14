@@ -1,9 +1,9 @@
 package com.begginers.sim.inventory.controller;
 
+import com.begginers.sim.common.util.Constant;
 import com.begginers.sim.inventory.exception.TypeNotFoundException;
 import com.begginers.sim.inventory.model.Type;
 import com.begginers.sim.inventory.service.TypeService;
-import com.begginers.sim.util.Constant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
