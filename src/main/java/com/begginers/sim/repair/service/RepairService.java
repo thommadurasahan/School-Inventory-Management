@@ -1,21 +1,22 @@
 package com.begginers.sim.repair.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.begginers.sim.repair.model.Repair;
 import com.begginers.sim.repair.repository.RepairRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class RepairService {
     // TODO
     //  Change the class to interface, include only method signatures here
     //  Create a new class RepairServiceImpl, implement it from the Service class and move all code to the Impl class
 
-    @Autowired
     private RepairRepository repairRepository;
 
     public List<Repair> getAllRepairs() {

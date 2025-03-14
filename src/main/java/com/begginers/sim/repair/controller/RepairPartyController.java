@@ -1,21 +1,22 @@
 package com.begginers.sim.repair.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import com.begginers.sim.repair.model.RepairParty;
 import com.begginers.sim.repair.service.RepairPartyService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/repair-parties")
+@RequiredArgsConstructor
+@Slf4j
 public class RepairPartyController {
     // Todo
     //  Create util package, class Constant, hardcode values
     //  Crete base url, create a method with pagination for getAll
 
-    @Autowired
     private RepairParty repairPartyService;
 
     @GetMapping
@@ -34,14 +35,14 @@ public class RepairPartyController {
             try {
                 return RepairPartyService.addRepairParty(repairParty);
             } catch (Exception e) {
-            
+
                 e.printStackTrace();
             }
         } catch (Exception e) {
-           
+
             e.printStackTrace();
         }
-                return repairParty;
+        return repairParty;
     }
 
     @PutMapping("/{id}")

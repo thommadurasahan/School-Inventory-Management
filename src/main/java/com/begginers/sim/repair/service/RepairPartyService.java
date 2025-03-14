@@ -14,15 +14,15 @@
 
 //     @Autowired
 //     private static RepairPartyRepository repairPartyRepository;
-    
+
 //         public List<RepairPartyService> getAllRepairParties() {
 //             return repairPartyRepository.findAll();
 //         }
-    
+
 //         public RepairPartyService getRepairPartyById(int id) {
 //             return repairPartyRepository.findById(id).orElse(null);
 //         }
-    
+
 //         public static RepairParty addRepairParty(RepairParty repairParty) {
 //             return repairPartyRepository.saveAll((Iterable<S>) repairParty);
 //     }
@@ -43,21 +43,23 @@
 
 package com.begginers.sim.repair.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.begginers.sim.repair.model.RepairParty;
 import com.begginers.sim.repair.repository.RepairPartyRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class RepairPartyService {
     // TODO
     //  Change the class to interface, include only method signatures here
     //  Create a new class RepairPartyServiceImpl, implement it from the Service class and move all code to the Impl class
 
-    @Autowired
     private RepairPartyRepository repairPartyRepository; // Removed static
 
     public List<RepairPartyService> getAllRepairParties() { // Fixed return type

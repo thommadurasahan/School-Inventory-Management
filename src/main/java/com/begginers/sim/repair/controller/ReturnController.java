@@ -1,21 +1,22 @@
 package com.begginers.sim.repair.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import com.begginers.sim.repair.model.Return;
 import com.begginers.sim.repair.service.ReturnService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/returns")
+@RequiredArgsConstructor
+@Slf4j
 public class ReturnController {
     // Todo
     //  Create util package, class Constant, hardcode values
     //  Crete base url, create a method with pagination for getAll
 
-    @Autowired
     private ReturnService returnService;
 
     @GetMapping
@@ -27,10 +28,10 @@ public class ReturnController {
     public Return getReturnById(@PathVariable int id) {
         return returnService.getReturnById(id);
     }
- 
-    
+
+
     @PostMapping
-    public Return addReturn(@RequestBody    Return returnObj) {
+    public Return addReturn(@RequestBody Return returnObj) {
         return returnService.addReturn(returnObj);
     }
 
