@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(Constant.BASE_API_URL + "/orders")
+@RequestMapping("/orders")
 public class OrderController {
 
     @Autowired
