@@ -2,7 +2,7 @@ package com.begginers.sim.util;
 
 public class Constant {
 
-    // API Version
+    // BASE URL
     public static final String API_VERSION = "/api/v1";
 
     // Inventory URLs
@@ -16,5 +16,5 @@ public class Constant {
     // Repair URLs
 
     // Survey URLs
-    
+
 }
