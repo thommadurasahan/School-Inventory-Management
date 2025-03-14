@@ -1,7 +1,7 @@
 package com.begginers.sim.survey.model;
 
-import com.begginers.sim.order.model.Order;
 import com.begginers.sim.inventory.model.Type;
+import com.begginers.sim.order.model.Order;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +20,7 @@ public class SurveyResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "survey_result_id")
-    private Short surveyResultId;
+    private long surveyResultId;
 
     @Column(name = "survey_id")
     private Short surveyId;
