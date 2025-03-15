@@ -24,3 +24,4 @@ projectJDK: "21" #(Applied in CI/CD pipeline)
 linter: jetbrains/qodana-jvm:2024.3
 include:
   - name: ThrowablePrintStackTrace
+    path: src/main/java/com.begginers.sim
