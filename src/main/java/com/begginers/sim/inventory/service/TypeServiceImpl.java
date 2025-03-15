@@ -5,6 +5,9 @@ import com.begginers.sim.inventory.model.Type;
 import com.begginers.sim.inventory.repository.TypeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,20 +18,30 @@ import java.util.List;
 public class TypeServiceImpl implements TypeService {
 
     private final TypeRepository typeRepository;
-    
+
+    @Override
     public Type saveType(Type type) {
         return typeRepository.save(type);
     }
 
+    @Override
     public List<Type> getAllTypes() {
         return typeRepository.findAll();
     }
 
+    @Override
+    public Page<Type> getAllTypesPaginated(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return typeRepository.findAll(pageable);
+    }
+
+    @Override
     public Type getTypeById(Long id) throws TypeNotFoundException {
         return typeRepository.findById(id)
                 .orElseThrow(() -> new TypeNotFoundException("Type not found with ID: " + id));
     }
 
+    @Override
     public void deleteType(Long id) throws TypeNotFoundException {
         if (!typeRepository.existsById(id)) {
             throw new TypeNotFoundException("Type not found with id: " + id);

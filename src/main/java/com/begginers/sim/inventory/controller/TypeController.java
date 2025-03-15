@@ -6,18 +6,19 @@ import com.begginers.sim.inventory.model.Type;
 import com.begginers.sim.inventory.service.TypeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(Constant.TYPE_BASE_URL)
 @RequiredArgsConstructor
 @Slf4j
 public class TypeController {
-    // TODO
-    //  Crete base url, create a method with pagination for getAll
 
     private final TypeService typeService;
 
@@ -35,6 +36,29 @@ public class TypeController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(types);
+    }
+
+    @GetMapping("/paginated")
+    public ResponseEntity<Map<String, Object>> getAllTypesPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        log.info("Getting paginated types with page: {} and size: {}", page, size);
+
+        Page<Type> pageTypes = typeService.getAllTypesPaginated(page, size);
+        List<Type> types = pageTypes.getContent();
+
+        if (types.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("types", types);
+        response.put("currentPage", pageTypes.getNumber());
+        response.put("totalTypes", pageTypes.getTotalElements());
+        response.put("totalPages", pageTypes.getTotalPages());
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")

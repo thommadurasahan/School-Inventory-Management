@@ -19,8 +19,6 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 public class ItemController {
-    // Todo
-    //  Create a method with pagination for getAllItems to reduce the ResultSet size (OffSet and Limit)
 
     private final ItemService itemService;
 
