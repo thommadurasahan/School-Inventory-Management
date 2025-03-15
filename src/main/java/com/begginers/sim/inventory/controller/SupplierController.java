@@ -6,18 +6,19 @@ import com.begginers.sim.inventory.model.Supplier;
 import com.begginers.sim.inventory.service.SupplierService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(Constant.SUPPLIER_BASE_URL)
 @RequiredArgsConstructor
 @Slf4j
 public class SupplierController {
-    // TODO
-    //  Crete base url, create a method with pagination for getAll
 
     private final SupplierService supplierService;
 
@@ -35,6 +36,29 @@ public class SupplierController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(suppliers);
+    }
+
+    @GetMapping("/paginated")
+    public ResponseEntity<Map<String, Object>> getAllSuppliersPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        log.info("Getting paginated suppliers with page: {} and size: {}", page, size);
+
+        Page<Supplier> pageSuppliers = supplierService.getAllSuppliersPaginated(page, size);
+        List<Supplier> suppliers = pageSuppliers.getContent();
+
+        if (suppliers.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("suppliers", suppliers);
+        response.put("currentPage", pageSuppliers.getNumber());
+        response.put("totalSuppliers", pageSuppliers.getTotalElements());
+        response.put("totalPages", pageSuppliers.getTotalPages());
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")
