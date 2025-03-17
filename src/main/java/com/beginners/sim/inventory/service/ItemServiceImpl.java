@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -39,6 +40,12 @@ public class ItemServiceImpl implements ItemService {
     public Item getItemById(long id) throws ItemNotFoundException {
         return itemRepository.findById(id)
                 .orElseThrow(() -> new ItemNotFoundException("Item not found with ID: " + id));
+    }
+
+    @Override
+    public List<Item> getItemsByDate(Date receivedOn) {
+        log.info("Finding items received on date: {}", receivedOn);
+        return itemRepository.findItemsByDate(receivedOn);
     }
 
     @Override

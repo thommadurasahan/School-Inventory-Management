@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,6 +70,18 @@ public class ItemController {
         } catch (ItemNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/date")
+    public ResponseEntity<List<Item>> getItemsByDate(@RequestParam("date") Date receivedOn) {
+        log.info("Getting items by date: {}", receivedOn);
+        List<Item> items = itemService.getItemsByDate(receivedOn);
+
+        if (items.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(items);
     }
 
     @PutMapping("/{id}")
