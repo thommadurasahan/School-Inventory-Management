@@ -47,7 +47,7 @@ public class SurveyController {
         try {
             Survey existingSurvey = surveyService.getSurveyById(id);
             existingSurvey.setSurveyName(updatedSurvey.getSurveyName());
-            existingSurvey.setSurveyOn(updatedSurvey.getSurveyOn());
+            //existingSurvey.setSurveyOn(updatedSurvey.getSurveyOn());
             Survey savedSurvey = surveyService.saveSurvey(existingSurvey);
             return ResponseEntity.ok(savedSurvey);
         } catch (SurveyNotFoundException e) {
