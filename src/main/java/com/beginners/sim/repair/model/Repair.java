@@ -19,6 +19,5 @@ public class Repair {
     private int repairId;
     private int sentQuantity;
     private Date sendToRepairOn;
-    private int repairPartyId;
     private String repairLocation;
 }
