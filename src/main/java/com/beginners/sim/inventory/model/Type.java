@@ -1,7 +1,7 @@
 package com.beginners.sim.inventory.model;
 
 import com.beginners.sim.order.model.Order;
-import com.beginners.sim.survey.model.SurveyResult;
+import com.beginners.sim.survey.model.Survey;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,9 +34,9 @@ public class Type {
     )
     private Set<Supplier> suppliers = new HashSet<>();
 
-    @ManyToMany(mappedBy = "types")
+    @ManyToMany(mappedBy = "type")
     private Set<Order> orders = new HashSet<>();
 
     @OneToOne(mappedBy = "type")
-    private SurveyResult surveyResult;
+    private Survey survey;
 }

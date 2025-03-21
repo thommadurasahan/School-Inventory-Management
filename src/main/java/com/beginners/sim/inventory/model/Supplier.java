@@ -30,6 +30,6 @@ public class Supplier {
     @OneToMany(mappedBy = "supplier")
     private List<Order> orders;
 
-    @ManyToMany(mappedBy = "suppliers")
+    @ManyToMany(mappedBy = "supplier")
     private Set<Type> types = new HashSet<>();
 }
