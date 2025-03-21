@@ -2,7 +2,7 @@ services:
   mysql:
     image: 'mysql:latest'
     environment:
-      - 'MYSQL_DATABASE=simDB'
+      - 'MYSQL_DATABASE=sim_db'
       - 'MYSQL_PASSWORD=simUser'
       - 'MYSQL_ROOT_PASSWORD=root'
       - 'MYSQL_USER=simUser'
@@ -17,9 +17,9 @@ services:
     depends_on:
       - mysql
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/simDB?createDatabaseIfNotExist=true
-      SPRING_DATASOURCE_USERNAME: simUser
-      SPRING_DATASOURCE_PASSWORD: simUser
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/sim_db?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     ports:
       - '8080:8080'
