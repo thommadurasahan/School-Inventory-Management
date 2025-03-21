@@ -1,5 +1,6 @@
 package com.beginners.sim.survey.controller;
 
+import com.beginners.sim.common.util.Constant;
 import com.beginners.sim.survey.exception.SurveyNotFoundException;
 import com.beginners.sim.survey.model.Survey;
 import com.beginners.sim.survey.service.SurvayService;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "api/v1/survey")
+@RequestMapping(value = Constant.Survey_BASE_URL)
 @RequiredArgsConstructor
 public class SurveyController {
     // Todo

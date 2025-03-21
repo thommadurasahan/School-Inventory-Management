@@ -12,9 +12,12 @@ public class Constant {
     public static final String SUPPLIER_BASE_URL = INVENTORY_BASE_URL + "/suppliers";
 
     // Order URLs
+    public static final String Order_BASE_URL = INVENTORY_BASE_URL + "/orders";
 
     // Repair URLs
+    public static final String Repair_BASE_URL = INVENTORY_BASE_URL + "/repairs";
 
     // Survey URLs
+    public static final String Survey_BASE_URL = INVENTORY_BASE_URL + "/surveys";
 
 }

@@ -1,5 +1,6 @@
 package com.beginners.sim.repair.controller;
 
+import com.beginners.sim.common.util.Constant;
 import com.beginners.sim.repair.model.Repair;
 import com.beginners.sim.repair.service.RepairService;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/repairs")
+@RequestMapping(Constant.Repair_BASE_URL)
 @RequiredArgsConstructor
 @Slf4j
 public class RepairController {

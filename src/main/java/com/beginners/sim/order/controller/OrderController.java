@@ -1,5 +1,6 @@
 package com.beginners.sim.order.controller;
 
+import com.beginners.sim.common.util.Constant;
 import com.beginners.sim.order.exception.OrderNotFoundException;
 import com.beginners.sim.order.model.Order;
 import com.beginners.sim.order.service.OrderService;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping(Constant.Order_BASE_URL)
 @RequiredArgsConstructor
 @Slf4j
 public class OrderController {
