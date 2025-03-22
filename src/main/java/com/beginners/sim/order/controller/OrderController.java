@@ -22,6 +22,10 @@ public class OrderController {
 
     private final OrderService orderService;
 
+    public OrderController() {
+        orderService = null;
+    }
+
     @GetMapping
     public Page<Order> getAllOrders(
             @RequestParam(defaultValue = "0") int page,
@@ -31,10 +35,15 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
+    public ResponseEntity<Order> getOrderById(@PathVariable Long id) throws OrderNotFoundException {
         Optional<Order> order = orderService.getOrderById(id);
-        return order.map(ResponseEntity::ok)
-                .orElseThrow(() -> new OrderNotFoundException(ORDER_NOT_FOUND_MESSAGE + id));
+        String ORDER_NOT_FOUND_MESSAGE = null;
+        try {
+            return order.map(ResponseEntity::ok)
+                    .orElseThrow(() -> new OrderNotFoundException(ORDER_NOT_FOUND_MESSAGE + id));
+        } catch (OrderNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @PostMapping
