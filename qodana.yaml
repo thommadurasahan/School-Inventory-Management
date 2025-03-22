@@ -7,8 +7,9 @@ version: "1.0"
 profile:
   name: qodana.starter
 #Enable inspections
-#include:
-#  - name: <SomeEnabledInspectionId>
+include:
+  - name: ThrowablePrintStackTrace
+    path: src/main/java/com/beginners/sim
 #Disable inspections
 #exclude:
 #  - name: <SomeDisabledInspectionId>
@@ -22,5 +23,3 @@ projectJDK: "21" #(Applied in CI/CD pipeline)
 #  - id: <plugin.id> #(plugin id can be found at https://plugins.jetbrains.com)
 #Specify Qodana linter for analysis (Applied in CI/CD pipeline)
 linter: jetbrains/qodana-jvm:2024.3
-include:
-  - name: ThrowablePrintStackTrace
