@@ -22,14 +22,14 @@ public class SupplierController {
 
     private final SupplierService supplierService;
 
-    @PostMapping
+    @PostMapping("/add-supplier")
     public ResponseEntity<Supplier> insertSupplier(@RequestBody Supplier supplier) {
         log.info("Inserting new supplier: {}", supplier);
         Supplier savedSupplier = supplierService.saveSupplier(supplier);
         return ResponseEntity.ok(savedSupplier);
     }
 
-    @GetMapping
+    @GetMapping("/view-suppliers")
     public ResponseEntity<List<Supplier>> getAllSuppliers() {
         List<Supplier> suppliers = supplierService.getAllSuppliers();
         if (suppliers.isEmpty()) {
@@ -38,7 +38,7 @@ public class SupplierController {
         return ResponseEntity.ok(suppliers);
     }
 
-    @GetMapping("/paginated")
+    @GetMapping("/view-paginated-suppliers")
     public ResponseEntity<Map<String, Object>> getAllSuppliersPaginated(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
@@ -61,7 +61,7 @@ public class SupplierController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/view-supplier-by-id/{id}")
     public ResponseEntity<Supplier> getSupplierById(@PathVariable Long id) {
         try {
             Supplier supplier = supplierService.getSupplierById(id);
@@ -71,7 +71,7 @@ public class SupplierController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update-supplier-by-id/{id}")
     public ResponseEntity<Supplier> updateSupplier(@PathVariable Long id, @RequestBody Supplier updatedSupplier) {
         log.info("Updating supplier with ID: {}", id);
         try {
@@ -86,7 +86,7 @@ public class SupplierController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete-supplier-by-id/{id}")
     public ResponseEntity<Void> deleteSupplier(@PathVariable Long id) {
         log.info("Deleting supplier with ID: {}", id);
         try {

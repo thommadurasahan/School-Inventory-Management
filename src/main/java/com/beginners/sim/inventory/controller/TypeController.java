@@ -22,14 +22,14 @@ public class TypeController {
 
     private final TypeService typeService;
 
-    @PostMapping
+    @PostMapping("/add-type")
     public ResponseEntity<Type> createType(@RequestBody Type type) {
         log.info("Creating new type: {}", type);
         Type savedType = typeService.saveType(type);
         return ResponseEntity.ok(savedType);
     }
 
-    @GetMapping
+    @GetMapping("/view-types")
     public ResponseEntity<List<Type>> getAllTypes() {
         List<Type> types = typeService.getAllTypes();
         if (types.isEmpty()) {
@@ -38,7 +38,7 @@ public class TypeController {
         return ResponseEntity.ok(types);
     }
 
-    @GetMapping("/paginated")
+    @GetMapping("/view-paginated-types")
     public ResponseEntity<Map<String, Object>> getAllTypesPaginated(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
@@ -61,7 +61,7 @@ public class TypeController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/view-type-by-id/{id}")
     public ResponseEntity<Type> getTypeById(@PathVariable Long id) {
         try {
             Type type = typeService.getTypeById(id);
@@ -71,7 +71,7 @@ public class TypeController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update-type-by-id/{id}")
     public ResponseEntity<Type> updateType(@PathVariable Long id, @RequestBody Type updatedType) {
         log.info("Updating type with ID: {}", id);
         try {
@@ -84,7 +84,7 @@ public class TypeController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete-type-by-id/{id}")
     public ResponseEntity<Void> deleteType(@PathVariable Long id) {
         log.info("Deleting type with ID: {}", id);
         try {

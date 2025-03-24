@@ -23,14 +23,14 @@ public class ItemController {
 
     private final ItemService itemService;
 
-    @PostMapping
+    @PostMapping("/add-item")
     public ResponseEntity<Item> insertItem(@RequestBody Item item) {
         log.info("Inserting new item: {}", item);
         Item savedItem = itemService.saveItem(item);
         return ResponseEntity.ok(savedItem);
     }
 
-    @GetMapping
+    @GetMapping("/view-items")
     public ResponseEntity<List<Item>> getAllItems() {
         List<Item> items = itemService.getAllItems();
         if (items.isEmpty()) {
@@ -39,7 +39,7 @@ public class ItemController {
         return ResponseEntity.ok(items);
     }
 
-    @GetMapping("/paginated")
+    @GetMapping("/view-paginated-items")
     public ResponseEntity<Map<String, Object>> getAllItemsPaginated(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
@@ -62,7 +62,7 @@ public class ItemController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/view-item-by-id/{id}")
     public ResponseEntity<Item> getItemById(@PathVariable long id) {
         try {
             Item item = itemService.getItemById(id);
@@ -72,7 +72,7 @@ public class ItemController {
         }
     }
 
-    @GetMapping("/date")
+    @GetMapping("/view-items-by-date")
     public ResponseEntity<List<Item>> getItemsByDate(@RequestParam("date") Date receivedOn) {
         log.info("Getting items by date: {}", receivedOn);
         List<Item> items = itemService.getItemsByDate(receivedOn);
@@ -84,7 +84,7 @@ public class ItemController {
         return ResponseEntity.ok(items);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update-item-by-id/{id}")
     public ResponseEntity<Item> updateItem(@PathVariable long id, @RequestBody Item updatedItem) {
         log.info("Updating item with ID: {}", id);
         try {
@@ -97,7 +97,7 @@ public class ItemController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete-item-by-id/{id}")
     public ResponseEntity<Void> deleteItem(@PathVariable long id) {
         log.info("Deleting item with ID: {}", id);
         try {
