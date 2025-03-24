@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <title>Home Page</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="/common/css/style.css" rel="stylesheet">
+    <link href="/css/common-style.css" rel="stylesheet">
+    <link href="/css/index-style.css" rel="stylesheet">
 </head>
 <body>
+
 <header>
-    <img alt="Logo" src="">
+    <img alt="Logo" src="/images/logo.png"/>
     <nav>
-        <a href="/inventory/item.html">Add Item</a>
-        <a href="#">Add Order</a>
-        <a href="#">Add Repair</a>
-        <a href="#">Add Survey</a>
+        <a href="item.html">Add Item</a>
+        <a href="order.html">Add Order</a>
+        <a href="repair.html">Add Repair</a>
+        <a href="survey.html">Add Survey</a>
     </nav>
 </header>
 
@@ -22,28 +24,18 @@
 </div>
 
 <div class="buttons-container">
-    <button class="button">Manage Inventory Items</button>
-    <button class="button">Manage Item Types</button>
-    <button class="button">Manage Item Suppliers</button>
-    <button class="button">Manage Inventory Orders</button>
-    <button class="button">Manage Inventory Surveys</button>
-    <button class="button">Manage Item Repairs</button>
+    <a class="button" href="item.html">Manage Inventory Items</a>
+    <a class="button" href="type.html">Manage Item Types</a>
+    <a class="button" href="supplier.html">Manage Item Suppliers</a>
+    <a class="button" href="order.html">Manage Inventory Orders</a>
+    <a class="button" href="survey.html">Manage Inventory Surveys</a>
+    <a class="button" href="repair.html">Manage Item Repairs</a>
 </div>
 
 <footer>
-    <p>&copy; <a href="https://github.com/thommadurasahan/school-inventory-management"> Spring Boot
-        GitHub
-        Project</a></p>
+    <p><a href="https://github.com/thommadurasahan/School-Inventory-Management.git">Check Here Our Spring Boot
+        GitHub Project</a></p>
 </footer>
-
-<script>
-    const buttons = document.querySelectorAll('.button');
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            alert(`Button clicked: ${button.textContent}`);
-        });
-    });
-</script>
 
 </body>
 </html>
