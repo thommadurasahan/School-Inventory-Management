@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="/common/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <img alt="Logo" src="">
+    <nav>
+        <a href="/inventory/item.html">Add Item</a>
+        <a href="#">Add Order</a>
+        <a href="#">Add Repair</a>
+        <a href="#">Add Survey</a>
+    </nav>
+</header>
+
+<div class="hero">
+    <h1>School Inventory Management</h1>
+</div>
+
+<div class="buttons-container">
+    <button class="button">Manage Inventory Items</button>
+    <button class="button">Manage Item Types</button>
+    <button class="button">Manage Item Suppliers</button>
+    <button class="button">Manage Inventory Orders</button>
+    <button class="button">Manage Inventory Surveys</button>
+    <button class="button">Manage Item Repairs</button>
+</div>
+
+<footer>
+    <p>&copy; <a href="https://github.com/thommadurasahan/school-inventory-management"> Spring Boot
+        GitHub
+        Project</a></p>
+</footer>
+
+<script>
+    const buttons = document.querySelectorAll('.button');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            alert(`Button clicked: ${button.textContent}`);
+        });
+    });
+</script>
+
+</body>
+</html>
