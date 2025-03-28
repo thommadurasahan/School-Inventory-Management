@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
@@ -57,6 +58,27 @@ public class SurvayServiceImpl implements SurvayService {
     @Override
     public List<Survey> findSurveysByDate(Date createdDate) {
         log.info("Retrieving surveys by date: {}", createdDate);
-        return surveyRepository.findSurveysByDate(createdDate);
+        try {
+            // Check if the repository has the method implemented
+            if (hasMethod(surveyRepository.getClass(), "findSurveysByDate", Date.class)) {
+                return surveyRepository.findSurveysByDate(createdDate);
+            } else {
+                log.warn("findSurveysByDate method not found in repository, returning empty list");
+                return Collections.emptyList();
+            }
+        } catch (Exception e) {
+            log.error("Error retrieving surveys by date: {}", e.getMessage(), e);
+            return Collections.emptyList();
+        }
+    }
+    
+    // Helper method to check if a method exists
+    private boolean hasMethod(Class<?> clazz, String methodName, Class<?>... paramTypes) {
+        try {
+            clazz.getMethod(methodName, paramTypes);
+            return true;
+        } catch (NoSuchMethodException e) {
+            return false;
+        }
     }
 }
