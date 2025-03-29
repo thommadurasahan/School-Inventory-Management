@@ -19,6 +19,380 @@
     </nav>
 </header>
 
+<section class="add-item">
+    <div><h1>Add Item</h1></div>
+
+    <div class="add-item-form">
+        <div class="container">
+            <form action="/java/com.begginers.sim/inventory/controller/ItemController.java" name="item-insert-form">
+                <div class="row">
+                    <div class="col-25">
+                        <label for="item-name">Item Name</label>
+                    </div>
+                    <div class="col-75">
+                        <input id="item-name" name="item-name" placeholder="Enter Item name.." type="text">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="type-name">Type Name</label>
+                    </div>
+                    <div class="col-75">
+                        <select id="type-name" name="type-name">
+                            <option selected value="">Select Item Type</option>
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="voucher-no">Voucher No.</label>
+                    </div>
+                    <div class="col-75">
+                        <input id="voucher-no" name="voucher-no" placeholder="Enter voucher Number.." type="number">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="quantity">Quantity</label>
+                    </div>
+                    <div class="col-75">
+                        <input id="quantity" name="quantity" placeholder="Enter Item quantity.." type="number">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="supplier-name">Supplier Name</label>
+                    </div>
+                    <div class="col-75">
+                        <select id="supplier-name" name="supplier-name">
+                            <option selected value="">Select Item Supplier</option>
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="received-date-in-add-item">Received Date</label>
+                    </div>
+                    <div class="col-75">
+                        <input id="received-date-in-add-item" name="received-date" placeholder="Enter Received Date.."
+                               type="date">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="view-items">
+    <div><h1>View All Items</h1></div>
+
+    <div class="container">
+        <div>
+            <form action="/java/com.begginers.sim/inventory/controller/ItemController.java" name="view-all-button">
+                <div class="row">
+                    <input type="submit" value="View All">
+                </div>
+            </form>
+        </div>
+
+        <div class="view-items-paginated">
+            <div style="overflow-x:auto;">
+                <table name="paginated-items-table">
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Item Name</th>
+                        <th>Type Name</th>
+                        <th>Voucher No.</th>
+                        <th>Quantity</th>
+                        <th>Supplier Name</th>
+                        <th>Received Date</th>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="center">
+                <div class="pagination">
+                    <a href="#">&laquo;</a>
+                    <a class="active" href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">6</a>
+                    <a href="#">&raquo;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="view-items-by-date">
+    <div><h1>View Items By Date</h1></div>
+
+    <div class="container">
+        <div>
+            <form action="/java/com.begginers.sim/inventory/controller/ItemController.java" name="date-input-form">
+                <div class="row">
+                    <div class="col-25">
+                        <label for="received-date-in-view-items">Received Date</label>
+                    </div>
+                    <div class="col-75">
+                        <input id="received-date-in-view-items" name="received-date" placeholder="Enter Received Date.."
+                               type="date">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <input type="submit" value="View">
+                </div>
+            </form>
+        </div>
+
+        <div class="items-related-to-the-date">
+            <div style="overflow-x:auto;">
+                <table name="filtered-items-table">
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Item Name</th>
+                        <th>Type Name</th>
+                        <th>Voucher No.</th>
+                        <th>Quantity</th>
+                        <th>Supplier Name</th>
+                        <th>Received Date</th>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="update-item">
+    <div><h1>Update Item</h1></div>
+
+    <div class="update-item-form">
+        <div class="container">
+            <form action="/java/com.begginers.sim/inventory/controller/ItemController.java" name="item-insert-form">
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="item-id">Item ID</label>
+                    </div>
+                    <div class="col-75">
+                        <input id="item-id" name="item-id" placeholder="Enter Item ID.." type="number">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="updated-quantity">Updated Quantity</label>
+                    </div>
+                    <div class="col-75">
+                        <input id="updated-quantity" name="updated-quantity" placeholder="Enter Updated Item quantity.."
+                               type="number">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <input type="submit" value="Update">
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
 <footer>
     <p><a href="https://github.com/thommadurasahan/School-Inventory-Management.git">Check Here Our Spring Boot
         GitHub Project</a></p>
