@@ -9,15 +9,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class SurvayServiceImpl implements SurvayService {
-    
+public class SurveyServiceImpl implements SurveyService {
+
     private final SurveyRepository surveyRepository;
 
     @Override
@@ -47,14 +47,14 @@ public class SurvayServiceImpl implements SurvayService {
         }
         surveyRepository.deleteById(id);
     }
-    
+
     @Override
     public Page<Survey> findAll(Pageable pageable) {
-        log.info("Retrieving paginated surveys with page: {}, size: {}", 
+        log.info("Retrieving paginated surveys with page: {}, size: {}",
                 pageable.getPageNumber(), pageable.getPageSize());
         return surveyRepository.findAll(pageable);
     }
-    
+
     @Override
     public List<Survey> findSurveysByDate(Date createdDate) {
         log.info("Retrieving surveys by date: {}", createdDate);
@@ -71,7 +71,7 @@ public class SurvayServiceImpl implements SurvayService {
             return Collections.emptyList();
         }
     }
-    
+
     // Helper method to check if a method exists
     private boolean hasMethod(Class<?> clazz, String methodName, Class<?>... paramTypes) {
         try {

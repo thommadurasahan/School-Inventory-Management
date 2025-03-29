@@ -3,7 +3,7 @@ package com.beginners.sim.survey.controller;
 import com.beginners.sim.common.util.Constant;
 import com.beginners.sim.survey.exception.SurveyNotFoundException;
 import com.beginners.sim.survey.model.Survey;
-import com.beginners.sim.survey.service.SurvayService;
+import com.beginners.sim.survey.service.SurveyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -25,7 +25,7 @@ import java.util.Map;
 @Slf4j
 public class SurveyController {
 
-    private final SurvayService surveyService;
+    private final SurveyService surveyService;
 
     @PostMapping("/add-survey")
     public ResponseEntity<Survey> insertSurvey(@RequestBody Survey survey) {
@@ -53,9 +53,9 @@ public class SurveyController {
 
         log.info("Getting paginated surveys with page: {} and size: {}", page, size);
 
-        Sort.Direction sortDirection = direction.equalsIgnoreCase("desc") ? 
+        Sort.Direction sortDirection = direction.equalsIgnoreCase("desc") ?
                 Sort.Direction.DESC : Sort.Direction.ASC;
-        
+
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortDirection, sortBy));
         Page<Survey> pageSurveys = surveyService.findAll(pageable);
         List<Survey> surveys = pageSurveys.getContent();

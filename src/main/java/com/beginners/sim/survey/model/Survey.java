@@ -15,9 +15,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Survey {
-    // Todo
-    //  Create package exception, include Notfound exception
-    //  Create a class SurveyNotFoundException
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
