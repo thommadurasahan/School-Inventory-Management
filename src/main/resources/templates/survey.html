@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Survey Page</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="/static/css/common-style.css" rel="stylesheet">
+    <link href="static/css/common-style.css" rel="stylesheet">
     <link href="/static/css/survey-style.css" rel="stylesheet">
 </head>
 <body>
@@ -19,6 +19,163 @@
         <a href="survey.html">Add Survey</a>
     </nav>
 </header>
+
+<main>
+    <section class="pagination-section">
+        <div class="pagination">
+            <button>Previous</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>Next</button>
+        </div>
+    </section>
+    <div class="container">
+        <h1>Survey Page</h1>
+        
+        <!-- Add Survey Section -->
+        <section class="survey-section" id="add-survey">
+            <h2>Add Survey</h2>
+            <form class="survey-form">
+                <div class="form-group">
+                    <label for="surveyName">Survey Name</label>
+                    <input type="text" id="surveyName" placeholder="Enter name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="conductedDate">Conducted Date</label>
+                    <input type="date" id="conductedDate">
+                </div>
+                
+                <div class="form-group">
+                    <label for="typeName">Type Name</label>
+                    <select id="typeName">
+                        <option value="" disabled selected>Select item Type</option>
+                        <option value="type1">Type 1</option>
+                        <option value="type2">Type 2</option>
+                        <option value="type3">Type 3</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="totalQuantity">Total Item Quantity</label>
+                    <input type="number" id="totalQuantity" placeholder="Enter number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="presentQuantity">Present Item Quantity</label>
+                    <input type="number" id="presentQuantity" placeholder="Enter number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="orderId">Order ID</label>
+                    <input type="number" id="orderId" placeholder="Enter number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="orderedQuantity">Ordered Item Quantity</label>
+                    <input type="number" id="orderedQuantity" placeholder="Enter number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="goodQuantity">Healthy Item Quantity</label>
+                    <input type="number" id="goodQuantity" placeholder="Enter number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="repairQuantity">Repair Item Quantity</label>
+                    <input type="number" id="repairQuantity" placeholder="Enter number">
+                </div>
+                
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </section>
+        
+        <!-- View Surveys (Paginated) Section -->
+        <section class="survey-section" id="view-surveys-paginated">
+            <h2>View Surveys (Paginated)</h2>
+            
+            <table class="survey-table">
+                <thead>
+                    <tr>
+                        <th>Survey ID</th>
+                        <th>Survey Name</th>
+                        <th>Conducted Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Annual Inventory Check</td>
+                        <td>2023-10-15</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Quarterly Review</td>
+                        <td>2023-07-01</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Emergency Audit</td>
+                        <td>2023-09-05</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+
+        </section>
+        
+        <!-- View Surveys (By Date) Section -->
+        <section class="survey-section" id="view-surveys-by-date">
+            <h2>View Surveys (By Date)</h2>
+            
+            <div class="view-by-date">
+                <div class="calendar-container">
+                    <input type="date" class="calendar">
+                </div>
+                <button class="btn btn-primary">Submit</button>
+            </div>
+            
+            <table class="survey-table">
+                <thead>
+                    <tr>
+                        <th>Survey ID</th>
+                        <th>Survey Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Annual Inventory Check</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- Update Survey Section -->
+        <section class="survey-section" id="update-survey">
+            <h2>Update Survey</h2>
+            
+            <form class="survey-form update-form">
+                <div class="form-group">
+                    <label for="updateSurveyId">Survey ID</label>
+                    <input type="number" id="updateSurveyId" placeholder="Enter number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="updateSurveyName">Updated Survey Name</label>
+                    <input type="text" id="updateSurveyName" placeholder="Enter updated name">
+                </div>
+                
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</main>
 
 <footer>
     <p><a href="https://github.com/thommadurasahan/School-Inventory-Management.git">Check Here Our Spring Boot
