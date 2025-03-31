@@ -15,3 +15,5 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(value = "SELECT * FROM orders WHERE status = :status", nativeQuery = true)
     List<Order> findOrdersByStatus(@Param("status") String status);
 }
+
+
