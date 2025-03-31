@@ -12,11 +12,7 @@ public class Constant {
     public static final String SUPPLIER_BASE_URL = INVENTORY_BASE_URL + "/suppliers";
 
     // Order URLs
-<<<<<<< Updated upstream:src/main/java/com/beginners/sim/common/util/Constant.java
     public static final String Order_BASE_URL = INVENTORY_BASE_URL + "/orders";
-=======
-    public static final String ORDER_BASE_URL = API_VERSION + "/orders";
->>>>>>> Stashed changes:src/main/java/com/begginers/sim/common/util/Constant.java
 
     // Repair URLs
     public static final String Repair_BASE_URL = INVENTORY_BASE_URL + "/repairs";
