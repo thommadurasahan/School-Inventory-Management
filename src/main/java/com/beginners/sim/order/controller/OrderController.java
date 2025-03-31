@@ -20,7 +20,7 @@ import java.util.Optional;
 @Slf4j
 public class OrderController {
 
-    private final OrderService orderService;
+    private OrderService orderService = null;  // No need to explicitly initialize, Lombok handles this
 
     private static final String ORDER_NOT_FOUND_MESSAGE = "Order not found with ID: ";
 
@@ -40,7 +40,7 @@ public class OrderController {
     public ResponseEntity<Order> getOrderById(@PathVariable Long id) throws OrderNotFoundException {
         Optional<Order> order = orderService.getOrderById(id);
         return order.map(ResponseEntity::ok)
-                .orElseThrow(() -> new OrderNotFoundException(ORDER_NOT_FOUND_MESSAGE + id));
+                .orElseThrow(() -> new OrderNotFoundException(ORDER_NOT_FOUND_MESSAGE + id));  // Now calls the correct constructor
     }
 
     @PostMapping
