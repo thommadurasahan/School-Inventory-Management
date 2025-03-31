@@ -30,8 +30,6 @@ public class Order {
     @Column(nullable = false)
     private Long price;
 
-    @Column(nullable = false)
-    private LocalDateTime orderDate;
 
     @Column(nullable = false)
     private String status;
