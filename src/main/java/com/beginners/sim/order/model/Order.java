@@ -1,38 +1,50 @@
 package com.beginners.sim.order.model;
 
+import com.beginners.sim.inventory.model.Supplier;
+import com.beginners.sim.inventory.model.Type;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity
-@Table(name = "orders")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+@Entity
+@Table(name = "order")
 public class Order {
-    // Todo
-    //  Create package exception, include Class OrderNotFoundException
-    //  Add methods to throw OrderNotFoundException
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "order_id")
+    private Long orderId;
 
-    @Column(nullable = false)
+    @Column(name = "item_name")
     private String itemName;
 
-    @Column(nullable = false)
+    @Column(name = "quantity")
     private Long quantity;
 
-    @Column(nullable = false)
-    private Long price;
-
-    @Column(nullable = false)
-    private LocalDateTime orderDate;
-
-    @Column(nullable = false)
+    @Column(name = "status")
     private String status;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "ordered_on")
+    private Date orderedOn;
+
+    // Order (M) - Type (M) Relationship (Owner Side)
+    @ManyToMany
+    @JoinTable(
+            name = "ordered_type",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "type_id")
+    )
+    private Set<Type> Types = new HashSet<>();
+
+    // Order (M) - Supplier (1) Relationship (Owner SIde)
+    @ManyToOne
+    @JoinColumn(name = "supplier_id")
+    private Supplier supplier;
 }
