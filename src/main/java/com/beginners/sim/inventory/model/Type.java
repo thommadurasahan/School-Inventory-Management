@@ -31,9 +31,11 @@ public class Type {
     @Column(name = "type_added_on")
     private Date typeAddedOn;
 
+    // Item (M) - Type (1) Relationship
     @OneToMany(mappedBy = "type")
     private List<Item> items;
 
+    // Type (M) - Supplier (M) Relationship (Owner Side)
     @ManyToMany
     @JoinTable(
             name = "supply",
@@ -42,6 +44,7 @@ public class Type {
     )
     private Set<Supplier> suppliers = new HashSet<>();
 
+    // Order (M) - Type (M) Relationship (Opposite Side)
     @ManyToMany(mappedBy = "type")
     private Set<Order> orders = new HashSet<>();
 

@@ -32,10 +32,12 @@ public class Item {
     @Column(name = "received_on")
     private Date receivedOn;
 
+    // Item (M) - Type (1) Relationship (Owner Side)
     @ManyToOne
     @JoinColumn(name = "type_id")
     private Type type;
 
+    // Item (M) - Supplier (1) Relationship (Owner Side)
     @ManyToOne
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;

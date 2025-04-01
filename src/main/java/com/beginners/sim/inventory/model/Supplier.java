@@ -1,5 +1,6 @@
 package com.beginners.sim.inventory.model;
 
+import com.beginners.sim.order.model.Order;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -35,12 +36,15 @@ public class Supplier {
     @Column(name = "supplier_added_on")
     private Date supplierAddedOn;
 
+    // Item (M) - Supplier (1) Relationship (Opposite Side)
     @OneToMany(mappedBy = "supplier")
     private List<Item> items;
 
-    @OneToMany(mappedBy = "supplier")
-    private List<Order> orders;
-
+    // Type (M) - Supplier (M) Relationship (Opposite Side)
     @ManyToMany(mappedBy = "suppliers")
     private Set<Type> types = new HashSet<>();
+
+    // Order (M) - Supplier (1) Relationship (Opposite Side)
+    @OneToMany(mappedBy = "supplier")
+    private List<Order> orders;
 }
