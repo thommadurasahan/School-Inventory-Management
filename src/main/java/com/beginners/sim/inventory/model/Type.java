@@ -3,6 +3,7 @@ package com.beginners.sim.inventory.model;
 import com.beginners.sim.order.model.Order;
 import com.beginners.sim.survey.model.Survey;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,14 +14,21 @@ import java.util.Set;
 
 @Getter
 @Setter
+@Data
 @Entity
+@Table(name = "type")
 public class Type {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "type_id")
     private long typeId;
+
+    @Column(name = "type_name")
     private String typeName;
+
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "type_added_on")
     private Date typeAddedOn;
 
     @OneToMany(mappedBy = "type")
@@ -29,8 +37,8 @@ public class Type {
     @ManyToMany
     @JoinTable(
             name = "supply",
-            joinColumns = @JoinColumn(name = "typeId"),
-            inverseJoinColumns = @JoinColumn(name = "supplierId")
+            joinColumns = @JoinColumn(name = "type_id"),
+            inverseJoinColumns = @JoinColumn(name = "supplier_id")
     )
     private Set<Supplier> suppliers = new HashSet<>();
 
