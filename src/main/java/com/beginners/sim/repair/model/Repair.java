@@ -11,9 +11,6 @@ import java.util.Date;
 @Getter
 @Entity
 public class Repair {
-    // Todo
-    //  Create package exception, include Notfound exception
-    //  Create a class RepairNotFoundException
 
     @Id
     private int repairId;

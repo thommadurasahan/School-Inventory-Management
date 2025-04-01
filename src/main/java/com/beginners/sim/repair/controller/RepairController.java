@@ -6,6 +6,9 @@ import com.beginners.sim.repair.service.RepairService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -14,15 +17,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class RepairController {
-    // Todo
-    //  Create util package, class Constant, hardcode values
-    //  Crete base url, create a method with pagination for getAll
 
-    private RepairService repairService;
+    private final RepairService repairService;
 
     @GetMapping
-    public List<Repair> getAllRepairs() {
-        return repairService.getAllRepairs();
+    public Page<Repair> getAllRepairs(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return repairService.getAllRepairs(pageable);
     }
 
     @GetMapping("/{id}")
