@@ -34,10 +34,7 @@ public class Order {
     @Column(name = "ordered_on")
     private Date orderedOn;
 
-    @ManyToOne
-    @JoinColumn(name = "supplier_id")
-    private Supplier supplier;
-
+    // Order (M) - Type (M) Relationship (Owner Side)
     @ManyToMany
     @JoinTable(
             name = "ordered_type",
@@ -45,4 +42,9 @@ public class Order {
             inverseJoinColumns = @JoinColumn(name = "type_id")
     )
     private Set<Type> Types = new HashSet<>();
+
+    // Order (M) - Supplier (1) Relationship (Owner SIde)
+    @ManyToOne
+    @JoinColumn(name = "supplier_id")
+    private Supplier supplier;
 }
