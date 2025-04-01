@@ -22,8 +22,10 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    public OrderController() {
-        orderService = null;
+    private static final String ORDER_NOT_FOUND_MESSAGE = "Order not found with ID: ";
+
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
     }
 
     @GetMapping
@@ -35,9 +37,8 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrderById(@PathVariable Long id) throws OrderNotFoundException {
+    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
         Optional<Order> order = orderService.getOrderById(id);
-        String ORDER_NOT_FOUND_MESSAGE = null;
         try {
             return order.map(ResponseEntity::ok)
                     .orElseThrow(() -> new OrderNotFoundException(ORDER_NOT_FOUND_MESSAGE + id));
