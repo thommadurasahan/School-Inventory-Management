@@ -20,13 +20,9 @@ import java.util.Optional;
 @Slf4j
 public class OrderController {
 
-    private final OrderService orderService;
-
     private static final String ORDER_NOT_FOUND_MESSAGE = "Order not found with ID: ";
-
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
-    }
+    
+    private final OrderService orderService;
 
     @GetMapping
     public Page<Order> getAllOrders(
