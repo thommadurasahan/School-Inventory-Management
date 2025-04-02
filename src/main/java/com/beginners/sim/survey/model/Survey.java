@@ -4,14 +4,16 @@ import com.beginners.sim.inventory.model.Type;
 import com.beginners.sim.order.model.Order;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "survey")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Survey {
@@ -24,17 +26,11 @@ public class Survey {
     @Column(name = "survey_name")
     private String surveyName;
 
-    @Column(name = "type_id")
-    private long typeId;
-
     @Column(name = "total_quantity")
     private Integer totalQuantity;
 
     @Column(name = "present_quantity")
     private Integer presentQuantity;
-
-    @Column(name = "order_id")
-    private Short orderId;
 
     @Column(name = "ordered_quantity")
     private Integer orderedQuantity;
@@ -49,12 +45,13 @@ public class Survey {
     @Temporal(TemporalType.DATE)
     private Date surveyOn;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type_id", insertable = false, updatable = false)
+    // Survey (1) - Type (1) Relationship (Owner Side)
+    @OneToOne
+    @JoinColumn(name = "type_id")
     private Type type;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", insertable = false, updatable = false)
+    // Survey (1) - Order (1) Relationship (Owner Side)
+    @OneToOne
+    @JoinColumn(name = "order_id")
     private Order order;
-
 }
