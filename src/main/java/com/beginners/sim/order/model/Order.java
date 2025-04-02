@@ -14,7 +14,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "order")
+@Table(name = "purchase")
+// Table name of this Entity cannot be same as the class name because order is a reserved keyword in SQL (MySQL)
 @Getter
 @Setter
 @NoArgsConstructor
