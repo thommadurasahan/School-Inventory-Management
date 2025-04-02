@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
     // Custom query to find items by date
-    @Query(value = "SELECT * FROM items WHERE receivedOn = :receivedOn", nativeQuery = true)
+    @Query(value = "SELECT * FROM item WHERE received_on = :receivedOn", nativeQuery = true)
     List<Item> findItemsByDate(@Param("receivedOn") Date receivedOn);
 }

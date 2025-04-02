@@ -11,9 +11,9 @@ import java.util.List;
 
 @Repository
 public interface SurveyRepository extends JpaRepository<Survey, Long> {
-    
-    @Query(value = "SELECT * FROM survey WHERE created_date = :createdDate", nativeQuery = true)
-    List<Survey> findSurveysByDate(@Param("createdDate") Date createdDate);
-    
+
+    @Query(value = "SELECT * FROM survey WHERE survey_on = :surveyOn", nativeQuery = true)
+    List<Survey> findSurveysByDate(@Param("surveyOn") Date surveyOn);
+
 
 }

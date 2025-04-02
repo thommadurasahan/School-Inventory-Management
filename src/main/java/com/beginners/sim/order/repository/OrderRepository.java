@@ -12,6 +12,6 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
     // Custom query to find orders by status
-    @Query(value = "SELECT * FROM orders WHERE status = :status", nativeQuery = true)
+    @Query(value = "SELECT * FROM purchase WHERE status = :status", nativeQuery = true)
     List<Order> findOrdersByStatus(@Param("status") String status);
 }
