@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface RepairRepository extends JpaRepository<Repair, Integer> {
 
-    @Query("SELECT r FROM repair r WHERE r.repairLocation = :location AND r.sentQuantity > :minQuantity")
+    @Query("SELECT r FROM Repair r WHERE r.repairLocation = :location AND r.sentQuantity > :minQuantity")
     List<Repair> findRepairsByLocationAndMinimumQuantity(String location, int minQuantity);
 }
