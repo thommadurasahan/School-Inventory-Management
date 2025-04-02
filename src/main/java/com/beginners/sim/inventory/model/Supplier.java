@@ -2,8 +2,9 @@ package com.beginners.sim.inventory.model;
 
 import com.beginners.sim.order.model.Order;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
@@ -11,11 +12,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Getter
-@Setter
-@Data
 @Entity
 @Table(name = "supplier")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Supplier {
 
     @Id
