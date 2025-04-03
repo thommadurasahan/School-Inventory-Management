@@ -2,21 +2,12 @@ package com.beginners.sim.repair.model;
 
 import com.beginners.sim.inventory.model.Type;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "repair")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Repair {
 
     @Id
@@ -33,7 +24,6 @@ public class Repair {
     @Column(name = "repair_location")
     private String repairLocation;
 
-    // Repair (M) - Type (M) Relationship (Owner Side)
     @ManyToMany
     @JoinTable(
             name = "sent_type",
@@ -41,4 +31,45 @@ public class Repair {
             inverseJoinColumns = @JoinColumn(name = "type_id")
     )
     private Set<Type> types = new HashSet<>();
+
+    // Getters and Setters
+    public int getRepairId() {
+        return repairId;
+    }
+
+    public void setRepairId(int repairId) {
+        this.repairId = repairId;
+    }
+
+    public int getSentQuantity() {
+        return sentQuantity;
+    }
+
+    public void setSentQuantity(int sentQuantity) {
+        this.sentQuantity = sentQuantity;
+    }
+
+    public Date getSentToRepairOn() {
+        return sentToRepairOn;
+    }
+
+    public void setSentToRepairOn(Date sentToRepairOn) {
+        this.sentToRepairOn = sentToRepairOn;
+    }
+
+    public String getRepairLocation() {
+        return repairLocation;
+    }
+
+    public void setRepairLocation(String repairLocation) {
+        this.repairLocation = repairLocation;
+    }
+
+    public Set<Type> getTypes() {
+        return types;
+    }
+
+    public void setTypes(Set<Type> types) {
+        this.types = types;
+    }
 }

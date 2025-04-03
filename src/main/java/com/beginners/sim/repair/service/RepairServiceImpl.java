@@ -3,8 +3,8 @@ package com.beginners.sim.repair.service;
 import com.beginners.sim.repair.exception.RepairNotFoundException;
 import com.beginners.sim.repair.model.Repair;
 import com.beginners.sim.repair.repository.RepairRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,11 +12,16 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
-@Slf4j
 public class RepairServiceImpl implements RepairService {
 
+    private static final Logger log = LoggerFactory.getLogger(RepairServiceImpl.class);
+
     private final RepairRepository repairRepository;
+
+    // Explicit constructor to inject RepairRepository
+    public RepairServiceImpl(RepairRepository repairRepository) {
+        this.repairRepository = repairRepository;
+    }
 
     @Override
     public Page<Repair> getAllRepairs(Pageable pageable) {

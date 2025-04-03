@@ -4,8 +4,6 @@ import com.beginners.sim.repair.model.Repair;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-
 public interface RepairService {
     Page<Repair> getAllRepairs(Pageable pageable);
     Repair getRepairById(int id);
