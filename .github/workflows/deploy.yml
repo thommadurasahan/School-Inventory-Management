@@ -20,7 +20,7 @@ jobs:
 
       - name: Adjust links in index.html
         run: |
-          sed -i 's|<base href=".*">|<base href="/sim/index.html">|g' ./sim/index.html 
+          sed -i 's|<base href=".*">|<base href="/sim/index.html">|g' https://github.com/thommadurasahan/School-Inventory-Management/blob/gh-pages/index.html 
 
       - name: Build with Maven
         run: mvn -B package -DskipTests
