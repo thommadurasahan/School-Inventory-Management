@@ -23,9 +23,7 @@ jobs:
 
       - name: Adjust links in index.html
         run: |
-          sed -i 's|<base href=".*">|<base href="/sim/">|g' ./target/classes/index.html
-          mkdir -p ./target/classes/static
-          cp ./target/classes/templates/index.html ./target/classes/static/index.html
+          sed -i 's|<base href=".*">|<base href="/sim/">|g' ./index.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
