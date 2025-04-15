@@ -5,10 +5,11 @@ on:
   push:
     branches:
       - master
+      - origin/gh-pages
 
 jobs:
   qodana:
-    if: false # This prevents the job from running automatically
+    # if: false # This prevents the job from running automatically
     runs-on: ubuntu-latest
     permissions:
       contents: write
