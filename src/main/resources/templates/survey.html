@@ -13,7 +13,7 @@
     <img alt="Logo" src="/static/images/logo.png"/>
     <nav>
         <a href="index.html">Home Page</a>
-        <a href="item.html">Add Item</a>
+        <a href="../../../../item.html">Add Item</a>
         <a href="order.html">Add Order</a>
         <a href="repair.html">Add Repair</a>
         <a href="survey.html">Add Survey</a>
@@ -23,67 +23,67 @@
 <main>
     <div class="container">
         <h1>Survey Page</h1>
-        
+
         <!-- Add Survey Section -->
         <section class="survey-section" id="add-survey">
             <h2>Add Survey</h2>
             <form class="survey-form">
                 <div class="form-group">
                     <label for="surveyName">Survey Name</label>
-                    <input type="text" id="surveyName" placeholder="Enter name">
+                    <input id="surveyName" placeholder="Enter name" type="text">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="conductedDate">Conducted Date</label>
-                    <input type="date" id="conductedDate">
+                    <input id="conductedDate" type="date">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="typeName">Type Name</label>
                     <select id="typeName">
-                        <option value="" disabled selected>Select item Type</option>
+                        <option disabled selected value="">Select item Type</option>
                         <option value="type1">Type 1</option>
                         <option value="type2">Type 2</option>
                         <option value="type3">Type 3</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="totalQuantity">Total Item Quantity</label>
-                    <input type="number" id="totalQuantity" placeholder="Enter number">
+                    <input id="totalQuantity" placeholder="Enter number" type="number">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="presentQuantity">Present Item Quantity</label>
-                    <input type="number" id="presentQuantity" placeholder="Enter number">
+                    <input id="presentQuantity" placeholder="Enter number" type="number">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="orderId">Order ID</label>
-                    <input type="number" id="orderId" placeholder="Enter number">
+                    <input id="orderId" placeholder="Enter number" type="number">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="orderedQuantity">Ordered Item Quantity</label>
-                    <input type="number" id="orderedQuantity" placeholder="Enter number">
+                    <input id="orderedQuantity" placeholder="Enter number" type="number">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="goodQuantity">Healthy Item Quantity</label>
-                    <input type="number" id="goodQuantity" placeholder="Enter number">
+                    <input id="goodQuantity" placeholder="Enter number" type="number">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="repairQuantity">Repair Item Quantity</label>
-                    <input type="number" id="repairQuantity" placeholder="Enter number">
+                    <input id="repairQuantity" placeholder="Enter number" type="number">
                 </div>
-                
+
                 <div class="btn-container">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button class="btn btn-primary" type="submit">Submit</button>
                 </div>
             </form>
         </section>
-        
+
         <!-- View Surveys (Paginated) Section -->
         <!--
         <section class="survey-section" id="view-surveys-paginated">
@@ -125,51 +125,51 @@
             </div>
         </section>
         -->
-        
+
         <!-- View Surveys (By Date) Section -->
         <section class="survey-section" id="view-surveys-by-date">
             <h2>View Surveys (By Date)</h2>
-            
+
             <div class="view-by-date">
                 <div class="calendar-container">
-                    <input type="date" class="calendar">
+                    <input class="calendar" type="date">
                 </div>
                 <button class="btn btn-primary">Submit</button>
             </div>
-            
+
             <table class="survey-table">
                 <thead>
-                    <tr>
-                        <th>Survey ID</th>
-                        <th>Survey Name</th>
-                    </tr>
+                <tr>
+                    <th>Survey ID</th>
+                    <th>Survey Name</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Annual Inventory Check</td>
-                    </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Annual Inventory Check</td>
+                </tr>
                 </tbody>
             </table>
         </section>
-        
+
         <!-- Update Survey Section -->
         <section class="survey-section" id="update-survey">
             <h2>Update Survey</h2>
-            
+
             <form class="survey-form update-form">
                 <div class="form-group">
                     <label for="updateSurveyId">Survey ID</label>
-                    <input type="number" id="updateSurveyId" placeholder="Enter number">
+                    <input id="updateSurveyId" placeholder="Enter number" type="number">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="updateSurveyName">Updated Survey Name</label>
-                    <input type="text" id="updateSurveyName" placeholder="Enter updated name">
+                    <input id="updateSurveyName" placeholder="Enter updated name" type="text">
                 </div>
-                
+
                 <div class="btn-container">
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button class="btn btn-primary" type="submit">Update</button>
                 </div>
             </form>
         </section>
