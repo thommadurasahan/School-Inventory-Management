@@ -110,7 +110,9 @@
                 </configuration>
             </plugin>
         </plugins>
+        <!-- Building the frontend folder structure inside the static folder -->
         <resources>
+            <!-- Copy HTML files from templates folder to the static folder -->
             <resource>
                 <directory>src/main/resources/templates</directory>
                 <targetPath>static</targetPath>
@@ -118,8 +120,29 @@
                     <include>**/*.html</include>
                 </includes>
             </resource>
+            <!-- Copy CSS folder into the static/css folder -->
             <resource>
-                <directory>src/main/resources/static</directory>
+                <directory>src/main/resources/static/css</directory>
+                <targetPath>static/css</targetPath>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+            <!-- Copy JS files into the static/js folder -->
+            <resource>
+                <directory>src/main/resources/static/js</directory>
+                <targetPath>static/js</targetPath>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+            <!-- Copy image files into the static/images folder -->
+            <resource>
+                <directory>src/main/resources/static/images</directory>
+                <targetPath>static/images</targetPath>
+                <includes>
+                    <include>**/*</include>
+                </includes>
             </resource>
         </resources>
     </build>
