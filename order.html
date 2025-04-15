@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Management</title>
+    <link rel="stylesheet" href="order-style.css">
+</head>
+<body>
+<div class="header">
+    <div class="logo">LOGO</div>
+    <div class="nav">
+        <a href="#">Add Item</a>
+        <a href="#">Add Order</a>
+        <a href="#">Add Repair</a>
+        <a href="#">Add Survey</a>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Add Order Card -->
+    <div class="card">
+        <h2>Add Order</h2>
+        <form>
+            <label>ID:</label>
+            <input type="text" name="id" required>
+
+            <label>Item Name:</label>
+            <input type="text" name="itemName" required>
+
+            <label>Quantity:</label>
+            <input type="number" name="quantity" required>
+
+            <label>Price:</label>
+            <input type="text" name="price" required>
+
+            <label>Status:</label>
+            <select name="status">
+                <option value="Pending">Pending</option>
+                <option value="Completed">Completed</option>
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- View Orders Card -->
+    <div class="card">
+        <h2>View Orders (by Status)</h2>
+        <div class="filter-container">
+            <select id="statusFilter">
+                <option value="Pending">Pending</option>
+                <option value="Completed">Completed</option>
+            </select>
+            <button onclick="filterOrders()">Submit</button>
+        </div>
+
+        <div class="table-container" id="ordersTable">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody id="orderTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Update Order Card -->
+    <div class="card">
+        <h2>Update Order</h2>
+        <form id="updateOrderForm">
+            <label>Order ID:</label>
+            <input type="text" id="updateOrderId" required>
+
+            <label>Item Name:</label>
+            <input type="text" id="updateItemName" required>
+
+            <label>Quantity:</label>
+            <input type="number" id="updateQuantity" required>
+
+            <label>Price:</label>
+            <input type="text" id="updatePrice" required>
+
+            <label>Status:</label>
+            <select id="updateStatus">
+                <option value="Pending">Pending</option>
+                <option value="Completed">Completed</option>
+            </select>
+
+            <button type="button" onclick="updateOrder()">Update</button>
+        </form>
+    </div>
+</div>
+
+<script src="order-script.js"></script>
+
+
+er>
+
+<footer>
+    <p><a href="https://github.com/thommadurasahan/School-Inventory-Management.git">Check Here Our Spring Boot
+        GitHub Project</a></p>
+</footer>
+
+</body>
+</html>

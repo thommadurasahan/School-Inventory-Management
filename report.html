@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report Portal</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="/resources/static/css/common-style.css" rel="stylesheet">
+    <link href="/static/css/report-style.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <img alt="Logo" src="/static/images/logo.png"/>
+    <nav>
+        <a href="index.html">Home Page</a>
+        <a href="item.html">Add Item</a>
+        <a href="order.html">Add Order</a>
+        <a href="repair.html">Add Repair</a>
+        <a href="survey.html">Add Survey</a>
+        <a href="report.html">Reports</a>
+    </nav>
+</header>
+
+<main>
+    <div class="container">
+        <h1>Report Portal</h1>
+
+        <!-- Generate Report Section -->
+        <section class="report-section" id="generate-report">
+            <h2>Generate New Report</h2>
+            <form class="report-form">
+                <div class="form-group">
+                    <label for="reportName">Report Name</label>
+                    <input id="reportName" placeholder="Enter report name" type="text">
+                </div>
+
+                <div class="form-group">
+                    <label for="reportType">Report Type</label>
+                    <select id="reportType">
+                        <option disabled selected value="">Select report type</option>
+                        <option value="inventory">Inventory Status</option>
+                        <option value="monthly">Monthly Summary</option>
+                        <option value="annual">Annual Report</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="dateRange">Date Range</label>
+                    <div class="date-range-container">
+                        <input id="startDate" placeholder="Start Date" type="date">
+                        <span class="date-separator">to</span>
+                        <input id="endDate" placeholder="End Date" type="date">
+                    </div>
+                </div>
+
+                <div class="btn-container">
+                    <button class="btn btn-primary" type="submit">Generate Report</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- View Reports Section -->
+        <section class="report-section" id="view-reports">
+            <h2>View Reports</h2>
+
+            <table class="report-table">
+                <thead>
+                <tr>
+                    <th>Report ID</th>
+                    <th>Report Name</th>
+                    <th>Generated On</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Monthly Inventory Status</td>
+                    <td>2023-10-15</td>
+                    <td>
+                        <button class="btn btn-view">View</button>
+                        <button class="btn btn-download">Download</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Annual Inventory Report</td>
+                    <td>2023-07-01</td>
+                    <td>
+                        <button class="btn btn-view">View</button>
+                        <button class="btn btn-download">Download</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Quarterly Status Report</td>
+                    <td>2023-09-05</td>
+                    <td>
+                        <button class="btn btn-view">View</button>
+                        <button class="btn btn-download">Download</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="table-header">
+                <button>Previous</button>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>Next</button>
+            </div>
+        </section>
+
+        <!-- Report Details Section -->
+        <section class="report-section" id="report-details">
+            <h2>Report Details</h2>
+
+            <div class="report-summary">
+                <div class="summary-card">
+                    <h3>Total Items</h3>
+                    <p class="summary-value">1,245</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Healthy Items</h3>
+                    <p class="summary-value">1,120</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Items in Repair</h3>
+                    <p class="summary-value">85</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Ordered Items</h3>
+                    <p class="summary-value">40</p>
+                </div>
+            </div>
+
+            <div class="inventory-status">
+                <h3>Inventory Status by Type</h3>
+                <table class="report-table">
+                    <thead>
+                    <tr>
+                        <th>Type ID</th>
+                        <th>Type Name</th>
+                        <th>Total Quantity</th>
+                        <th>Good Quantity</th>
+                        <th>Returned Quantity</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Furniture</td>
+                        <td>450</td>
+                        <td>425</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Electronics</td>
+                        <td>320</td>
+                        <td>290</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Books</td>
+                        <td>475</td>
+                        <td>405</td>
+                        <td>70</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <p><a href="https://github.com/thommadurasahan/School-Inventory-Management.git">Check Here Our Spring Boot
+        GitHub Project</a></p>
+</footer>
+
+</body>
+</html>
