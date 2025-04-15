@@ -26,6 +26,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./target/classes/static
+          publish_branch: gh-pages
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
