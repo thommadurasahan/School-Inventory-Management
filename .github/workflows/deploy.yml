@@ -21,9 +21,9 @@ jobs:
       - name: Build with Maven
         run: mvn -B package -DskipTests
 
-      - name: Adjust links in index.html
-        run: |
-          sed -i 's|<base href=".*">|<base href="/sim/">|g' ./target/classes/static/index.html
+      #      - name: Adjust links in index.html
+      #        run: |
+      #          sed -i 's|<base href=".*">|<base href="/sim/">|g' ./target/classes/static/index.html
 
       #      - name: Deploy to GitHub Pages
       #        uses: peaceiris/actions-gh-pages@v3
@@ -32,21 +32,21 @@ jobs:
       #          publish_dir: ./target/classes/static
       #          publish_branch: gh-pages
 
-      - name: Create and update frontend branch
-        run: |
-          git config --global user.name "${{ github.actor }}"
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          git fetch origin
-          git checkout -B frontend
-          if [ -d "./target/classes/static" ]; then
-            rm -rf *
-            cp -r ./target/classes/static/* .
-            git add .
-            git commit -m "Update frontend from master"
-            git push origin frontend --force
-          else
-            echo "Static directory not found. Skipping frontend branch update."
-          fi
+      #      - name: Create and update frontend branch
+      #        run: |
+      #          git config --global user.name "${{ github.actor }}"
+      #          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+      #          git fetch origin
+      #          git checkout -B frontend
+      #          if [ -d "./target/classes/static" ]; then
+      #            rm -rf *
+      #            cp -r ./target/classes/static/* .
+      #            git add .
+      #            git commit -m "Update frontend from master"
+      #            git push origin frontend --force
+      #          else
+      #            echo "Static directory not found. Skipping frontend branch update."
+      #          fi
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2

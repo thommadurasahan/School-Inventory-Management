@@ -110,49 +110,49 @@
                 </configuration>
             </plugin>
         </plugins>
-        <!-- Building the frontend folder structure inside the static folder -->
-        <resources>
-            <!-- Copy all files from the static folder to the classes/static folder -->
-            <resource>
-                <directory>src/main/resources/static</directory>
-                <targetPath>static</targetPath>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-            <!-- Copy HTML files from templates folder to the static folder -->
-            <resource>
-                <directory>src/main/resources/templates</directory>
-                <targetPath>static</targetPath>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-            <!-- Copy CSS folder into the static/css folder -->
-            <resource>
-                <directory>src/main/resources/static/css</directory>
-                <targetPath>static/css</targetPath>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-            <!-- Copy JS files into the static/js folder -->
-            <resource>
-                <directory>src/main/resources/static/js</directory>
-                <targetPath>static/js</targetPath>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-            <!-- Copy image files into the static/images folder -->
-            <resource>
-                <directory>src/main/resources/static/images</directory>
-                <targetPath>static/images</targetPath>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-        </resources>
+        <!--        &lt;!&ndash; Building the frontend folder structure inside the static folder &ndash;&gt;-->
+        <!--        <resources>-->
+        <!--            &lt;!&ndash; Copy all files from the static folder to the classes/static folder &ndash;&gt;-->
+        <!--            <resource>-->
+        <!--                <directory>src/main/resources/static</directory>-->
+        <!--                <targetPath>static</targetPath>-->
+        <!--                <includes>-->
+        <!--                    <include>**/*</include>-->
+        <!--                </includes>-->
+        <!--            </resource>-->
+        <!--            &lt;!&ndash; Copy HTML files from templates folder to the static folder &ndash;&gt;-->
+        <!--            <resource>-->
+        <!--                <directory>src/main/resources/templates</directory>-->
+        <!--                <targetPath>static</targetPath>-->
+        <!--                <includes>-->
+        <!--                    <include>**/*</include>-->
+        <!--                </includes>-->
+        <!--            </resource>-->
+        <!--            &lt;!&ndash; Copy CSS folder into the static/css folder &ndash;&gt;-->
+        <!--            <resource>-->
+        <!--                <directory>src/main/resources/static/css</directory>-->
+        <!--                <targetPath>static/css</targetPath>-->
+        <!--                <includes>-->
+        <!--                    <include>**/*</include>-->
+        <!--                </includes>-->
+        <!--            </resource>-->
+        <!--            &lt;!&ndash; Copy JS files into the static/js folder &ndash;&gt;-->
+        <!--            <resource>-->
+        <!--                <directory>src/main/resources/static/js</directory>-->
+        <!--                <targetPath>static/js</targetPath>-->
+        <!--                <includes>-->
+        <!--                    <include>**/*</include>-->
+        <!--                </includes>-->
+        <!--            </resource>-->
+        <!--            &lt;!&ndash; Copy image files into the static/images folder &ndash;&gt;-->
+        <!--            <resource>-->
+        <!--                <directory>src/main/resources/static/images</directory>-->
+        <!--                <targetPath>static/images</targetPath>-->
+        <!--                <includes>-->
+        <!--                    <include>**/*</include>-->
+        <!--                </includes>-->
+        <!--            </resource>-->
+        <!--        </resources>-->
     </build>
 
 </project>
