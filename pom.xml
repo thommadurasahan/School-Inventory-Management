@@ -115,7 +115,7 @@
             <!-- Copy all files from the static folder to the classes/static folder -->
             <resource>
                 <directory>src/main/resources/static</directory>
-                <targetPath>classes/static</targetPath>
+                <targetPath>static</targetPath>
                 <includes>
                     <include>**/*</include>
                 </includes>
@@ -125,7 +125,7 @@
                 <directory>src/main/resources/templates</directory>
                 <targetPath>static</targetPath>
                 <includes>
-                    <include>**/*.html</include>
+                    <include>**/*</include>
                 </includes>
             </resource>
             <!-- Copy CSS folder into the static/css folder -->
