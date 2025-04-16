@@ -112,6 +112,14 @@
         </plugins>
         <!-- Building the frontend folder structure inside the static folder -->
         <resources>
+            <!-- Copy all files from the static folder to the classes/static folder -->
+            <resource>
+                <directory>src/main/resources/static</directory>
+                <targetPath>classes/static</targetPath>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
             <!-- Copy HTML files from templates folder to the static folder -->
             <resource>
                 <directory>src/main/resources/templates</directory>
