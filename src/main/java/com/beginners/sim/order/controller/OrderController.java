@@ -24,6 +24,10 @@ public class OrderController {
     
     private final OrderService orderService;
 
+    public OrderController() {
+        orderService = null;
+    }
+
     @GetMapping
     public Page<Order> getAllOrders(
             @RequestParam(defaultValue = "0") int page,
