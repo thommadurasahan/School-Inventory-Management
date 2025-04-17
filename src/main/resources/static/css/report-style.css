@@ -357,15 +357,3 @@ select {
         grid-template-columns: 1fr;
     }
 }
-
-/* ==========================================
-   HEADER AND NAVIGATION FIXES
-   ========================================== */
-
-/* Header fixes */
-
-
-nav a[href="report.html"] {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-}
