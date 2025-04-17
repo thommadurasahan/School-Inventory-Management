@@ -2,20 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Management</title>
-    <link rel="stylesheet" href="order-style.css">
+    <title>Order Page</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="/static/css/common-style.css" rel="stylesheet">
+    <link href="/static/css/order-style.css" rel="stylesheet">
 </head>
 <body>
-<div class="header">
-    <div class="logo">LOGO</div>
-    <div class="nav">
-        <a href="#">Add Item</a>
-        <a href="#">Add Order</a>
-        <a href="#">Add Repair</a>
-        <a href="#">Add Survey</a>
-    </div>
-</div>
+
+<header>
+    <img alt="Logo" src="/static/images/logo.png"/>
+    <nav>
+        <a href="../index.html">Home Page</a>
+        <a href="item.html">Add Item</a>
+        <a href="repair.html">Add Repair</a>
+        <a href="survey.html">Add Survey</a>
+    </nav>
+</header>
 
 <div class="container">
     <!-- Add Order Card -->
@@ -23,16 +25,16 @@
         <h2>Add Order</h2>
         <form>
             <label>ID:</label>
-            <input type="text" name="id" required>
+            <input name="id" required type="text">
 
             <label>Item Name:</label>
-            <input type="text" name="itemName" required>
+            <input name="itemName" required type="text">
 
             <label>Quantity:</label>
-            <input type="number" name="quantity" required>
+            <input name="quantity" required type="number">
 
             <label>Price:</label>
-            <input type="text" name="price" required>
+            <input name="price" required type="text">
 
             <label>Status:</label>
             <select name="status">
@@ -76,16 +78,16 @@
         <h2>Update Order</h2>
         <form id="updateOrderForm">
             <label>Order ID:</label>
-            <input type="text" id="updateOrderId" required>
+            <input id="updateOrderId" required type="text">
 
             <label>Item Name:</label>
-            <input type="text" id="updateItemName" required>
+            <input id="updateItemName" required type="text">
 
             <label>Quantity:</label>
-            <input type="number" id="updateQuantity" required>
+            <input id="updateQuantity" required type="number">
 
             <label>Price:</label>
-            <input type="text" id="updatePrice" required>
+            <input id="updatePrice" required type="text">
 
             <label>Status:</label>
             <select id="updateStatus">
@@ -93,7 +95,7 @@
                 <option value="Completed">Completed</option>
             </select>
 
-            <button type="button" onclick="updateOrder()">Update</button>
+            <button onclick="updateOrder()" type="button">Update</button>
         </form>
     </div>
 </div>

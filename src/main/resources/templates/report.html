@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Report Portal</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="/resources/static/css/common-style.css" rel="stylesheet">
+    <link href="/static/css/common-style.css" rel="stylesheet">
     <link href="/static/css/report-style.css" rel="stylesheet">
 </head>
 <body>
@@ -17,7 +17,6 @@
         <a href="order.html">Add Order</a>
         <a href="repair.html">Add Repair</a>
         <a href="survey.html">Add Survey</a>
-        <a href="report.html">Reports</a>
     </nav>
 </header>
 
@@ -46,7 +45,7 @@
 
                 <div class="form-group">
                     <label for="dateRange">Date Range</label>
-                    <div class="date-range-container">
+                    <div class="date-range-container" id="dateRange">
                         <input id="startDate" placeholder="Start Date" type="date">
                         <span class="date-separator">to</span>
                         <input id="endDate" placeholder="End Date" type="date">
