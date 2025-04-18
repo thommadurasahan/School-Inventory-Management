@@ -30,7 +30,7 @@ public class Type {
     @Column(name = "type_name")
     private String typeName;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "type_added_on")
     private Date typeAddedOn;
 

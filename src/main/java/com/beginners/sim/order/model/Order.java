@@ -33,7 +33,7 @@ public class Order {
     @Column(name = "status")
     private String status;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "ordered_on")
     private Date orderedOn;
 
