@@ -2,8 +2,14 @@ package com.beginners.sim.inventory.controller;
 
 import com.beginners.sim.common.util.Constant;
 import com.beginners.sim.inventory.exception.ItemNotFoundException;
+import com.beginners.sim.inventory.exception.SupplierNotFoundException;
+import com.beginners.sim.inventory.exception.TypeNotFoundException;
 import com.beginners.sim.inventory.model.Item;
+import com.beginners.sim.inventory.model.Supplier;
+import com.beginners.sim.inventory.model.Type;
 import com.beginners.sim.inventory.service.ItemService;
+import com.beginners.sim.inventory.service.SupplierService;
+import com.beginners.sim.inventory.service.TypeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -15,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin
 @RestController
 @RequestMapping(Constant.ITEM_BASE_URL)
 @RequiredArgsConstructor
@@ -22,10 +29,34 @@ import java.util.Map;
 public class ItemController {
 
     private final ItemService itemService;
+    private final TypeService typeService;
+    private final SupplierService supplierService;
 
     @PostMapping("/add-item")
-    public ResponseEntity<Item> insertItem(@RequestBody Item item) {
-        log.info("Inserting new item: {}", item);
+    public ResponseEntity<Item> insertItem(@RequestBody Map<String, Object> itemData) throws TypeNotFoundException, SupplierNotFoundException {
+        log.info("Inserting new item: {}", itemData);
+
+        // Extract data from the request
+        String itemName = (String) itemData.get("itemName");
+        String voucherNo = (String) itemData.get("voucherNo");
+        long quantity = Long.parseLong(itemData.get("quantity").toString());
+        long typeId = Long.parseLong(itemData.get("typeId").toString());
+        long supplierId = Long.parseLong(itemData.get("supplierId").toString());
+        Date receivedOn = new Date(); // Parse receivedOn if provided
+
+        // Fetch Type and Supplier entities
+        Type type = typeService.getTypeById(typeId);
+        Supplier supplier = supplierService.getSupplierById(supplierId);
+
+        // Create and save the Item
+        Item item = new Item();
+        item.setItemName(itemName);
+        item.setVoucherNo(voucherNo);
+        item.setQuantity(quantity);
+        item.setType(type);
+        item.setSupplier(supplier);
+        item.setReceivedOn(receivedOn);
+
         Item savedItem = itemService.saveItem(item);
         return ResponseEntity.ok(savedItem);
     }
