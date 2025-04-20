@@ -1,8 +1,6 @@
 package com.beginners.sim.inventory.model;
 
-import com.beginners.sim.order.model.Order;
-import com.beginners.sim.repair.model.Repair;
-import com.beginners.sim.survey.model.Survey;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +9,6 @@ import lombok.Setter;
 
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -34,28 +31,13 @@ public class Type {
     @Column(name = "type_added_on")
     private Date typeAddedOn;
 
-    // Item (M) - Type (1) Relationship
-    @OneToMany(mappedBy = "type")
-    private List<Item> items;
-
-    // Type (M) - Supplier (M) Relationship (Owner Side)
+    // Type (M) - Supplier (M) Relationship
     @ManyToMany
     @JoinTable(
             name = "supply",
             joinColumns = @JoinColumn(name = "type_id"),
             inverseJoinColumns = @JoinColumn(name = "supplier_id")
     )
+    @JsonIgnore
     private Set<Supplier> suppliers = new HashSet<>();
-
-    // Order (M) - Type (M) Relationship (Opposite Side)
-    @ManyToMany(mappedBy = "types")
-    private Set<Order> orders = new HashSet<>();
-
-    // Repair (M) - Type (M) Relationship (Opposite Side)
-    @ManyToMany(mappedBy = "types")
-    private Set<Repair> repairs = new HashSet<>();
-
-    // Survey (1) - Type (1) Relationship (Opposite Side)
-    @OneToOne(mappedBy = "type")
-    private Survey survey;
 }

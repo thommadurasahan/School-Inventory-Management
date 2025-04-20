@@ -2,7 +2,7 @@ package com.beginners.sim.order.model;
 
 import com.beginners.sim.inventory.model.Supplier;
 import com.beginners.sim.inventory.model.Type;
-import com.beginners.sim.survey.model.Survey;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,21 +37,18 @@ public class Order {
     @Column(name = "ordered_on")
     private Date orderedOn;
 
-    // Order (M) - Type (M) Relationship (Owner Side)
+    // Order (M) - Type (M) Relationship
     @ManyToMany
     @JoinTable(
             name = "ordered_type",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "type_id")
     )
+    @JsonIgnore
     private Set<Type> types = new HashSet<>();
 
-    // Order (M) - Supplier (1) Relationship (Owner SIde)
+    // Order (M) - Supplier (1) Relationship
     @ManyToOne
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
-
-    // Survey (1) - Order (1) Relationship (Opposite Side)
-    @OneToOne(mappedBy = "order")
-    private Survey survey;
 }
