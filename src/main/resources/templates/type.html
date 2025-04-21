@@ -6,13 +6,14 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="/static/css/common-style.css" rel="stylesheet">
     <link href="/static/css/inventory-style.css" rel="stylesheet">
+    <script defer src="/static/js/type-script.js"></script>
 </head>
 <body>
 
 <header>
     <img alt="Logo" src="/static/images/logo.png"/>
     <nav>
-        <a href="../index.html">Home Page</a>
+        <a href="../index.html">Home</a>
         <a href="item.html">Add Item</a>
         <a href="order.html">Add Order</a>
         <a href="repair.html">Add Repair</a>
@@ -20,6 +21,97 @@
     </nav>
 </header>
 
+<section>
+    <div><h1>Add Type</h1></div>
+
+    <div class="container">
+        <form name="type-insert-form">
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="type-name">Type Name</label>
+                </div>
+                <div class="col-75">
+                    <input id="type-name" name="typeName" placeholder="Enter type name.." type="text">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="inserted-date-in-add-type">Received Date</label>
+                </div>
+                <div class="col-75">
+                    <input id="inserted-date-in-add-type" name="typeAddedOn" placeholder="Enter Date.."
+                           type="date">
+                </div>
+            </div>
+
+            <div class="row">
+                <input type="submit" value="Submit">
+            </div>
+
+        </form>
+    </div>
+</section>
+
+<section>
+    <div><h1>View All Types</h1></div>
+
+    <div class="container">
+
+        <form>
+            <div class="row">
+                <input onclick="loadTypes()" type="submit" value="View All">
+            </div>
+        </form>
+
+        <div class="table-wrap">
+            <table id="types-table">
+                <tr>
+                    <th>Type ID</th>
+                    <th>Type Name</th>
+                    <th>Insert Date</th>
+                </tr>
+                <!-- Table body will be filled by JavaScript -->
+            </table>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <div><h1>Update Type</h1></div>
+
+    <div class="container">
+        <form name="type-update-form">
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="type-id">Type ID</label>
+                </div>
+                <div class="col-75">
+                    <input id="type-id" name="type-id" placeholder="Enter Type ID.." type="number">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="updated-type-name">Updated Quantity</label>
+                </div>
+                <div class="col-75">
+                    <input id="updated-type-name" name="updated-type-name" placeholder="Enter Updated Type Name.."
+                           type="number">
+                </div>
+            </div>
+
+            <div class="row">
+                <input type="submit" value="Update">
+            </div>
+
+        </form>
+    </div>
+
+</section>
 <footer>
     <p><a href="https://github.com/thommadurasahan/School-Inventory-Management.git">Check Our Spring Boot
         GitHub Project</a></p>

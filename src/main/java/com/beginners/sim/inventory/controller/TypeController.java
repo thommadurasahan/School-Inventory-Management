@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin
 @RestController
 @RequestMapping(Constant.TYPE_BASE_URL)
 @RequiredArgsConstructor
@@ -30,12 +31,14 @@ public class TypeController {
     }
 
     @GetMapping("/view-types")
-    public ResponseEntity<List<Type>> getAllTypes() {
+    public ResponseEntity<Map<String, Object>> getAllTypes() {
         List<Type> types = typeService.getAllTypes();
         if (types.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok(types);
+        Map<String, Object> response = new HashMap<>();
+        response.put("types", types);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/view-paginated-types")
