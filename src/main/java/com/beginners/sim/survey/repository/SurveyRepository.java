@@ -14,6 +14,4 @@ public interface SurveyRepository extends JpaRepository<Survey, Long> {
 
     @Query(value = "SELECT * FROM survey WHERE survey_on = :surveyOn", nativeQuery = true)
     List<Survey> findSurveysByDate(@Param("surveyOn") Date surveyOn);
-
-
 }
