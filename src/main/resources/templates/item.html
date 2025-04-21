@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="/static/css/common-style.css" rel="stylesheet">
     <link href="/static/css/inventory-style.css" rel="stylesheet">
-    <script src="/js/item-script.js"></script>
+    <script defer src="/static/js/item-script.js"></script>
 </head>
 <body>
 
@@ -20,278 +20,181 @@
     </nav>
 </header>
 
-<section class="add-item">
+<section>
     <div><h1>Add Item</h1></div>
 
-    <div class="add-item-form">
-        <div class="container">
-            <form action="/api/v1/items/add-item" name="item-insert-form">
-                <div class="row">
-                    <div class="col-25">
-                        <label for="item-name">Item Name</label>
-                    </div>
-                    <div class="col-75">
-                        <input id="item-name" name="itemName" placeholder="Enter Item name.." type="text">
-                    </div>
-                </div>
+    <div class="container">
+        <form name="item-insert-form">
 
-                <div class="row">
-                    <div class="col-25">
-                        <label for="type-name">Type Name</label>
-                    </div>
-                    <div class="col-75">
-                        <select id="type-name" name="typeName">
-                            <option selected value="">Select Item Type</option>
-                        </select>
-                    </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="item-name">Item Name</label>
                 </div>
+                <div class="col-75">
+                    <input id="item-name" name="itemName" placeholder="Enter item name.." type="text">
+                </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-25">
-                        <label for="voucher-no">Voucher No.</label>
-                    </div>
-                    <div class="col-75">
-                        <input id="voucher-no" name="voucherNo" placeholder="Enter voucher Number.." type="number">
-                    </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="type-name">Type Name</label>
                 </div>
+                <div class="col-75">
+                    <select id="type-name" name="typeName">
+                        <option selected value="">Select Item Type</option>
+                    </select>
+                </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-25">
-                        <label for="quantity">Quantity</label>
-                    </div>
-                    <div class="col-75">
-                        <input id="quantity" name="quantity" placeholder="Enter Item quantity.." type="number">
-                    </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="voucher-no">Voucher No.</label>
                 </div>
+                <div class="col-75">
+                    <input id="voucher-no" name="voucherNo" placeholder="Enter voucher Number.." type="text">
+                </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-25">
-                        <label for="supplier-name">Supplier Name</label>
-                    </div>
-                    <div class="col-75">
-                        <select id="supplier-name" name="supplierName">
-                            <option selected value="">Select Item Supplier</option>
-                        </select>
-                    </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="quantity">Quantity</label>
                 </div>
+                <div class="col-75">
+                    <input id="quantity" name="quantity" placeholder="Enter Item quantity.." type="number">
+                </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-25">
-                        <label for="received-date-in-add-item">Received Date</label>
-                    </div>
-                    <div class="col-75">
-                        <input id="received-date-in-add-item" name="receivedOn" placeholder="Enter Received Date.."
-                               type="date">
-                    </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="supplier-name">Supplier Name</label>
                 </div>
+                <div class="col-75">
+                    <select id="supplier-name" name="supplierName">
+                        <option selected value="">Select Item Supplier</option>
+                    </select>
+                </div>
+            </div>
 
-                <div class="row">
-                    <input type="submit" value="Submit">
+            <div class="row">
+                <div class="col-25">
+                    <label for="received-date-in-add-item">Received Date</label>
                 </div>
-            </form>
-        </div>
+                <div class="col-75">
+                    <input id="received-date-in-add-item" name="receivedOn" placeholder="Enter Date.."
+                           type="date">
+                </div>
+            </div>
+
+            <div class="row">
+                <input type="submit" value="Submit">
+            </div>
+
+        </form>
     </div>
 </section>
 
-<section class="view-items">
+<section>
     <div><h1>View All Items</h1></div>
 
     <div class="container">
-        <div>
-            <form id="view-all-form" name="view-all-button" onsubmit="return false;">
-                <div class="row">
-                    <input id="view-all-button" onclick="loadItems(0)" type="submit" value="View All">
-                </div>
-            </form>
+
+        <form onsubmit="return false;">
+            <div class="row">
+                <input onclick="loadItems()" type="submit" value="View All">
+            </div>
+        </form>
+
+        <div class="table-wrap">
+            <table id="items-table">
+                <tr>
+                    <th>Item ID</th>
+                    <th>Item Name</th>
+                    <th>Type Name</th>
+                    <th>Voucher No.</th>
+                    <th>Quantity</th>
+                    <th>Supplier Name</th>
+                    <th>Received Date</th>
+                </tr>
+                <!-- Table body will be filled by JavaScript -->
+            </table>
         </div>
 
-        <div class="view-items-paginated">
-            <div style="overflow-x:auto;">
-                <table id="paginated-items-table">
-                    <tr>
-                        <th>Item ID</th>
-                        <th>Item Name</th>
-                        <th>Type Name</th>
-                        <th>Voucher No.</th>
-                        <th>Quantity</th>
-                        <th>Supplier Name</th>
-                        <th>Received Date</th>
-                    </tr>
-                    <!-- Table body will be filled by JavaScript -->
-                </table>
-            </div>
-
-            <div class="center">
-                <div class="pagination" id="pagination">
-                    <!-- Pagination will be generated by JavaScript -->
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 
-<section class="view-items-by-date">
+<section>
     <div><h1>View Items By Date</h1></div>
 
     <div class="container">
-        <div>
-            <form action="" name="date-input-form">
-                <div class="row">
-                    <div class="col-25">
-                        <label for="received-date-in-view-items">Received Date</label>
-                    </div>
-                    <div class="col-75">
-                        <input id="received-date-in-view-items" name="received-date" placeholder="Enter Received Date.."
-                               type="date">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <input type="submit" value="View">
-                </div>
-            </form>
-        </div>
+        <form name="date-input-form">
 
-        <div class="items-related-to-the-date">
-            <div style="overflow-x:auto;">
-                <table id="filtered-items-table">
-                    <tr>
-                        <th>Item ID</th>
-                        <th>Item Name</th>
-                        <th>Type Name</th>
-                        <th>Voucher No.</th>
-                        <th>Quantity</th>
-                        <th>Supplier Name</th>
-                        <th>Received Date</th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
+            <div class="row">
+                <div class="col-25">
+                    <label for="received-date-in-view-items">Received Date</label>
+                </div>
+                <div class="col-75">
+                    <input id="received-date-in-view-items" name="received-date" placeholder="Enter Received Date.."
+                           type="date">
+                </div>
             </div>
+
+            <div class="row">
+                <input type="submit" value="View">
+            </div>
+
+        </form>
+
+        <div class="table-wrap">
+            <table id="filtered-items-table">
+                <tr>
+                    <th>Item ID</th>
+                    <th>Item Name</th>
+                    <th>Type Name</th>
+                    <th>Voucher No.</th>
+                    <th>Quantity</th>
+                    <th>Supplier Name</th>
+                    <th>Received Date</th>
+                </tr>
+                <!-- Table body will be filled by JavaScript -->
+            </table>
         </div>
+
     </div>
 </section>
 
-<section class="update-item">
+<section>
     <div><h1>Update Item</h1></div>
 
-    <div class="update-item-form">
-        <div class="container">
-            <form action="" name="item-insert-form">
+    <div class="container">
+        <form name="item-update-form">
 
-                <div class="row">
-                    <div class="col-25">
-                        <label for="item-id">Item ID</label>
-                    </div>
-                    <div class="col-75">
-                        <input id="item-id" name="item-id" placeholder="Enter Item ID.." type="number">
-                    </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="item-id">Item ID</label>
                 </div>
+                <div class="col-75">
+                    <input id="item-id" name="item-id" placeholder="Enter Item ID.." type="number">
+                </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-25">
-                        <label for="updated-quantity">Updated Quantity</label>
-                    </div>
-                    <div class="col-75">
-                        <input id="updated-quantity" name="updated-quantity" placeholder="Enter Updated Item quantity.."
-                               type="number">
-                    </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="updated-quantity">Updated Quantity</label>
                 </div>
+                <div class="col-75">
+                    <input id="updated-quantity" name="updated-quantity" placeholder="Enter Updated Item quantity.."
+                           type="number">
+                </div>
+            </div>
 
-                <div class="row">
-                    <input type="submit" value="Update">
-                </div>
-            </form>
-        </div>
+            <div class="row">
+                <input type="submit" value="Update">
+            </div>
+
+        </form>
     </div>
+
 </section>
 
 <footer>

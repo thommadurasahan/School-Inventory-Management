@@ -31,8 +31,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Page<Item> getAllItemsPaginated(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+    public Page<Item> getAllItemsPaginated(int page, int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize);
         return itemRepository.findAll(pageable);
     }
 

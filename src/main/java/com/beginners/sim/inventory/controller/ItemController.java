@@ -72,12 +72,12 @@ public class ItemController {
 
     @GetMapping("/view-paginated-items")
     public ResponseEntity<Map<String, Object>> getAllItemsPaginated(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "0") int page) {
 
-        log.info("Getting paginated items with page: {} and size: {}", page, size);
+        log.info("Getting paginated items with page: {}", page);
 
-        Page<Item> pageItems = itemService.getAllItemsPaginated(page, size);
+        int pageSize = 10;
+        Page<Item> pageItems = itemService.getAllItemsPaginated(page, pageSize);
         List<Item> items = pageItems.getContent();
 
         if (items.isEmpty()) {

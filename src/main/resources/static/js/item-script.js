@@ -1,34 +1,80 @@
 // Fetch and populate Type options
 async function loadTypes() {
-    const response = await fetch('/api/v1/types/view-types');
-    if (response.ok) {
-        const types = await response.json();
-        const typeSelect = document.getElementById('type-name');
-        types.forEach(type => {
-            const option = document.createElement('option');
-            option.value = type.typeId; // Use typeId as the value
-            option.textContent = type.typeName;
-            typeSelect.appendChild(option);
-        });
-    } else {
-        console.error('Failed to load types');
+    try {
+        const response = await fetch('http://localhost:8080/api/v1/types/view-types');
+        if (response.ok) {
+            const data = await response.json(); // Parse the JSON response
+            const types = data.types; // Access the 'types' array
+            console.log('Fetched types:', types); // Log the fetched data
+
+            if (!Array.isArray(types)) {
+                console.error('Expected an array but got:', types);
+                alert('Failed to load types: Invalid data format.');
+                return;
+            }
+
+            const typeSelect = document.getElementById('type-name');
+            if (!typeSelect) {
+                console.error('Element with ID "type-name" not found');
+                alert('Failed to load types: Element not found.');
+                return;
+            }
+
+            types.forEach(type => {
+                const option = document.createElement('option');
+                option.value = type.typeId; // Use typeId as the value
+                option.textContent = type.typeName;
+                typeSelect.appendChild(option);
+            });
+
+            console.log('Type options populated successfully.');
+        } else {
+            console.error('Failed to load types, status:', response.status);
+            alert('Failed to load types.');
+        }
+    } catch (error) {
+        console.error('Error loading types:', error);
+        alert('Error loading types. Check console for details.');
     }
 }
 
 // Fetch and populate Supplier options
 async function loadSuppliers() {
-    const response = await fetch('/api/v1/suppliers/view-suppliers');
-    if (response.ok) {
-        const suppliers = await response.json();
-        const supplierSelect = document.getElementById('supplier-name');
-        suppliers.forEach(supplier => {
-            const option = document.createElement('option');
-            option.value = supplier.supplierId; // Use supplierId as the value
-            option.textContent = supplier.supplierName;
-            supplierSelect.appendChild(option);
-        });
-    } else {
-        console.error('Failed to load suppliers');
+    try {
+        const response = await fetch('http://localhost:8080/api/v1/suppliers/view-suppliers');
+        if (response.ok) {
+            const data = await response.json(); // Parse the JSON response
+            const suppliers = data.suppliers; // Access the 'suppliers' array
+            console.log('Fetched suppliers:', suppliers); // Log the fetched data
+
+            if (!Array.isArray(suppliers)) {
+                console.error('Expected an array but got:', suppliers);
+                alert('Failed to load suppliers: Invalid data format.');
+                return;
+            }
+
+            const supplierSelect = document.getElementById('supplier-name');
+            if (!supplierSelect) {
+                console.error('Element with ID "supplier-name" not found');
+                alert('Failed to load suppliers: Element not found.');
+                return;
+            }
+
+            suppliers.forEach(supplier => {
+                const option = document.createElement('option');
+                option.value = supplier.supplierId; // Use supplierId as the value
+                option.textContent = supplier.supplierName;
+                supplierSelect.appendChild(option);
+            });
+
+            console.log('Supplier options populated successfully.');
+        } else {
+            console.error('Failed to load suppliers, status:', response.status);
+            alert('Failed to load suppliers.');
+        }
+    } catch (error) {
+        console.error('Error loading suppliers:', error);
+        alert('Error loading suppliers. Check console for details.');
     }
 }
 
@@ -38,11 +84,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         await loadTypes(); // Wait for loadTypes to complete
         await loadSuppliers(); // Wait for loadSuppliers to complete
     } catch (error) {
-        console.error('Error loading types or suppliers:', error);
+        console.error('Error initializing form selections:', error);
     }
 });
 
-// This script handles the form submission for adding a new item.
+// Handles the form submission for adding a new item.
 document.querySelector('form[name="item-insert-form"]').addEventListener('submit', async function (event) {
     event.preventDefault();
 
@@ -55,7 +101,7 @@ document.querySelector('form[name="item-insert-form"]').addEventListener('submit
     delete jsonData.typeName;
     delete jsonData.supplierName;
 
-    const response = await fetch('/api/v1/items/add-item', {
+    const response = await fetch('http://localhost:8080/api/v1/items/add-item', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -69,3 +115,50 @@ document.querySelector('form[name="item-insert-form"]').addEventListener('submit
         alert('Failed to add item.');
     }
 });
+
+// Function to load items
+function loadItems() {
+    fetch(`/api/v1/items/view-items`)
+        .then(response => response.json())
+        .then(data => {
+
+            // Get table reference
+            const table = document.getElementById('items-table');
+
+            // Clear existing rows except header
+            while (table.rows.length > 1) {
+                table.deleteRow(1);
+            }
+
+            // Add new rows from data
+            data.items.forEach(item => {
+                const row = table.insertRow();
+
+                // Add cells for each column
+                const itemIdCell = row.insertCell();
+                itemIdCell.textContent = item.id;
+
+                const itemNameCell = row.insertCell();
+                itemNameCell.textContent = item.itemName || '';
+
+                const typeIdCell = row.insertCell();
+                typeIdCell.textContent = item.typeId || '';
+
+                const voucherNoCell = row.insertCell();
+                voucherNoCell.textContent = item.voucherNo || '';
+
+                const quantityCell = row.insertCell();
+                quantityCell.textContent = item.quantity || '';
+
+                const supplierIdCell = row.insertCell();
+                supplierIdCell.textContent = item.supplierId || '';
+
+                const receivedOnCell = row.insertCell();
+                receivedOnCell.textContent = item.receivedOn || '';
+            });
+
+        })
+        .catch(error => {
+            console.error('Error loading items:', error);
+        });
+}
