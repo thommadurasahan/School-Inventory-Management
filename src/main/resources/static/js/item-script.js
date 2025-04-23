@@ -118,9 +118,15 @@ document.querySelector('form[name="item-insert-form"]').addEventListener('submit
 
 // Function to load items
 function loadItems() {
-    fetch(`/api/v1/items/view-items`)
+    fetch(`http://localhost:8080/api/v1/items/view-items`)
         .then(response => response.json())
         .then(data => {
+            // Check if the response is an array
+            if (!Array.isArray(data)) {
+                console.error('Expected an array but got:', data);
+                alert('Failed to load items: Invalid response format.');
+                return;
+            }
 
             // Get table reference
             const table = document.getElementById('items-table');
@@ -131,18 +137,18 @@ function loadItems() {
             }
 
             // Add new rows from data
-            data.items.forEach(item => {
+            data.forEach(item => {
                 const row = table.insertRow();
 
                 // Add cells for each column
                 const itemIdCell = row.insertCell();
-                itemIdCell.textContent = item.id;
+                itemIdCell.textContent = item.itemId;
 
                 const itemNameCell = row.insertCell();
                 itemNameCell.textContent = item.itemName || '';
 
-                const typeIdCell = row.insertCell();
-                typeIdCell.textContent = item.typeId || '';
+                const typeNameCell = row.insertCell();
+                typeNameCell.textContent = item.type?.typeName || '';
 
                 const voucherNoCell = row.insertCell();
                 voucherNoCell.textContent = item.voucherNo || '';
@@ -150,15 +156,17 @@ function loadItems() {
                 const quantityCell = row.insertCell();
                 quantityCell.textContent = item.quantity || '';
 
-                const supplierIdCell = row.insertCell();
-                supplierIdCell.textContent = item.supplierId || '';
+                const supplierNameCell = row.insertCell();
+                supplierNameCell.textContent = item.supplier?.supplierName || '';
 
                 const receivedOnCell = row.insertCell();
                 receivedOnCell.textContent = item.receivedOn || '';
             });
 
+            console.log('Items loaded successfully.');
         })
         .catch(error => {
             console.error('Error loading items:', error);
+            alert('Error loading items. Check console for details.');
         });
 }

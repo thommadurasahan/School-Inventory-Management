@@ -26,6 +26,20 @@ function loadSuppliers() {
         .then(response => response.json())
         .then(data => {
 
+            // Explicitly declare the expected structure of the API Response for IntelliJ
+            /** @type {
+             * {
+             * suppliers: {
+             * supplierId: String,
+             * supplierName: string,
+             * supplierAddress: string,
+             * supplierContactNo: String,
+             * supplierAddedOn: string
+             * }[] }
+             * } */
+
+            const responseData = data;
+
             // Get table reference
             const table = document.getElementById('suppliers-table');
 
@@ -35,21 +49,21 @@ function loadSuppliers() {
             }
 
             // Add new rows from data
-            data.suppliers.forEach(supplier => {
+            responseData.suppliers.forEach(supplier => {
                 const row = table.insertRow();
 
                 // Add cells for each column
                 const supplierIdCell = row.insertCell();
-                supplierIdCell.textContent = supplier.id;
+                supplierIdCell.textContent = supplier.supplierId;
 
                 const supplierNameCell = row.insertCell();
                 supplierNameCell.textContent = supplier.supplierName || '';
 
                 const addressCell = row.insertCell();
-                addressCell.textContent = supplier.address || '';
+                addressCell.textContent = supplier.supplierAddress || '';
 
                 const contactNoCell = row.insertCell();
-                contactNoCell.textContent = supplier.contactNo || '';
+                contactNoCell.textContent = supplier.supplierContactNo || '';
 
                 const supplierAddedOnCell = row.insertCell();
                 supplierAddedOnCell.textContent = supplier.supplierAddedOn || '';
