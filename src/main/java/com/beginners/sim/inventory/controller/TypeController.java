@@ -36,7 +36,7 @@ public class TypeController {
         Type type = new Type();
         type.setTypeName(typeName);
         type.setTypeAddedOn(typeAddedOn);
-        
+
         Type savedType = typeService.saveType(type);
         return ResponseEntity.ok(savedType);
     }
