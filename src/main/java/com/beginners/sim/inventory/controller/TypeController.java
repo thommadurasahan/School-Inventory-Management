@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +25,18 @@ public class TypeController {
     private final TypeService typeService;
 
     @PostMapping("/add-type")
-    public ResponseEntity<Type> createType(@RequestBody Type type) {
-        log.info("Creating new type: {}", type);
+    public ResponseEntity<Type> createType(@RequestBody Map<String, Object> typeData) {
+        log.info("Creating new type: {}", typeData);
+
+        // Extract data from the request
+        String typeName = (String) typeData.get("typeName");
+        Date typeAddedOn = new Date();
+
+        // Create and save the Type
+        Type type = new Type();
+        type.setTypeName(typeName);
+        type.setTypeAddedOn(typeAddedOn);
+        
         Type savedType = typeService.saveType(type);
         return ResponseEntity.ok(savedType);
     }
