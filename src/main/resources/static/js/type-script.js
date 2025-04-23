@@ -55,3 +55,26 @@ function loadTypes() {
             alert('Failed to load types.');
         });
 }
+
+// Handles the form submission for updating a type.
+document.querySelector('form[name="type-update-form"]').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const jsonData = Object.fromEntries(formData.entries());
+    const typeId = Number(jsonData.typeId); // Extract the typeID from the form data
+
+    const response = await fetch(`http://localhost:8080/api/v1/types/update-type-by-id/${typeId}`, { // Use backticks here
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+    });
+
+    if (response.ok) {
+        alert('Type updated successfully!');
+    } else {
+        alert('Failed to update type.');
+    }
+});

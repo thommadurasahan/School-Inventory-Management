@@ -16,7 +16,7 @@ public interface TypeService {
 
     Page<Type> getAllTypesPaginated(int page, int size);
 
-    Type getTypeById(Long id) throws TypeNotFoundException;
+    Type getTypeById(Long typeId) throws TypeNotFoundException;
 
-    void deleteType(Long id) throws TypeNotFoundException;
+    void deleteType(Long typeId) throws TypeNotFoundException;
 }

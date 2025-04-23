@@ -85,11 +85,11 @@ public class TypeController {
         }
     }
 
-    @PutMapping("/update-type-by-id/{id}")
-    public ResponseEntity<Type> updateType(@PathVariable Long id, @RequestBody Type updatedType) {
-        log.info("Updating type with ID: {}", id);
+    @PutMapping("/update-type-by-id/{typeId}")
+    public ResponseEntity<Type> updateType(@PathVariable Long typeId, @RequestBody Type updatedType) {
+        log.info("Updating type with ID: {}", typeId);
         try {
-            Type type = typeService.getTypeById(id);
+            Type type = typeService.getTypeById(typeId);
             type.setTypeName(updatedType.getTypeName());
             Type saved = typeService.saveType(type);
             return ResponseEntity.ok(saved);
