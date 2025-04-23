@@ -10,10 +10,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin
 @RestController
 @RequestMapping(Constant.SUPPLIER_BASE_URL)
 @RequiredArgsConstructor
@@ -23,19 +25,35 @@ public class SupplierController {
     private final SupplierService supplierService;
 
     @PostMapping("/add-supplier")
-    public ResponseEntity<Supplier> insertSupplier(@RequestBody Supplier supplier) {
-        log.info("Inserting new supplier: {}", supplier);
+    public ResponseEntity<Supplier> insertSupplier(@RequestBody Map<String, Object> supplierData) {
+        log.info("Inserting new supplier: {}", supplierData);
+
+        // Extract data from the request
+        String supplierName = (String) supplierData.get("supplierName");
+        String supplierAddress = (String) supplierData.get("supplierAddress");
+        int contactNo = Integer.parseInt(supplierData.get("contactNo").toString());
+        Date supplierAddedOn = new Date();
+
+        // Create and save the Item
+        Supplier supplier = new Supplier();
+        supplier.setSupplierName(supplierName);
+        supplier.setSupplierAddress(supplierAddress);
+        supplier.setSupplierContactNo(contactNo);
+        supplier.setSupplierAddedOn(supplierAddedOn);
+
         Supplier savedSupplier = supplierService.saveSupplier(supplier);
         return ResponseEntity.ok(savedSupplier);
     }
 
     @GetMapping("/view-suppliers")
-    public ResponseEntity<List<Supplier>> getAllSuppliers() {
+    public ResponseEntity<Map<String, Object>> getAllSuppliers() {
         List<Supplier> suppliers = supplierService.getAllSuppliers();
         if (suppliers.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok(suppliers);
+        Map<String, Object> response = new HashMap<>();
+        response.put("suppliers", suppliers);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/view-paginated-suppliers")

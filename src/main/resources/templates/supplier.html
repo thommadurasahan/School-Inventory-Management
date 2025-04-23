@@ -6,19 +6,132 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="/static/css/common-style.css" rel="stylesheet">
     <link href="/static/css/inventory-style.css" rel="stylesheet">
+    <script defer src="/static/js/supplier-script.js"></script>
 </head>
 <body>
 
 <header>
     <img alt="Logo" src="/static/images/logo.png"/>
     <nav>
-        <a href="../index.html">Home Page</a>
+        <a href="../index.html">Home</a>
         <a href="item.html">Add Item</a>
         <a href="order.html">Add Order</a>
         <a href="repair.html">Add Repair</a>
         <a href="survey.html">Add Survey</a>
     </nav>
 </header>
+
+<section>
+    <div><h1>Add Supplier</h1></div>
+
+    <div class="container">
+        <form name="supplier-insert-form">
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="supplier-name">Supplier Name</label>
+                </div>
+                <div class="col-75">
+                    <input id="supplier-name" name="supplierName" placeholder="Enter Supplier name.." type="text">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="address">Address</label>
+                </div>
+                <div class="col-75">
+                    <input id="address" name="supplierAddress" placeholder="Enter Supplier address.." type="text">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="contact-no">Contact No.</label>
+                </div>
+                <div class="col-75">
+                    <input id="contact-no" name="contactNo" placeholder="Enter Contact Number.." type="number">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="inserted-date-in-add-item">Received Date</label>
+                </div>
+                <div class="col-75">
+                    <input id="inserted-date-in-add-item" name="supplierAddedOn" placeholder="Enter Date.."
+                           type="date">
+                </div>
+            </div>
+
+            <div class="row">
+                <input type="submit" value="Submit">
+            </div>
+
+        </form>
+    </div>
+</section>
+
+<section>
+    <div><h1>View All Suppliers</h1></div>
+
+    <div class="container">
+
+        <form onsubmit="return false;">
+            <div class="row">
+                <input onclick="loadSuppliers()" type="submit" value="View All">
+            </div>
+        </form>
+
+        <div class="table-wrap">
+            <table id="suppliers-table">
+                <tr>
+                    <th>Supplier ID</th>
+                    <th>Supplier Name</th>
+                    <th>Address</th>
+                    <th>Contact No.</th>
+                    <th>Inserted Date</th>
+                </tr>
+                <!-- Table body will be filled by JavaScript -->
+            </table>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <div><h1>Update Supplier</h1></div>
+
+    <div class="container">
+        <form name="supplier-update-form">
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="supplier-id">Supplier ID</label>
+                </div>
+                <div class="col-75">
+                    <input id="supplier-id" name="supplier-id" placeholder="Enter Supplier ID.." type="number">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="updated-contact-no">Updated Contact No.</label>
+                </div>
+                <div class="col-75">
+                    <input id="updated-contact-no" name="updated-contact-no" placeholder="Enter Updated Contact Number."
+                           type="number">
+                </div>
+            </div>
+
+            <div class="row">
+                <input type="submit" value="Update">
+            </div>
+
+        </form>
+    </div>
+
+</section>
 
 <footer>
     <p><a href="https://github.com/thommadurasahan/School-Inventory-Management.git">Check Our Spring Boot

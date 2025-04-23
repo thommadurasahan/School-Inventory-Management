@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 public class SupplierServiceImpl implements SupplierService {
 
-    private SupplierRepository supplierRepository;
+    private final SupplierRepository supplierRepository;
 
     @Override
     public Supplier saveSupplier(Supplier supplier) {
