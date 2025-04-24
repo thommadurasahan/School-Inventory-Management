@@ -75,3 +75,26 @@ function loadSuppliers() {
             alert('Failed to load suppliers.');
         });
 }
+
+// Handles the form submission for updating a type.
+document.querySelector('form[name="supplier-update-form"]').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const jsonData = Object.fromEntries(formData.entries());
+    const supplierId = Number(jsonData.supplierId); // Extract the typeID from the form data
+
+    const response = await fetch(`http://localhost:8080/api/v1/suppliers/update-supplier-by-id/${supplierId}`, { // Use backticks here
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+    });
+
+    if (response.ok) {
+        alert('Supplier updated successfully!');
+    } else {
+        alert('Failed to update supplier.');
+    }
+});
