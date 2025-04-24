@@ -93,10 +93,10 @@ public class ItemController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/view-item-by-id/{id}")
-    public ResponseEntity<Item> getItemById(@PathVariable long id) {
+    @GetMapping("/view-item-by-id/{itemId}")
+    public ResponseEntity<Item> getItemById(@PathVariable long itemId) {
         try {
-            Item item = itemService.getItemById(id);
+            Item item = itemService.getItemById(itemId);
             return ResponseEntity.ok(item);
         } catch (ItemNotFoundException e) {
             return ResponseEntity.notFound().build();
@@ -115,11 +115,11 @@ public class ItemController {
         return ResponseEntity.ok(items);
     }
 
-    @PutMapping("/update-item-by-id/{id}")
-    public ResponseEntity<Item> updateItem(@PathVariable long id, @RequestBody Item updatedItem) {
-        log.info("Updating item with ID: {}", id);
+    @PutMapping("/update-item-by-id/{itemId}")
+    public ResponseEntity<Item> updateItem(@PathVariable long itemId, @RequestBody Item updatedItem) {
+        log.info("Updating item with ID: {}", itemId);
         try {
-            Item item = itemService.getItemById(id);
+            Item item = itemService.getItemById(itemId);
             item.setQuantity(updatedItem.getQuantity());
             Item saved = itemService.saveItem(item);
             return ResponseEntity.ok(saved);
@@ -128,11 +128,11 @@ public class ItemController {
         }
     }
 
-    @DeleteMapping("/delete-item-by-id/{id}")
-    public ResponseEntity<Void> deleteItem(@PathVariable long id) {
-        log.info("Deleting item with ID: {}", id);
+    @DeleteMapping("/delete-item-by-id/{itemId}")
+    public ResponseEntity<Void> deleteItem(@PathVariable long itemId) {
+        log.info("Deleting item with ID: {}", itemId);
         try {
-            itemService.deleteItem(id);
+            itemService.deleteItem(itemId);
             return ResponseEntity.noContent().build();
         } catch (ItemNotFoundException e) {
             return ResponseEntity.noContent().build();

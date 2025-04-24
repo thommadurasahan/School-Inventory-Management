@@ -170,3 +170,26 @@ function loadItems() {
             alert('Error loading items. Check console for details.');
         });
 }
+
+// Handles the form submission for updating an item.
+document.querySelector('form[name="item-update-form"]').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const jsonData = Object.fromEntries(formData.entries());
+    const itemId = Number(jsonData.itemId); // Extract the itemID from the form data
+
+    const response = await fetch(`http://localhost:8080/api/v1/items/update-item-by-id/${itemId}`, { // Use backticks here
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+    });
+
+    if (response.ok) {
+        alert('Item updated successfully!');
+    } else {
+        alert('Failed to update item.');
+    }
+});
