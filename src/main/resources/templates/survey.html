@@ -6,6 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="/static/css/common-style.css" rel="stylesheet">
     <link href="/static/css/survey-style.css" rel="stylesheet">
+    
 </head>
 <body>
 
@@ -83,73 +84,34 @@
             </form>
         </section>
 
-        <!-- View Surveys (Paginated) Section -->
-        <!--
-        <section class="survey-section" id="view-surveys-paginated">
-            <h2>View Surveys (Paginated)</h2>
+        <!-- View All Surveys Section -->
+        <section class="survey-section" id="view-surveys-by-date">
+            <h2>View All Surveys</h2>
             
-            <table class="survey-table">
-                <thead>
+            <div class="btn-container">
+                <button class="btn btn-primary" id="viewAll">View All</button>
+            </div>
+
+            <div class="survey-table-container">
+                <table class="survey-table">
+                    <thead>
                     <tr>
-                        <th>Survey ID</th>
                         <th>Survey Name</th>
                         <th>Conducted Date</th>
+                        <th>Type Name</th>
+                        <th>Total item Quantity</th>
+                        <th>Present item Quantity</th>
+                        <th>Order Id</th>
+                        <th>Ordered item Quantity</th>
+                        <th>Healthy item Quantity</th>
+                        <th>Repair item Quantity</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Annual Inventory Check</td>
-                        <td>2023-10-15</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Quarterly Review</td>
-                        <td>2023-07-01</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Emergency Audit</td>
-                        <td>2023-09-05</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div class="pagination">
-                <button>Previous</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>Next</button>
+                    </thead>
+                    <tbody>
+                    <!-- Table content will be populated dynamically -->
+                    </tbody>
+                </table>
             </div>
-        </section>
-        -->
-
-        <!-- View Surveys (By Date) Section -->
-        <section class="survey-section" id="view-surveys-by-date">
-            <h2>View Surveys (By Date)</h2>
-
-            <div class="view-by-date">
-                <div class="calendar-container">
-                    <input class="calendar" type="date">
-                </div>
-                <button class="btn btn-primary">Submit</button>
-            </div>
-
-            <table class="survey-table">
-                <thead>
-                <tr>
-                    <th>Survey ID</th>
-                    <th>Survey Name</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Annual Inventory Check</td>
-                </tr>
-                </tbody>
-            </table>
         </section>
 
         <!-- Update Survey Section -->
@@ -180,5 +142,6 @@
         GitHub Project</a></p>
 </footer>
 
+<script src="/static/js/survey-script.js"></script>
 </body>
 </html>

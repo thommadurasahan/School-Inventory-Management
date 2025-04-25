@@ -1,3 +1,5 @@
+
+
 /* Survey Page Styles */
 .container {
     max-width: 1200px;
@@ -559,3 +561,34 @@ select {
         grid-template-columns: 1fr;
     }
 }
+  /* Center align table styles */
+  .survey-table-container {
+    display: flex;
+     justify-content: center;
+     width: 100%;
+     margin-top: 20px;
+     overflow-x: auto;
+ }
+ 
+ .survey-table {
+     border-collapse: collapse;
+     width: 100%;
+     max-width: 1200px;
+     margin: 0 auto;
+ }
+ 
+ .survey-table th, 
+ .survey-table td {
+     text-align: center;
+     padding: 10px;
+     border: 0 4px 8px rgba(0, 0, 0, 0.3);
+ }
+ 
+ .survey-table th {
+     background-color:0 4px 8px rgba(0, 0, 0, 0.3);
+     color: white;
+ }
+ 
+ .survey-table tr:nth-child(even) {
+     background-color:0 4px 8px rgba(0, 0, 0, 0.3);
+ }
