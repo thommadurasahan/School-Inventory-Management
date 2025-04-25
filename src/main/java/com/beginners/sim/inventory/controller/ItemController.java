@@ -16,6 +16,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -103,16 +105,22 @@ public class ItemController {
         }
     }
 
-    @GetMapping("/view-items-by-date")
-    public ResponseEntity<List<Item>> getItemsByDate(@RequestParam("date") Date receivedOn) {
-        log.info("Getting items by date: {}", receivedOn);
-        List<Item> items = itemService.getItemsByDate(receivedOn);
+    @GetMapping("/view-items-by-date/{receivedOn}")
+    public ResponseEntity<List<Item>> getItemsByDate(@PathVariable String receivedOn) {
+        try {
+            // Parse the receivedOn string into a Date object
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(receivedOn);
+            List<Item> items = itemService.getItemsByDate(date);
 
-        if (items.isEmpty()) {
-            return ResponseEntity.noContent().build();
+            if (items.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+
+            return ResponseEntity.ok(items);
+        } catch (ParseException e) {
+            log.error("Invalid date format: {}", receivedOn, e);
+            return ResponseEntity.badRequest().build();
         }
-
-        return ResponseEntity.ok(items);
     }
 
     @PutMapping("/update-item-by-id/{itemId}")
