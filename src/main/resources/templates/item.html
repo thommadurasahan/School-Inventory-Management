@@ -134,13 +134,13 @@
                     <label for="received-date-in-view-items">Received Date</label>
                 </div>
                 <div class="col-75">
-                    <input id="received-date-in-view-items" name="received-date" placeholder="Enter Received Date.."
+                    <input id="received-date-in-view-items" name="receivedOn" placeholder="Enter Received Date.."
                            type="date">
                 </div>
             </div>
 
             <div class="row">
-                <input type="submit" value="View">
+                <input onclick="loadFilteredItems()" type="submit" value="View">
             </div>
 
         </form>
@@ -154,7 +154,6 @@
                     <th>Voucher No.</th>
                     <th>Quantity</th>
                     <th>Supplier Name</th>
-                    <th>Received Date</th>
                 </tr>
                 <!-- Table body will be filled by JavaScript -->
             </table>
@@ -174,7 +173,7 @@
                     <label for="item-id">Item ID</label>
                 </div>
                 <div class="col-75">
-                    <input id="item-id" name="item-id" placeholder="Enter Item ID.." type="number">
+                    <input id="item-id" name="itemId" placeholder="Enter Item ID.." type="number">
                 </div>
             </div>
 
@@ -183,7 +182,7 @@
                     <label for="updated-quantity">Updated Quantity</label>
                 </div>
                 <div class="col-75">
-                    <input id="updated-quantity" name="updated-quantity" placeholder="Enter Updated Item quantity.."
+                    <input id="updated-quantity" name="quantity" placeholder="Enter Updated Item quantity.."
                            type="number">
                 </div>
             </div>

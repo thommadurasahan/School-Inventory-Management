@@ -170,3 +170,91 @@ function loadItems() {
             alert('Error loading items. Check console for details.');
         });
 }
+
+
+// Function to load items filtered by Received Date
+function loadFilteredItems() {
+    const receivedOn = document.getElementById('received-date-in-view-items').value; // Get the selected date
+    if (!receivedOn) {
+        alert('Please select a date.');
+        return;
+    }
+
+    fetch(`http://localhost:8080/api/v1/items/view-items-by-date/${receivedOn}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch filtered items.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Check if the response is an array
+            if (!Array.isArray(data)) {
+                console.error('Expected an array but got:', data);
+                alert('Failed to load filtered items: Invalid response format.');
+                return;
+            }
+
+            // Get table reference
+            const table = document.getElementById('filtered-items-table');
+
+            // Clear existing rows except header
+            while (table.rows.length > 1) {
+                table.deleteRow(1);
+            }
+
+            // Add new rows from data
+            data.forEach(item => {
+                const row = table.insertRow();
+
+                // Add cells for each column
+                const itemIdCell = row.insertCell();
+                itemIdCell.textContent = item.itemId;
+
+                const itemNameCell = row.insertCell();
+                itemNameCell.textContent = item.itemName || '';
+
+                const typeNameCell = row.insertCell();
+                typeNameCell.textContent = item.type?.typeName || '';
+
+                const voucherNoCell = row.insertCell();
+                voucherNoCell.textContent = item.voucherNo || '';
+
+                const quantityCell = row.insertCell();
+                quantityCell.textContent = item.quantity || '';
+
+                const supplierNameCell = row.insertCell();
+                supplierNameCell.textContent = item.supplier?.supplierName || '';
+            });
+
+            console.log('Filtered items loaded successfully.');
+        })
+        .catch(error => {
+            console.error('Error loading filtered items:', error);
+            alert('Error loading filtered items. Check console for details.');
+        });
+}
+
+
+// Handles the form submission for updating an item.
+document.querySelector('form[name="item-update-form"]').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const jsonData = Object.fromEntries(formData.entries());
+    const itemId = Number(jsonData.itemId); // Extract the itemID from the form data
+
+    const response = await fetch(`http://localhost:8080/api/v1/items/update-item-by-id/${itemId}`, { // Use backticks here
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+    });
+
+    if (response.ok) {
+        alert('Item updated successfully!');
+    } else {
+        alert('Failed to update item.');
+    }
+});

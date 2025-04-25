@@ -79,23 +79,23 @@ public class SupplierController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/view-supplier-by-id/{id}")
-    public ResponseEntity<Supplier> getSupplierById(@PathVariable Long id) {
+    @GetMapping("/view-supplier-by-id/{supplierId}")
+    public ResponseEntity<Supplier> getSupplierById(@PathVariable Long supplierId) {
         try {
-            Supplier supplier = supplierService.getSupplierById(id);
+            Supplier supplier = supplierService.getSupplierById(supplierId);
             return ResponseEntity.ok(supplier);
         } catch (SupplierNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @PutMapping("/update-supplier-by-id/{id}")
-    public ResponseEntity<Supplier> updateSupplier(@PathVariable Long id, @RequestBody Supplier updatedSupplier) {
-        log.info("Updating supplier with ID: {}", id);
+    @PutMapping("/update-supplier-by-id/{supplierId}")
+    public ResponseEntity<Supplier> updateSupplier(@PathVariable Long supplierId, @RequestBody Supplier updatedSupplier) {
+        log.info("Updating supplier with ID: {}", supplierId);
         try {
-            Supplier supplier = supplierService.getSupplierById(id);
-            supplier.setSupplierName(updatedSupplier.getSupplierName());
-            supplier.setSupplierAddress(updatedSupplier.getSupplierAddress());
+            Supplier supplier = supplierService.getSupplierById(supplierId);
+//            supplier.setSupplierName(updatedSupplier.getSupplierName());
+//            supplier.setSupplierAddress(updatedSupplier.getSupplierAddress());
             supplier.setSupplierContactNo(updatedSupplier.getSupplierContactNo());
             Supplier saved = supplierService.saveSupplier(supplier);
             return ResponseEntity.ok(saved);
@@ -104,11 +104,11 @@ public class SupplierController {
         }
     }
 
-    @DeleteMapping("/delete-supplier-by-id/{id}")
-    public ResponseEntity<Void> deleteSupplier(@PathVariable Long id) {
-        log.info("Deleting supplier with ID: {}", id);
+    @DeleteMapping("/delete-supplier-by-id/{supplierId}")
+    public ResponseEntity<Void> deleteSupplier(@PathVariable Long supplierId) {
+        log.info("Deleting supplier with ID: {}", supplierId);
         try {
-            supplierService.deleteSupplier(id);
+            supplierService.deleteSupplier(supplierId);
             return ResponseEntity.noContent().build();
         } catch (SupplierNotFoundException e) {
             return ResponseEntity.noContent().build();

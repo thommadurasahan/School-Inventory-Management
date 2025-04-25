@@ -16,6 +16,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -93,33 +95,39 @@ public class ItemController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/view-item-by-id/{id}")
-    public ResponseEntity<Item> getItemById(@PathVariable long id) {
+    @GetMapping("/view-item-by-id/{itemId}")
+    public ResponseEntity<Item> getItemById(@PathVariable long itemId) {
         try {
-            Item item = itemService.getItemById(id);
+            Item item = itemService.getItemById(itemId);
             return ResponseEntity.ok(item);
         } catch (ItemNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @GetMapping("/view-items-by-date")
-    public ResponseEntity<List<Item>> getItemsByDate(@RequestParam("date") Date receivedOn) {
-        log.info("Getting items by date: {}", receivedOn);
-        List<Item> items = itemService.getItemsByDate(receivedOn);
+    @GetMapping("/view-items-by-date/{receivedOn}")
+    public ResponseEntity<List<Item>> getItemsByDate(@PathVariable String receivedOn) {
+        try {
+            // Parse the receivedOn string into a Date object
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(receivedOn);
+            List<Item> items = itemService.getItemsByDate(date);
 
-        if (items.isEmpty()) {
-            return ResponseEntity.noContent().build();
+            if (items.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+
+            return ResponseEntity.ok(items);
+        } catch (ParseException e) {
+            log.error("Invalid date format: {}", receivedOn, e);
+            return ResponseEntity.badRequest().build();
         }
-
-        return ResponseEntity.ok(items);
     }
 
-    @PutMapping("/update-item-by-id/{id}")
-    public ResponseEntity<Item> updateItem(@PathVariable long id, @RequestBody Item updatedItem) {
-        log.info("Updating item with ID: {}", id);
+    @PutMapping("/update-item-by-id/{itemId}")
+    public ResponseEntity<Item> updateItem(@PathVariable long itemId, @RequestBody Item updatedItem) {
+        log.info("Updating item with ID: {}", itemId);
         try {
-            Item item = itemService.getItemById(id);
+            Item item = itemService.getItemById(itemId);
             item.setQuantity(updatedItem.getQuantity());
             Item saved = itemService.saveItem(item);
             return ResponseEntity.ok(saved);
@@ -128,11 +136,11 @@ public class ItemController {
         }
     }
 
-    @DeleteMapping("/delete-item-by-id/{id}")
-    public ResponseEntity<Void> deleteItem(@PathVariable long id) {
-        log.info("Deleting item with ID: {}", id);
+    @DeleteMapping("/delete-item-by-id/{itemId}")
+    public ResponseEntity<Void> deleteItem(@PathVariable long itemId) {
+        log.info("Deleting item with ID: {}", itemId);
         try {
-            itemService.deleteItem(id);
+            itemService.deleteItem(itemId);
             return ResponseEntity.noContent().build();
         } catch (ItemNotFoundException e) {
             return ResponseEntity.noContent().build();
