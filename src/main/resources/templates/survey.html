@@ -6,7 +6,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="/static/css/common-style.css" rel="stylesheet">
     <link href="/static/css/survey-style.css" rel="stylesheet">
-    
+    <script defer src="/static/js/survey-script.js"></script>
+
 </head>
 <body>
 
@@ -87,7 +88,7 @@
         <!-- View All Surveys Section -->
         <section class="survey-section" id="view-surveys-by-date">
             <h2>View All Surveys</h2>
-            
+
             <div class="btn-container">
                 <button class="btn btn-primary" id="viewAll">View All</button>
             </div>
@@ -118,15 +119,15 @@
         <section class="survey-section" id="update-survey">
             <h2>Update Survey</h2>
 
-            <form class="survey-form update-form">
+            <form class="survey-form update-form" name="survey-update-form">
                 <div class="form-group">
                     <label for="updateSurveyId">Survey ID</label>
-                    <input id="updateSurveyId" placeholder="Enter number" type="number">
+                    <input id="updateSurveyId" name="surveyId" placeholder="Enter number" type="number">
                 </div>
 
                 <div class="form-group">
                     <label for="updateSurveyName">Updated Survey Name</label>
-                    <input id="updateSurveyName" placeholder="Enter updated name" type="text">
+                    <input id="updateSurveyName" name="surveyName" placeholder="Enter updated name" type="text">
                 </div>
 
                 <div class="btn-container">
