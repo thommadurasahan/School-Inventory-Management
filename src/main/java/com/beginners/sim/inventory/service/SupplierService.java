@@ -16,7 +16,7 @@ public interface SupplierService {
 
     Page<Supplier> getAllSuppliersPaginated(int page, int size);
 
-    Supplier getSupplierById(long id) throws SupplierNotFoundException;
+    Supplier getSupplierById(long supplierId) throws SupplierNotFoundException;
 
-    void deleteSupplier(long id) throws SupplierNotFoundException;
+    void deleteSupplier(long supplierId) throws SupplierNotFoundException;
 }

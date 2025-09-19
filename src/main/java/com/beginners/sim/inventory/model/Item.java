@@ -30,7 +30,7 @@ public class Item {
     @Column(name = "quantity")
     private long quantity;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "received_on")
     private Date receivedOn;
 

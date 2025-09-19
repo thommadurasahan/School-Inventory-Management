@@ -15,7 +15,7 @@ public interface ItemService {
 
     List<Item> getAllItems();
 
-    Page<Item> getAllItemsPaginated(int page, int size);
+    Page<Item> getAllItemsPaginated(int page, int pageSize);
 
     Item getItemById(long id) throws ItemNotFoundException;
 

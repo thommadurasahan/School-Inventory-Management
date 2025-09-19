@@ -97,17 +97,16 @@ public class SurveyController {
         return ResponseEntity.ok(surveys);
     }
 
-    @PutMapping("/update-survey-by-id/{id}")
-    public ResponseEntity<Survey> updateSurvey(@PathVariable Long id, @RequestBody Survey updatedSurvey) {
-        log.info("Updating survey with ID: {}", id);
+    @PutMapping("/update-survey-by-id/{surveyId}")
+    public ResponseEntity<Survey> updateSurvey(@PathVariable Long surveyId, @RequestBody Survey updatedSurvey) {
+        log.info("Updating survey with ID: {}", surveyId);
         try {
-            Survey existingSurvey = surveyService.getSurveyById(id);
+            Survey existingSurvey = surveyService.getSurveyById(surveyId);
             existingSurvey.setSurveyName(updatedSurvey.getSurveyName());
             // Update other fields as needed
             Survey savedSurvey = surveyService.saveSurvey(existingSurvey);
             return ResponseEntity.ok(savedSurvey);
         } catch (SurveyNotFoundException e) {
-            log.error("Survey not found with ID: {}", id);
             return ResponseEntity.notFound().build();
         }
     }

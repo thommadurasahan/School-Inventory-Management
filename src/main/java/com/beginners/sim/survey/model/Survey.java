@@ -41,16 +41,16 @@ public class Survey {
     @Column(name = "repair_quantity")
     private Integer repairQuantity;
 
-    @Column(name = "survey_on")
     @Temporal(TemporalType.DATE)
+    @Column(name = "survey_on")
     private Date surveyOn;
 
-    // Survey (1) - Type (1) Relationship (Owner Side)
+    // Survey (1) - Type (1) Relationship
     @OneToOne
     @JoinColumn(name = "type_id")
     private Type type;
 
-    // Survey (1) - Order (1) Relationship (Owner Side)
+    // Survey (1) - Order (1) Relationship
     @OneToOne
     @JoinColumn(name = "order_id")
     private Order order;

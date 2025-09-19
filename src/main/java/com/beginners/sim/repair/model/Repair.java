@@ -1,7 +1,9 @@
 package com.beginners.sim.repair.model;
 
 import com.beginners.sim.inventory.model.Type;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,18 +20,21 @@ public class Repair {
     @Column(name = "sent_quantity")
     private int sentQuantity;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "sent_to_repair_on")
     private Date sentToRepairOn;
 
     @Column(name = "repair_location")
     private String repairLocation;
 
+    // Repair (M) - Type (M) Relationship
     @ManyToMany
     @JoinTable(
             name = "sent_type",
             joinColumns = @JoinColumn(name = "repair_id"),
             inverseJoinColumns = @JoinColumn(name = "type_id")
     )
+    @JsonIgnore
     private Set<Type> types = new HashSet<>();
 
     // Getters and Setters

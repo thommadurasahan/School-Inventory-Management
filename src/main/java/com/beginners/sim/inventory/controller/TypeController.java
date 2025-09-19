@@ -10,10 +10,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin
 @RestController
 @RequestMapping(Constant.TYPE_BASE_URL)
 @RequiredArgsConstructor
@@ -23,19 +25,31 @@ public class TypeController {
     private final TypeService typeService;
 
     @PostMapping("/add-type")
-    public ResponseEntity<Type> createType(@RequestBody Type type) {
-        log.info("Creating new type: {}", type);
+    public ResponseEntity<Type> createType(@RequestBody Map<String, Object> typeData) {
+        log.info("Creating new type: {}", typeData);
+
+        // Extract data from the request
+        String typeName = (String) typeData.get("typeName");
+        Date typeAddedOn = new Date();
+
+        // Create and save the Type
+        Type type = new Type();
+        type.setTypeName(typeName);
+        type.setTypeAddedOn(typeAddedOn);
+
         Type savedType = typeService.saveType(type);
         return ResponseEntity.ok(savedType);
     }
 
     @GetMapping("/view-types")
-    public ResponseEntity<List<Type>> getAllTypes() {
+    public ResponseEntity<Map<String, Object>> getAllTypes() {
         List<Type> types = typeService.getAllTypes();
         if (types.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok(types);
+        Map<String, Object> response = new HashMap<>();
+        response.put("types", types);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/view-paginated-types")
@@ -71,11 +85,11 @@ public class TypeController {
         }
     }
 
-    @PutMapping("/update-type-by-id/{id}")
-    public ResponseEntity<Type> updateType(@PathVariable Long id, @RequestBody Type updatedType) {
-        log.info("Updating type with ID: {}", id);
+    @PutMapping("/update-type-by-id/{typeId}")
+    public ResponseEntity<Type> updateType(@PathVariable Long typeId, @RequestBody Type updatedType) {
+        log.info("Updating type with ID: {}", typeId);
         try {
-            Type type = typeService.getTypeById(id);
+            Type type = typeService.getTypeById(typeId);
             type.setTypeName(updatedType.getTypeName());
             Type saved = typeService.saveType(type);
             return ResponseEntity.ok(saved);

@@ -36,16 +36,16 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public Type getTypeById(Long id) throws TypeNotFoundException {
-        return typeRepository.findById(id)
-                .orElseThrow(() -> new TypeNotFoundException("Type not found with ID: " + id));
+    public Type getTypeById(Long typeId) throws TypeNotFoundException {
+        return typeRepository.findById(typeId)
+                .orElseThrow(() -> new TypeNotFoundException("Type not found with ID: " + typeId));
     }
 
     @Override
-    public void deleteType(Long id) throws TypeNotFoundException {
-        if (!typeRepository.existsById(id)) {
-            throw new TypeNotFoundException("Type not found with id: " + id);
+    public void deleteType(Long typeId) throws TypeNotFoundException {
+        if (!typeRepository.existsById(typeId)) {
+            throw new TypeNotFoundException("Type not found with typeId: " + typeId);
         }
-        typeRepository.deleteById(id);
+        typeRepository.deleteById(typeId);
     }
 }

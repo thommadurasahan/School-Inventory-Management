@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 public class SupplierServiceImpl implements SupplierService {
 
-    private SupplierRepository supplierRepository;
+    private final SupplierRepository supplierRepository;
 
     @Override
     public Supplier saveSupplier(Supplier supplier) {
@@ -36,16 +36,16 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public Supplier getSupplierById(long id) throws SupplierNotFoundException {
-        return supplierRepository.findById(id)
-                .orElseThrow(() -> new SupplierNotFoundException("Supplier not found withID: " + id));
+    public Supplier getSupplierById(long supplierId) throws SupplierNotFoundException {
+        return supplierRepository.findById(supplierId)
+                .orElseThrow(() -> new SupplierNotFoundException("Supplier not found withID: " + supplierId));
     }
 
     @Override
-    public void deleteSupplier(long id) throws SupplierNotFoundException {
-        if (!supplierRepository.existsById(id)) {
-            throw new SupplierNotFoundException("Supplier not found with id: " + id);
+    public void deleteSupplier(long supplierId) throws SupplierNotFoundException {
+        if (!supplierRepository.existsById(supplierId)) {
+            throw new SupplierNotFoundException("Supplier not found with id: " + supplierId);
         }
-        supplierRepository.deleteById(id);
+        supplierRepository.deleteById(supplierId);
     }
 }

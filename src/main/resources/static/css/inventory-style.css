@@ -108,6 +108,10 @@ input[type=submit]:hover {
     clear: both;
 }
 
+.table-wrap {
+    overflow-x: auto;
+}
+
 /* Table styling */
 table {
     border-collapse: collapse;
